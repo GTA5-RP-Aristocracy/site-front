@@ -7,17 +7,17 @@
       <div class="shop__cars-frame" v-for="(car, index) in cars" :key="index">
         <div class="shop__cars-marks">
           {{ car.id }}
-        </div>
-        <div class="shop__cars-content"
-          @mouseover="showLogo(car.logoId)" @mouseleave="hideLogo(car.logoId)">
+         </div>
+        <div class="shop__cars-content">
           <h1 :style="car.style">{{ car.name }}</h1>
           <p>{{ car.description }}</p>
           <img :src="car.image" :alt="car.name">
-          <div class="logo-overlay" :id="car.logoId" :style="{ backgroundImage: `url(${car.logoPath})` }"></div>
+          <div class="logo-overlay" :id="car.logoId" :style="{ backgroundImage: `url(${car.logoPath})` }">
+          </div>
         </div>
-        <div class="shop__cars-marks-buy">
-          buy now
-        </div>
+            <div class="shop__cars-marks-buy">
+                buy now
+            </div>
       </div>
     </div>
     <Footer />
@@ -36,7 +36,7 @@ interface Car {
   description: string;
   image: string;
   logoId: string;
-  logoPath: string; // Добавлено новое свойство
+  logoPath: string;
   style: string;
 }
 
@@ -54,20 +54,20 @@ const cars = ref<Car[]>([
   {
     id: '02',
     name: 'Jester',
-    description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
+    description: 'A Japanese hybrid-electric sportscar with a front-end designed to look like an angry grin might be too whimsical for some, but with a 4-liter V6 engine, 420 hp and a top speed of 180mph, the Dinka Jester still packs a serious punchline.',
     image: 'src/assets/images/cars/jester.svg',
     logoId: 'jester-logo-02',
-    logoPath: 'src/assets/images/cars/jester-logo.png', 
-    style: '',
+    logoPath: 'src/assets/images/cars/dinka.png', 
+    style: 'font-family: var(--font-family-jester); letter-spacing: 10px; font-size: 50px;',
   },
   {
     id: '03',
     name: 'Redwood Gauntlet',
-    description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
+    description: 'An American muscle car in a class by itself. Roll down the windows and scream in testosterone-filled rage as you gun the engine while stuck in traffic. DNA wipes easily off the leather seats. Now available with exclusive Redwood Livery.',
     image: 'src/assets/images/cars/RedwoodGauntlet.svg',
     logoId: 'redwood-logo-03',
-    logoPath: 'src/assets/images/cars/redwood-logo.png', 
-    style: '',
+    logoPath: 'src/assets/images/cars/Bravado.webp', 
+    style: 'font-family: var(--font-family-redwood);letter-spacing: 5px; font-size: 40px;',
   },
    {
     id: '04',
@@ -81,20 +81,20 @@ const cars = ref<Car[]>([
   {
     id: '05',
     name: 'Jester',
-    description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
+    description: 'A Japanese hybrid-electric sportscar with a front-end designed to look like an angry grin might be too whimsical for some, but with a 4-liter V6 engine, 420 hp and a top speed of 180mph, the Dinka Jester still packs a serious punchline.',
     image: 'src/assets/images/cars/jester.svg',
     logoId: 'jester-logo-02',
-    logoPath: 'src/assets/images/cars/jester-logo.png',
-    style: '',
+    logoPath: 'src/assets/images/cars/dinka.png',
+    style: 'font-family: var(--font-family-jester); letter-spacing: 10px; font-size: 50px;',
   },
   {
     id: '06',
     name: 'Redwood Gauntlet',
-    description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
+    description: 'An American muscle car in a class by itself. Roll down the windows and scream in testosterone-filled rage as you gun the engine while stuck in traffic. DNA wipes easily off the leather seats. Now available with exclusive Redwood Livery.',
     image: 'src/assets/images/cars/RedwoodGauntlet.svg',
     logoId: 'redwood-logo-03',
-    logoPath: 'src/assets/images/cars/redwood-logo.png', 
-    style: '',
+    logoPath: 'src/assets/images/cars/Bravado.webp', 
+    style: 'font-family: var(--font-family-redwood);letter-spacing: 5px; font-size: 40px;',
   },
 ]);
 
@@ -103,23 +103,40 @@ const cars = ref<Car[]>([
 <style scoped>
 .shop__dodge img {
   width: 100%; 
-  height: auto; 
+  height: auto;
+  box-shadow:0px 0px 10px 0px #000;
 }
 
+
 .shop__cars {
+   box-shadow:0px 0px 10px 0px #000;
+  margin-top: -4px;
   color: white;
   background-color: black;
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
-  gap: 78px;
 }
 
 .shop__cars-frame {
-  position: relative; /* Для позиционирования вложенных элементов */
+  position: relative;
 }
 
+.shop__cars-marks {
+  font-family: var(--font-family-outfit);
+  font-size: 28px;
+  margin-left: 90px;
+  margin-top: 105px;
+  position: absolute;
+  width: 56px;
+  height: 35px;
+  text-align: center;
+  border-top-left-radius: 20px; 
+  background-color: #f1c505;
+}
+
+
 .shop__cars-content {
-  position: relative; /* Для позиционирования вложенных элементов */
+  position: relative; 
   margin: 140px 0 140px 90px;
   width: 290px;
   height: 390px;
@@ -127,10 +144,22 @@ const cars = ref<Car[]>([
   padding: 20px;
 }
 
+.shop__cars-content h1 {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.shop__cars-content p {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
 .logo-overlay {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 1px;
+  right: 1px;
   width: 150px; 
   height: 150px; 
   background-size: contain;
@@ -138,12 +167,34 @@ const cars = ref<Car[]>([
   background-position: top right;
   opacity: 0.3; 
   pointer-events: none;
-  z-index: 1; /* Находится выше содержимого, но ниже при наведении */
-  transition: opacity 0.3s ease; /* Плавное изменение прозрачности */
+  z-index: 1;
+  transition: opacity 0.3s ease;
 }
 
 .shop__cars-content:hover .logo-overlay {
-  opacity: 1; /* Устанавливаем непрозрачность при наведении */
+  opacity: 1;
 }
+
+.shop__cars-marks-buy {
+  font-family: var(--font-family-outfit);
+  font-size: 24px;
+  margin-left: 325px;
+  margin-top: -179px;
+  position: absolute;
+  width: 100px;
+  height: 35px;
+  cursor: pointer;
+  text-align: end;
+  border-top-left-radius: 20px; 
+  background-color: #f1c505;
+  transition: all 0.3s;
+}
+
+.shop__cars-marks-buy:hover {
+  background-color: #b7981c;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
 </style>
 

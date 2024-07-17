@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 
 export default {
   setup() {
-    const audio = new Audio('src/assets/music/theme.mp3')
+    // const audio = new Audio('src/assets/music/theme.mp3')
     const isPlaying = ref<boolean>(false)
 
     // Функция для переключения состояния воспроизведения

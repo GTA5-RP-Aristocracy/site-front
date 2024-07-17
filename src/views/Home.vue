@@ -42,6 +42,7 @@ const downloadFile = () => {
     height: 900px;
     color: white;
     background-color: black;
+     box-shadow:0px 0px 5px 0px #000;
   }
  
   .home__content {
