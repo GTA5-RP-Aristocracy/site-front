@@ -48,7 +48,7 @@ const cars = ref<Car[]>([
     description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
     image: 'src/assets/images/cars/buffalo.svg',
     logoId: 'buffalo-logo-01',
-    logoPath: 'src/assets/images/cars/buffalo-logo.png',
+    logoPath: 'src/assets/images/cars/buffalo-logo.png', 
     style: 'font-family: var(--font-family-buffalo); letter-spacing: 10px; font-size: 50px;',
   },
   {
@@ -57,7 +57,7 @@ const cars = ref<Car[]>([
     description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
     image: 'src/assets/images/cars/jester.svg',
     logoId: 'jester-logo-02',
-    logoPath: 'src/assets/images/cars/jester-logo.png',
+    logoPath: 'src/assets/images/cars/jester-logo.png', 
     style: '',
   },
   {
@@ -66,7 +66,7 @@ const cars = ref<Car[]>([
     description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
     image: 'src/assets/images/cars/RedwoodGauntlet.svg',
     logoId: 'redwood-logo-03',
-    logoPath: 'src/assets/images/cars/redwood-logo.png',
+    logoPath: 'src/assets/images/cars/redwood-logo.png', 
     style: '',
   },
    {
@@ -75,7 +75,7 @@ const cars = ref<Car[]>([
     description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
     image: 'src/assets/images/cars/buffalo.svg',
     logoId: 'buffalo-logo-01',
-    logoPath: 'src/assets/images/cars/buffalo-logo.png',
+    logoPath: 'src/assets/images/cars/buffalo-logo.png', 
     style: 'font-family: var(--font-family-buffalo); letter-spacing: 10px; font-size: 50px;',
   },
   {

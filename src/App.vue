@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 
 export default {
   setup() {
-    // const audio = new Audio('src/assets/music/theme.mp3')
+    const audio = new Audio('src/assets/music/theme.mp3')
     const isPlaying = ref<boolean>(false)
 
     // Функция для переключения состояния воспроизведения
@@ -38,6 +38,7 @@ export default {
 </script>
 
 <template>
+  <div>
   <div class="nav">
     <div class="nav__content">
       <div class="nav__server-status">
@@ -77,6 +78,7 @@ export default {
     </div>
   </div>
   <RouterView />
+  </div>
 </template>
 
 <style scoped>
