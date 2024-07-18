@@ -85,7 +85,7 @@ hr {
     gap: 180px;
 }
 .footer__logo {
-  margin-left: 190px;
+  margin-left: 140px;
   width: 880px;
   height: auto;
 }

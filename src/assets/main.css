@@ -29,3 +29,8 @@
 
   --color-transition: #FFA500;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}

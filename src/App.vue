@@ -93,7 +93,7 @@ export default {
 }
 
 .nav__server-status {
-  margin-left: 190px;
+  margin-left: 140px;
   margin-top: 41px;
   display: flex;
   justify-content: space-between;

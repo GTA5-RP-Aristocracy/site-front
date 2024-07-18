@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import Sponsors from "../components/Sponsors.vue";
-import WhiteLine from "../components/WhiteLine.vue";
 import Footer from "../components/Footer.vue";
+import WhiteLine from "@/components/WhiteLine.vue";
 
 const downloadFile = () => {
   const fileId = "1uabrm9Lg3QRicNvSn2iRgdIFZreKXFVu";// нужно будет заменить ссылку на лаунчер
@@ -18,27 +18,34 @@ const downloadFile = () => {
 <template>
   <div class="home">
     <div class="home__content">
-      <div class="home__text">
+       <div class="home__text">
+       <div class="home__rose">
+        <img src="../assets/images/rose.png" alt="rose">
+       </div>
         <h1>GTA <span>V</span> Role play <strong>Aristocracy</strong></h1>
         <h2>Откройте для себя захватывающий мир ролевой игры, где каждое ваше действие имеет значение. Создавайте уникальных персонажей, взаимодействуйте с другими игроками и окунитесь в богатую историю и возможности развития.
         </h2>
         <h2>Наш сервер GTA 5 Roleplay отличается не только глубокой историей и разнообразием персонажей, но и инновационными игровыми механиками. Мы предлагаем уникальные системы экономики, гибкие возможности кастомизации персонажей и мир, который живет своей жизнью благодаря активному сообществу. Вступайте в Aristocracy Roleplay и переживите незабываемые моменты в совершенно новом свете GTA 5!</h2>
         <button @click="downloadFile">play now</button>
+          <div class="home__clock">
+            <!-- test -->
+              <img src="../assets/images/clock.png" alt="clock"> 
+          </div>
       </div>
       <div class="home__hero">
         <img src="../assets/images/hero.png" alt="hero">
       </div>
     </div>
     <WhiteLine/>
-    <Sponsors/>
-    <WhiteLine/>
-    <Footer/>
   </div>
+      <Sponsors/>
+    <Footer id="only__home"/>
 </template>
 
 <style scoped>
+
   .home {
-    width: 1440px;
+    width: 100%;
     height: 900px;
     color: white;
     background-color: black;
@@ -56,7 +63,7 @@ const downloadFile = () => {
   }
   
   .home__text h1 {
-    font-size: 36px;
+    font-size: 56px;
     font-family: var(--font-family-inter);
     font-weight: var(--font-weight-black);
   }
@@ -69,7 +76,8 @@ const downloadFile = () => {
     color: rgb(173, 16, 16);
     font-family: var(--font-family-satisfy);
     margin-left: 50px;
-    font-size: 46px;
+    font-size: 66px;
+    z-index: 2;
   }
   
   .home__text h2 {
@@ -109,5 +117,33 @@ const downloadFile = () => {
   .home__hero {
     height: 835px;
     width: 900px;
+  }
+
+  /* test */
+  .home__clock img {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: -65px;
+  width: 60px;
+  height: auto;
+  z-index: 1;
+  transform: rotate(15deg);
+}
+
+.home__rose img{
+    position: absolute;
+    margin-top: 160px;
+    margin-left: 285px;
+    width: 100px;
+    transform: rotate(325deg);
+    height: auto;
+    z-index: 1;
+    opacity: 80%;
+    box-shadow:0px 0px 15px 0px #000;
+}
+
+
+  #only__home {
+    margin-top: 60px;
   }
 </style>

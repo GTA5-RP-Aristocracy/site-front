@@ -20,7 +20,7 @@
             </div>
       </div>
     </div>
-    <Footer />
+    <Footer id="only__shop"/>
   </div>
 </template>
 
@@ -195,6 +195,9 @@ const cars = ref<Car[]>([
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+#only__shop {
+  margin-top: 60px;
+}
 
 </style>
 

@@ -12,6 +12,7 @@
 
 <style scoped>
 .sponsors {
+  margin-top: 50px;
   padding-left: 70px;
   width: 100%;
   height: 180px;
@@ -19,6 +20,7 @@
   justify-content: space-around;
   align-items: center;
   background-color: #000;
+     box-shadow:0px 0px 5px 0px #000;
 }
 .sponsors img {
   width: 220px;
