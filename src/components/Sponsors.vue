@@ -14,7 +14,6 @@
 .sponsors {
   margin-top: 50px;
   padding-left: 70px;
-  width: 100%;
   height: 180px;
   display: flex;
   justify-content: space-around;
