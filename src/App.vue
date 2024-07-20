@@ -1,85 +1,52 @@
 <script lang="ts">
-import { ref, onMounted } from 'vue'
 
-export default {
-  setup() {
-    // const audio = new Audio('src/assets/music/theme.mp3')
-    const isPlaying = ref<boolean>(false)
-
-    // Функция для переключения состояния воспроизведения
-    const togglePlaying = () => {
-      isPlaying.value = !isPlaying.value
-      if (isPlaying.value) {
-        audio.play().catch(e => console.error('Error playing audio', e))
-      } else {
-        audio.pause()
-      }
-    }
-
-    // Автоматическое воспроизведение после первого взаимодействия пользователя
-    const startPlayingOnInteraction = async () => {
-      await new Promise(resolve => {
-        document.addEventListener('click', resolve, { once: true })
-      })
-      audio.play().catch(e => console.error('Error playing audio', e))
-    }
-
-    // Запускаем автоматическое воспроизведение при загрузке компонента
-    onMounted(() => {
-      startPlayingOnInteraction()
-    })
-
-    return {
-      togglePlaying,
-      isPlaying
-    }
-  }
-}
 </script>
-
 <template>
-  <div>
-  <div class="nav">
-    <div class="nav__content">
-      <div class="nav__server-status">
-        <img src="./assets/images/server-status.svg" alt="server-status" @error="console.error('Error loading server-status.svg')">
-        <div class="nav__server-status-column">
-          <p>Server Status: <span>Online</span></p>
-          <p><strong>Players online:</strong> 98/300</p>
+    <div>
+        <div class="nav">
+            <div class="nav__content">
+                <div class="nav__server-status">
+                    <img
+                        src="./assets/images/server-status.svg"
+                        alt="server-status"
+                        @error="console.error('Error loading server-status.svg')">
+                        <div class="nav__server-status-column">
+                            <p>Server Status:
+                                <span>Online</span>
+                            </p>
+                            <p>
+                                <strong>Players online:</strong>
+                                98/300</p>
+                        </div>
+                    </div>
+                    <div class="nav__pages">
+                        <ul class="nav__pages-list">
+                            <li>
+                                <router-link to="/">HOME</router-link>
+                            </li>
+                            <li>
+                                <router-link to="/shop">SHOP</router-link>
+                            </li>
+                            <li>
+                                <router-link to="/rules">RULES</router-link>
+                            </li>
+                            <li>
+                                <a href="https://discord.gg/K4QADYZx" target="_blank">DISCORD</a>
+                            </li>
+                            <li>
+                                <router-link to="/download">DOWNLOAD & PLAY</router-link>
+                            </li>
+                            <li>
+                                <!-- временная страница для теста других компонентов -->
+                                <router-link to="/test">TEST</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <RouterView/>
         </div>
-      </div>
-      <div class="nav__pages">
-        <ul class="nav__pages-list">
-          <li>
-            <router-link to="/">HOME</router-link>
-          </li>
-          <li>
-            <router-link to="/shop">SHOP</router-link>
-          </li>
-          <li>
-            <router-link to="/rules">RULES</router-link>
-          </li>
-          <li>
-            <a href="https://discord.gg/K4QADYZx" target="_blank">DISCORD</a>
-          </li>
-          <li>
-            <router-link to="/download">DOWNLOAD & PLAY</router-link>
-          </li>
-          <li>
-            <img 
-              :src="isPlaying ? 'src/assets/images/pause.png' : 'src/assets/images/play-button.png'" 
-              @click="togglePlaying"
-              :class="{ 'playing': isPlaying }" 
-              alt="play-button"
-              @error="console.error('Error loading play-button image')">
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <RouterView />
-  </div>
-</template>
+    </template>
 
 <style scoped>
 .nav {
