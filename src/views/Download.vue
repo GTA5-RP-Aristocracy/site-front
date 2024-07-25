@@ -1,5 +1,16 @@
 <script lang='ts' setup>
 import Footer from '@/components/Footer.vue';
+
+const downloadFile = () => {
+  const fileId = "1uabrm9Lg3QRicNvSn2iRgdIFZreKXFVu";// нужно будет заменить ссылку на лаунчер
+  const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;// вставляем в дефолтный шаблон наш id лаунчера
+
+  // Создаем временную ссылку и кликаем по ней
+  const a = document.createElement('a');
+  a.href = downloadUrl;
+  a.download = ''; // Пустое значение позволяет браузеру определить имя файла автоматически
+  a.click();
+};
 </script>
 
 <template>
@@ -19,7 +30,7 @@ import Footer from '@/components/Footer.vue';
         <p class="download__content__step">STEP 2</p>
           <h1 class="download__content__main"><br>download<br/> the launcher</h1>
             <p class="download__content__description">you'll need our launcher to play on the server.</p>
-              <button class="download__content__btn">DOWNLOAD</button>
+              <button class="download__content__btn" @click="downloadFile">DOWNLOAD</button>
           </div>
                <img class="download__content__arrows-bottom" src="../assets/images/arrows-bottom.svg" alt="arrows-bottom.svg">
          <div class="download__content__read">

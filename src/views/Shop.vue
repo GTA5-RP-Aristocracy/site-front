@@ -109,7 +109,7 @@ const cars = ref<Car[]>([
 
 
 .shop__cars {
-   box-shadow:0px 0px 10px 0px #000;
+  box-shadow:0px 0px 10px 0px #000;
   margin-top: -4px;
   color: white;
   background-color: black;
