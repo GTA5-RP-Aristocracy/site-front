@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import Sponsors from "../components/Sponsors.vue";
 import Footer from "../components/Footer.vue";
-import WhiteLine from "@/components/WhiteLine.vue";
+import WhiteLine from "../components/WhiteLine.vue";
 
 </script>
 
@@ -158,5 +158,45 @@ import WhiteLine from "@/components/WhiteLine.vue";
 
   #only__home {
     margin-top: 60px;
+  }
+
+  @media (max-width: 1484px) {
+     .home__text {
+    margin-top: 50px;
+  }
+  
+  .home__text h1 {
+    font-size: 44px;
+    font-family: var(--font-family-inter);
+    font-weight: var(--font-weight-black);
+  }
+  
+  
+  .home__text h1 strong {
+    color: rgb(173, 16, 16);
+    font-family: var(--font-family-satisfy);
+    margin-left: 50px;
+    font-size: 50px;
+    z-index: 2;
+  }
+  
+  .home__text h2 {
+    font-family: var(--font-family-outfit);
+    font-weight: var(--font-weight-light);
+    font-size: 16px;
+  }
+
+  .home__rose img{
+    position: absolute;
+    margin-top: 125px;
+    margin-left: 235px;
+    width: 70px;
+    transform: rotate(325deg);
+    height: auto;
+    z-index: 1;
+    opacity: 80%;
+    box-shadow:0px 0px 15px 0px #000;
+}
+  
   }
 </style>

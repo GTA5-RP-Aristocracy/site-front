@@ -42,11 +42,11 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            <RouterView/>
-        </div>
-    </template>
+              </div>
+          </div>
+        <RouterView/>
+    </div>
+</template>
 
 <style scoped>
 .nav {
