@@ -3,16 +3,6 @@ import Sponsors from "../components/Sponsors.vue";
 import Footer from "../components/Footer.vue";
 import WhiteLine from "@/components/WhiteLine.vue";
 
-const downloadFile = () => {
-  const fileId = "1uabrm9Lg3QRicNvSn2iRgdIFZreKXFVu";// нужно будет заменить ссылку на лаунчер
-  const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;// вставляем в дефолтный шаблон наш id лаунчера
-
-  // Создаем временную ссылку и кликаем по ней
-  const a = document.createElement('a');
-  a.href = downloadUrl;
-  a.download = ''; // Пустое значение позволяет браузеру определить имя файла автоматически
-  a.click();
-};
 </script>
 
 <template>
@@ -20,7 +10,8 @@ const downloadFile = () => {
         <div class="home__content">
             <div class="home__text">
                 <div class="home__rose">
-                    <img src="../assets/images/rose.png" alt="rose"></div>
+                    <img src="../assets/images/rose.png" alt="rose">
+                  </div>
                     <h1>GTA
                         <span>V</span>
                         Role play
@@ -37,7 +28,7 @@ const downloadFile = () => {
                         Aristocracy Roleplay и переживите незабываемые моменты в совершенно новом свете
                         GTA 5!</h2>
                     <div class="home__btn">
-                        <button @click="downloadFile">Играй сейчас!</button>
+                        <button>Играй сейчас!</button>
                         <button class="home__btn-video">Ознакомится</button>
                     </div>
                     <div class="home__clock">
@@ -48,10 +39,10 @@ const downloadFile = () => {
                         <img src="../assets/images/hero.png" alt="hero"></div>
                     </div>
                     <WhiteLine/>
-                </div>
-                <Sponsors/>
-                <Footer id="only__home"/>
-            </template>
+    </div>
+  <Sponsors/>
+  <Footer id="only__home"/>
+</template>
 
 <style scoped>
 
