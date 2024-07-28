@@ -133,9 +133,6 @@ import Footer from '@/components/Footer.vue';
 </template>
 
 <style scoped>
-.rules {
-
-}
 
 .rules__container {
     padding-top: 50px;
@@ -145,11 +142,6 @@ import Footer from '@/components/Footer.vue';
     font-family: var(--font-family-outfit);
     box-shadow: 0px 0px 5px 0px #000;
 }
-
-  .rules ol {
-    list-style-type: decimal;
-    padding-left: 20px;
-  }
 
   .rules li {
     margin-bottom: 10px;
