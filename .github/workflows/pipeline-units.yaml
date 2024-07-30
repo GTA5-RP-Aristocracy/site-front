@@ -1,0 +1,10 @@
+name: Unit tests
+on:
+  push:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: hello world
+        run: echo "hello world!"
