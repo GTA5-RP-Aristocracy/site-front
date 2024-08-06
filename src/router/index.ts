@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
+import { defineAsyncComponent } from 'vue'
+
+const Home = defineAsyncComponent(() => import('@/views/Home.vue'))
+
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,26 +15,22 @@ const router = createRouter({
 		{
 			path: '/shop',
 			name: 'shop',
-
-			component: () => import('@/views/Shop.vue'),
+			component: defineAsyncComponent(() => import('@/views/Shop.vue')),
 		},
 		{
 			path: '/rules',
 			name: 'rules',
-
-			component: () => import('@/views/Rules.vue'),
+			component: defineAsyncComponent(() => import('@/views/Rules.vue')),
 		},
 		{
 			path: '/download',
 			name: 'download',
-
-			component: () => import('@/views/Download.vue'),
+			component: defineAsyncComponent(() => import('@/views/Download.vue')),
 		},
 		{
 			path: '/test',
 			name: 'test',
-
-			component: () => import('@/views/TEST.vue'),
+			component: defineAsyncComponent(() => import('@/views/TEST.vue')),
 		},
 	],
 })
