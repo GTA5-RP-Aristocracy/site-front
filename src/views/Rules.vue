@@ -133,8 +133,9 @@ import Footer from '@/components/Footer.vue';
 </template>
 
 <style scoped>
-.rules {
 
+h1 {
+  margin-left: 20px;
 }
 
 .rules__container {
@@ -148,7 +149,6 @@ import Footer from '@/components/Footer.vue';
 
   .rules ol {
     list-style-type: decimal;
-    padding-left: 20px;
   }
 
   .rules li {

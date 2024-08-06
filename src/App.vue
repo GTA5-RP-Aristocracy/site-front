@@ -1,52 +1,63 @@
-<script lang="ts">
-
-</script>
 <template>
-    <div>
+  <Suspense>
+    <template #default>
+      <div>
         <div class="nav">
-            <div class="nav__content">
-                <div class="nav__server-status">
-                    <img
-                        src="./assets/images/server-status.svg"
-                        alt="server-status"
-                        @error="console.error('Error loading server-status.svg')">
-                        <div class="nav__server-status-column">
-                            <p>Server Status:
-                                <span>Online</span>
-                            </p>
-                            <p>
-                                <strong>Players online:</strong>
-                                98/300</p>
-                        </div>
-                    </div>
-                    <div class="nav__pages">
-                        <ul class="nav__pages-list">
-                            <li>
-                                <router-link to="/">HOME</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/shop">SHOP</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/rules">RULES</router-link>
-                            </li>
-                            <li>
-                                <a href="https://discord.gg/K4QADYZx" target="_blank">DISCORD</a>
-                            </li>
-                            <li>
-                                <router-link to="/download">DOWNLOAD & PLAY</router-link>
-                            </li>
-                            <li>
-                                <!-- временная страница для теста других компонентов -->
-                                <router-link to="/test">TEST</router-link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="nav__content">
+            <div class="nav__server-status">
+              <img
+                src="./assets/images/server-status.svg"
+                alt="server-status"
+                @error="console.error('Error loading server-status.svg')"
+              />
+              <div class="nav__server-status-column">
+                <p>
+                  Server Status: <span>Online</span>
+                </p>
+                <p>
+                  <strong>Players online:</strong> 98/300
+                </p>
+              </div>
             </div>
-            <RouterView/>
+            <div class="nav__pages">
+              <ul class="nav__pages-list">
+                <li>
+                  <router-link to="/">HOME</router-link>
+                </li>
+                <li>
+                  <router-link to="/shop">SHOP</router-link>
+                </li>
+                <li>
+                  <router-link to="/rules">RULES</router-link>
+                </li>
+                <li>
+                  <a href="https://discord.gg/K4QADYZx" target="_blank">DISCORD</a>
+                </li>
+                <li>
+                  <router-link to="/download">DOWNLOAD & PLAY</router-link>
+                </li>
+                <li>
+                  <!-- временная страница для теста других компонентов -->
+                  <router-link to="/test">TEST</router-link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+        <router-view />
+      </div>
     </template>
+    <template #fallback>
+      <Loader/>
+    </template>
+  </Suspense>
+</template>
+
+<script setup lang="ts">
+import { defineAsyncComponent, Suspense } from 'vue';
+
+const Loader = defineAsyncComponent(() => import('@/components/Loader.vue'));
+</script>.
 
 <style scoped>
 .nav {
@@ -73,7 +84,7 @@
   width: 60px;
   height: 60px;
 }
-  
+
 .nav__server-status-column p {
   padding-top: 7px;
   margin: 0;

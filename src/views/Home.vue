@@ -47,7 +47,7 @@ const downloadFile = () => {
                     <div class="home__hero">
                         <img src="../assets/images/hero.png" alt="hero"></div>
                     </div>
-                    <WhiteLine/>
+               <WhiteLine/>
                 </div>
                 <Sponsors/>
                 <Footer id="only__home"/>
