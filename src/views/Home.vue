@@ -1,18 +1,8 @@
 <script lang='ts' setup>
 import Sponsors from "../components/Sponsors.vue";
 import Footer from "../components/Footer.vue";
-import WhiteLine from "@/components/WhiteLine.vue";
+import WhiteLine from "../components/WhiteLine.vue";
 
-const downloadFile = () => {
-  const fileId = "1uabrm9Lg3QRicNvSn2iRgdIFZreKXFVu";// нужно будет заменить ссылку на лаунчер
-  const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;// вставляем в дефолтный шаблон наш id лаунчера
-
-  // Создаем временную ссылку и кликаем по ней
-  const a = document.createElement('a');
-  a.href = downloadUrl;
-  a.download = ''; // Пустое значение позволяет браузеру определить имя файла автоматически
-  a.click();
-};
 </script>
 
 <template>
@@ -20,7 +10,8 @@ const downloadFile = () => {
         <div class="home__content">
             <div class="home__text">
                 <div class="home__rose">
-                    <img src="../assets/images/rose.png" alt="rose"></div>
+                    <img src="../assets/images/rose.png" alt="rose">
+                  </div>
                     <h1>GTA
                         <span>V</span>
                         Role play
@@ -37,7 +28,7 @@ const downloadFile = () => {
                         Aristocracy Roleplay и переживите незабываемые моменты в совершенно новом свете
                         GTA 5!</h2>
                     <div class="home__btn">
-                        <button @click="downloadFile">Играй сейчас!</button>
+                        <button>Играй сейчас!</button>
                         <button class="home__btn-video">Ознакомится</button>
                     </div>
                     <div class="home__clock">
@@ -167,5 +158,45 @@ const downloadFile = () => {
 
   #only__home {
     margin-top: 60px;
+  }
+
+  @media (max-width: 1484px) {
+     .home__text {
+    margin-top: 50px;
+  }
+  
+  .home__text h1 {
+    font-size: 44px;
+    font-family: var(--font-family-inter);
+    font-weight: var(--font-weight-black);
+  }
+  
+  
+  .home__text h1 strong {
+    color: rgb(173, 16, 16);
+    font-family: var(--font-family-satisfy);
+    margin-left: 50px;
+    font-size: 50px;
+    z-index: 2;
+  }
+  
+  .home__text h2 {
+    font-family: var(--font-family-outfit);
+    font-weight: var(--font-weight-light);
+    font-size: 16px;
+  }
+
+  .home__rose img{
+    position: absolute;
+    margin-top: 125px;
+    margin-left: 235px;
+    width: 70px;
+    transform: rotate(325deg);
+    height: auto;
+    z-index: 1;
+    opacity: 80%;
+    box-shadow:0px 0px 15px 0px #000;
+}
+  
   }
 </style>
