@@ -75,16 +75,15 @@
                                         <a href="https://vk.com/spit_in_my_face891" target="_blank">Vkontakte</a>
                                     </li>
                                     <li class="footer__follow__item">
-                                        <a href="https://t.me/drifter891" target="_blank">Telegram</a>
+                                        <a href="https://t.me/GTA5RPAristocracy" target="_blank">Telegram</a>
                                     </li>
                                     <li class="footer__follow__item">
                                         <a href="https://www.youtube.com/@AzazinKreet" target="_blank">Youtube</a>
                                     </li>
-
                                 </ul>
-                            </div>
-                        </div>
-                    </template>
+    </div>
+  </div>
+</template>
 
 <style  scoped>
 hr {

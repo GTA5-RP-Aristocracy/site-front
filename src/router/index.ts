@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { defineAsyncComponent } from 'vue'
 
-const Home = defineAsyncComponent(() => import('@/views/Home.vue'))
+const Home = () => import('@/views/Home.vue')
 
 
 const router = createRouter({

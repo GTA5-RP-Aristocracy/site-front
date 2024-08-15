@@ -35,7 +35,7 @@ import WhiteLine from "../components/WhiteLine.vue";
                         <!-- test -->
                         <img src="../assets/images/clock.png" alt="clock"></div>
                     </div>
-                    <div class="home__hero">
+                    <div class="home__hero" id="main__hero">
                         <img src="../assets/images/hero.png" alt="hero"></div>
                     </div>
                <WhiteLine/>
