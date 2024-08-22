@@ -37,6 +37,9 @@ const language = ref<string>('Russian')
           <li class="settings__item">
             Bio <span>{{ bio }}</span> <button class="edit-button">edit</button>
           </li>
+            <li class="settings__item">
+            Region <span>{{ region }}</span> <button class="edit-button">edit</button>
+          </li>
           <li class="settings__item">
             Member Since <span>{{ since }}</span> <button class="edit-button hidden">edit</button>
           </li>
@@ -59,7 +62,6 @@ span {
 .hidden {
   visibility: hidden;
 }
-
 
 .settings__container {
   max-width: 95%;
@@ -89,13 +91,13 @@ span {
 }
 
 .settings__inputs {
-    color: white;
-    background-image: linear-gradient(to right, #171a21, #3c3f48);
-    display: flex;
-    flex-direction: column;
+  color: white;
+  background-image: linear-gradient(to right, #171a21, #3c3f48);
+  display: flex;
+  flex-direction: column;
 }
 
-.settings__inputs h1{
+.settings__inputs h1 {
   border-bottom: 2px solid white;
   margin-left: 40px;
   width: calc(100% - 100px);
@@ -109,15 +111,21 @@ span {
   align-items: left;
   font-size: 20px;
   list-style-type: none;
-  margin-bottom: 55px;
   border-bottom: 2px solid white;
   width: calc(100% - 60px);
   padding-right: 10px;
+  padding-top: 50px; /* Увеличиваем отступ сверху и снизу */
+}
+
+.settings__item:hover {
+  background-color: #3c3f48; /* Изменение фона при наведении */
+  color: gold; /* Изменение цвета текста при наведении */
 }
 
 .edit-button {
+  font-size: 20px;
   background-color: transparent;
-  border: none; 
+  border: none;
   color: white;
   cursor: pointer;
 }
