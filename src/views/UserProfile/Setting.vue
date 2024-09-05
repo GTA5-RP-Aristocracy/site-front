@@ -114,12 +114,12 @@ span {
   border-bottom: 2px solid white;
   width: calc(100% - 60px);
   padding-right: 10px;
-  padding-top: 50px; /* Увеличиваем отступ сверху и снизу */
+  padding-top: 50px;
 }
 
 .settings__item:hover {
-  background-color: #3c3f48; /* Изменение фона при наведении */
-  color: gold; /* Изменение цвета текста при наведении */
+  background-color: #3c3f48; 
+  color: gold;
 }
 
 .edit-button {

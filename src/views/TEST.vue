@@ -1,11 +1,12 @@
 <script lang='ts' setup>
 import Footer from '@/components/Footer.vue';
-import Preloader from '@/components/Preloader.vue';
+import SettingsPopUp from '../components/SettingsPopUp.vue';
 </script>
 
 <template>
   <div>
     <div class="test">
+      <SettingsPopUp/> 
       <button class="test__btn">
             <router-link to="/settings">Settings demo</router-link>
       </button>
