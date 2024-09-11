@@ -1,6 +1,9 @@
 <script lang='ts' setup>
 import { ref, computed, watch } from 'vue';
 
+// Определение событий
+const emit = defineEmits(['close']);
+
 const login = ref<string>('');
 const password = ref<string>('');
 const loginError = ref<string>('');
@@ -44,8 +47,8 @@ watch(password, (newValue) => {
 // Вычисляемое свойство для отслеживания валидности данных
 const isFormValid = computed(() => {
   return login.value.length >= 4 && login.value.length <= 32 &&
-         password.value.length >= 4 && password.value.length <= 40 &&
-         !loginError.value && !passwordError.value;
+  password.value.length >= 4 && password.value.length <= 40 &&
+  !loginError.value && !passwordError.value;
 });
 
 // Очистка полей ввода
@@ -65,6 +68,8 @@ function handleSubmit() {
 
 function closePopup() {
   isPopupVisible.value = false;
+  // Эмитим событие close в родительский компонент
+  emit('close');
 }
 
 function handleOverlayClick(event: MouseEvent) {
@@ -113,7 +118,6 @@ function handleKeyDown(event: KeyboardEvent) {
     </div>
   </div>
 </template>
-
 <style scoped>
 body {
   font-family: var(--font-family-outfit);
