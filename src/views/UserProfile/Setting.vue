@@ -1,15 +1,43 @@
-<script lang='ts' setup>
+<script lang="ts" setup>
+import SettingsPopUp from '@/components/SettingsPopUp/SettingsPopUpNickname.vue';
+import SettingsPopUpEmail from '@/components/SettingsPopUp/SettingsPopUpEmail.vue';
 import Footer from '@/components/Footer.vue';
+
 import { ref } from 'vue';
 
-const nickname = ref<string>('BiscuitJerry')
-const email = ref<string>('dreamrunner891@gmal.com')
-const password = ref<string>('Jugger69')
-const birth = ref<string>('August 4, 1998')
-const region = ref<string>('Russian Federation')
-const bio = ref<string>('Top gamer in the world!')
-const since = ref<string>('August 21, 2024')
-const language = ref<string>('Russian') 
+// Переменные для инпутов
+const nickname = ref<string>('BiscuitJerry');
+const email = ref<string>('dreamrunner891@gmail.com');
+const password = ref<string>('Jugger69');
+const birth = ref<string>('August 4, 1998');
+const region = ref<string>('Russian Federation');
+const bio = ref<string>('Top gamer in the world!');
+const since = ref<string>('August 21, 2024');
+const language = ref<string>('Russian');
+
+// Переменная для управления отображением попапа
+const settingsPopUpRef = ref<InstanceType<typeof SettingsPopUp> | null>(null); // Ссылка на дочерний компонент
+const popUpNickname = ref<boolean>(false); // Попап скрыт по умолчанию
+const popUpEmail = ref<boolean>(false); // Переменная для попапа почты
+
+// Универсальная функция для открытия попапов
+function openPopUp(popupRef: Ref<boolean>) {
+  popupRef.value = true; // Отображаем попап
+}
+
+function openNicknamePopup() { // для открытия/закрытия логина
+  openPopUp(popUpNickname);
+}
+
+function openEmailPopup() { // для открытия/закрытия почты
+  openPopUp(popUpEmail);
+}
+
+// Обработчик события изменения ника
+function handleNicknameChange(newNickname: string) {
+  nickname.value = newNickname; // Обновляем ник в родительском компоненте
+  popUpNickname.value = false; // Закрываем попап
+}
 </script>
 
 <template>
@@ -17,40 +45,60 @@ const language = ref<string>('Russian')
     <div class="settings__container">
       <div class="settings__avatar">
         <img src="@/assets/images/default-avatar.jpg" alt="Avatar">
-           <strong>Settings</strong>
+        <strong>Settings</strong>
       </div>
       <div class="settings__inputs">
         <h1>My Account</h1>
-      <ul class="settings__list">
+        <ul class="settings__list">
+          <!-- Попап для изменения ника -->
+          <SettingsPopUp
+            v-if="popUpNickname"
+            ref="settingsPopUpRef"
+            @close="popUpNickname = false"
+            @nickname-changed="handleNicknameChange" 
+          />
+          <SettingsPopUpEmail
+            v-if="popUpEmail"
+            @close="popUpEmail = false"
+          />
           <li class="settings__item">
-            Nickname <span>{{ nickname }}</span> <button class="edit-button">edit</button>
+            Nickname <span>{{ nickname }}</span>
+            <button @click="openNicknamePopup" class="edit-button">edit</button>
+          </li>
+          <!-- Попап для изменения почты -->
+          <li class="settings__item">
+            Email <span>{{ email }}</span> 
+            <button @click="openEmailPopup" class="edit-button">edit</button>
           </li>
           <li class="settings__item">
-            Email <span>{{ email }}</span> <button class="edit-button">edit</button>
+            Password <span>{{ password }}</span> 
+            <button class="edit-button">edit</button>
           </li>
           <li class="settings__item">
-            Password <span>{{ password }}</span> <button class="edit-button">edit</button>
+            Date of Birth <span>{{ birth }}</span> 
+            <button class="edit-button hidden">edit</button>
           </li>
           <li class="settings__item">
-            Date of Birth <span>{{ birth }}</span> <button class="edit-button hidden">edit</button>
+            Bio <span>{{ bio }}</span> 
+            <button class="edit-button">edit</button>
           </li>
           <li class="settings__item">
-            Bio <span>{{ bio }}</span> <button class="edit-button">edit</button>
-          </li>
-            <li class="settings__item">
-            Region <span>{{ region }}</span> <button class="edit-button">edit</button>
+            Region <span>{{ region }}</span> 
+            <button class="edit-button">edit</button>
           </li>
           <li class="settings__item">
-            Member Since <span>{{ since }}</span> <button class="edit-button hidden">edit</button>
+            Member Since <span>{{ since }}</span> 
+            <button class="edit-button hidden">edit</button>
           </li>
           <li class="settings__item">
-            Language <span>{{ language }}</span> <button class="edit-button">edit</button>
+            Language <span>{{ language }}</span> 
+            <button class="edit-button">edit</button>
           </li>
-      </ul>
+        </ul>
       </div>
     </div>
   </div>
-  <Footer id="only__settings"/>
+  <Footer id="only__settings" />
 </template>
 
 <style scoped>
@@ -118,7 +166,7 @@ span {
 }
 
 .settings__item:hover {
-  background-color: #3c3f48; 
+  background-color: #3c3f48;
   color: gold;
 }
 

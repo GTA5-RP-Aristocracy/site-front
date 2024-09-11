@@ -1,42 +1,46 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { ref, watch, defineEmits } from 'vue';
 
-// Переменные состояния
-const newUsername = ref('');         // Введённый ник
-const password = ref('');            // Введённый пароль
-const errorMessage = ref('');        // Сообщение об ошибке
+const newUsername = ref<string>(''); // Новый никнейм
+const password = ref<string>(''); // Пароль
+const errorMessage = ref<string>(''); // Сообщение об ошибке
+const correctPassword = '1234'; // Пример правильного пароля
 
-const correctPassword = '1234';      // Пример правильного пароля для проверки
+const emit = defineEmits(['close', 'nickname-changed']); // Эмит событий
+
+// Функция для сброса формы
+function resetForm() {
+  newUsername.value = '';  
+  password.value = '';     
+  errorMessage.value = ''; 
+}
 
 // Функция для закрытия попапа
 function closePopUp() {
-  console.log('Закрыть попап');
-  // Здесь можно добавить логику для закрытия попапа
+  resetForm(); // Сброс формы
+  emit('close'); // Эмит события закрытия
 }
 
 // Функция для сохранения изменений
 function saveChanges() {
-  // Проверка длины нового ника
   if (newUsername.value.length < 4) {
-    errorMessage.value = 'Enter your password to confirm the username change.';
+    errorMessage.value = 'Nickname must be at least 4 characters long.';
     return;
   }
 
-  // Проверка правильности пароля
   if (password.value !== correctPassword) {
     errorMessage.value = 'Incorrect password.';
     return;
   }
 
-  // Логика успешного сохранения (например, смена ника)
-  console.log('Ник успешно изменён на:', newUsername.value);
-  errorMessage.value = '';  // Сбросить сообщение об ошибке
+  emit('nickname-changed', newUsername.value); // Эмит нового ника
+  closePopUp(); // Закрываем попап
 }
 
-// Следим за изменением пароля, чтобы скрывать ошибку при вводе
+// Слежение за паролем для скрытия ошибок
 watch(password, () => {
   if (errorMessage.value) {
-    errorMessage.value = '';  // Убираем ошибку при изменении пароля
+    errorMessage.value = '';  
   }
 });
 </script>
@@ -44,10 +48,10 @@ watch(password, () => {
 <template>
   <div class="SettingsPopUp" @click.self="closePopUp">
     <div class="SettingsPopUp__container">
-      <input v-model="newUsername" type="text" placeholder="Name"> <!-- TODO: заменить через props на ник пользователя -->
+      <input v-model="newUsername" type="text" placeholder="Nickname">
       <input v-model="password" type="password" placeholder="Password"> 
-      <p v-if="errorMessage" class="error">{{ errorMessage }}</p> <!-- Сообщение об ошибке под полем пароля -->
-      <button @click="saveChanges" class="SettingsPopUp__btn">Save changes</button> 
+      <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+      <button @click="saveChanges" class="SettingsPopUp__btn">Save changes</button>
     </div>
   </div>
 </template>
@@ -64,7 +68,7 @@ watch(password, () => {
 }
 
 .SettingsPopUp__container {
-  background-image: url(../assets/images/Bandit-PopUp-Settings.png);
+  background-image: url(@/assets/images/Bandit-PopUp-Settings.png);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -119,6 +123,6 @@ watch(password, () => {
   margin-top: 5px;
   font-size: 14px;
   align-self: flex-start;
-  margin-left: 150px; 
+  margin-left: 150px;
 }
 </style>
