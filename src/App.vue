@@ -40,6 +40,9 @@
                   <!-- временная страница для теста других компонентов -->
                   <router-link to="/test">TEST</router-link>
                 </li>
+                <li>
+                  <Avatar/>
+                </li>
               </ul>
             </div>
           </div>
@@ -54,6 +57,7 @@
 </template>
 
 <script setup lang="ts">
+import Avatar from './components/Avatar.vue';
 import { defineAsyncComponent, Suspense } from 'vue';
 
 const Loader = defineAsyncComponent(() => import('@/components/Loader.vue'));

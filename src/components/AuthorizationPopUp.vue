@@ -1,6 +1,9 @@
 <script lang='ts' setup>
 import { ref, computed, watch } from 'vue';
 
+// Определение событий
+const emit = defineEmits(['close']);
+
 const login = ref<string>('');
 const password = ref<string>('');
 const loginError = ref<string>('');
@@ -44,8 +47,8 @@ watch(password, (newValue) => {
 // Вычисляемое свойство для отслеживания валидности данных
 const isFormValid = computed(() => {
   return login.value.length >= 4 && login.value.length <= 32 &&
-         password.value.length >= 4 && password.value.length <= 40 &&
-         !loginError.value && !passwordError.value;
+  password.value.length >= 4 && password.value.length <= 40 &&
+  !loginError.value && !passwordError.value;
 });
 
 // Очистка полей ввода
@@ -65,11 +68,13 @@ function handleSubmit() {
 
 function closePopup() {
   isPopupVisible.value = false;
+  // Эмитим событие close в родительский компонент
+  emit('close');
 }
 
 function handleOverlayClick(event: MouseEvent) {
   const target = event.target as HTMLElement;
-  if (target.classList.contains('video-pop-up__overlay')) {
+  if (target.classList.contains('authorization-pop-up__overlay')) {
     closePopup();
   }
 }
@@ -82,10 +87,10 @@ function handleKeyDown(event: KeyboardEvent) {
 </script>
 
 <template>
-  <div v-if="isPopupVisible" class="video-pop-up__overlay" @click="handleOverlayClick">
-    <div class="video-pop-up__interface" @keydown="handleKeyDown">
+  <div v-if="isPopupVisible" class="authorization-pop-up__overlay" @click="handleOverlayClick">
+    <div class="authorization-pop-up__interface" @keydown="handleKeyDown">
       <strong>Aristocracy</strong>
-      <div class="video-pop-up__interface__container">
+      <div class="authorization-pop-up__interface__container">
         <input
           v-model="login"
           @input="loginError = ''"
@@ -106,14 +111,13 @@ function handleKeyDown(event: KeyboardEvent) {
         <p v-if="passwordError" class="error-message-password">{{ passwordError }}</p>
         <button :disabled="!isFormValid" @click="handleSubmit">Войти</button>
       </div>
-      <div class="video-pop-up__reset-password">
+      <div class="authorization-pop-up__reset-password">
         <a href="#">Забыли пароль?</a>
-        <a href="#">Зарегистрироваться сейчас</a>
+        <a @click="$router.push('/registration')">Зарегистрироваться сейчас</a>
       </div>
     </div>
   </div>
 </template>
-
 <style scoped>
 body {
   font-family: var(--font-family-outfit);
@@ -121,6 +125,7 @@ body {
 
 a {
   color: inherit;
+  cursor: pointer;
   text-decoration: none !important;
 }
 
@@ -134,7 +139,7 @@ strong {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.video-pop-up__overlay {
+.authorization-pop-up__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -144,7 +149,7 @@ strong {
   z-index: 10;
 }
 
-.video-pop-up__interface {
+.authorization-pop-up__interface {
   background-image: url(../assets/images/girl.png);
   position: relative;
   border-radius: 5%;
@@ -158,7 +163,7 @@ strong {
   background-repeat: no-repeat;
 }
 
-.video-pop-up__interface__container {
+.authorization-pop-up__interface__container {
   padding-top: 100px;
   display: flex;
   flex-direction: column;
@@ -166,7 +171,7 @@ strong {
   width: 500px;
 }
 
-.video-pop-up__interface input {
+.authorization-pop-up__interface input {
   position: relative;
   margin-left: 150px;
   padding: 10px;
@@ -192,7 +197,7 @@ strong {
 }
 
 
-.video-pop-up__interface button {
+.authorization-pop-up__interface button {
   margin-left: 250px;
   border: none;
   border-radius: 10%;
@@ -206,20 +211,20 @@ strong {
   transition: background-color 0.3s, color 0.3s, transform 0.3s ease;
 }
 
-.video-pop-up__interface button:disabled {
+.authorization-pop-up__interface button:disabled {
   background-color: #ccc;
   color: #666;
   cursor: not-allowed;
 }
 
-.video-pop-up__interface button:hover:not(:disabled) {
+.authorization-pop-up__interface button:hover:not(:disabled) {
   background-color: #ffa500;
   color: white;
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.video-pop-up__reset-password {
+.authorization-pop-up__reset-password {
   margin-top: 100px;
   display: flex;
   gap: 15px;
@@ -227,7 +232,7 @@ strong {
   font-weight: var(--font-weight-bold);
 }
 
-.video-pop-up__reset-password a:hover {
+.authorization-pop-up__reset-password a:hover {
   color: #ffa500;
   transform: scale(1.1);
 }
