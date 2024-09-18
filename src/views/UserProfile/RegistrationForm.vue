@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { VueReCaptcha } from 'vue3-recaptcha';
 
 const nickname = ref<string>('');
 const email = ref<string>('');
 const password = ref<string>('');
+const passwordTest = ref<string>('');
 const verificationCode = ref<string>('');
 const errorNickname = ref<string>('')
 const errorEmail = ref<string>('')
 const errorPassword = ref<string>('')
+const errorPasswordTest = ref<string>('')
+const captchaRef = ref(null);
+const errorCaptcha = ref<string>('')
 
 // функция проверки валидации nickname
 function nicknameValidation(nickname: string): string {
@@ -23,7 +28,6 @@ function nicknameValidation(nickname: string): string {
   }
 }
 
-// функция проверки валидации email
 function emailValidation(email: string): string {
   const emailPattern: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!emailPattern.test(email)) {
@@ -39,7 +43,25 @@ function passwordValidation(password: string): string {
   } else return '';
 }
 
-// Функция для присваивания ошибки для errorText
+function  passwordTestValidation(passwordTest: string) : string {
+  if(passwordTest !== password.value) {
+    return 'passwords do not match'
+  }
+}
+
+async function handleCaptchaValidation() {
+  try {
+    const token = await captchaRef.value.execute();  // Получение токена
+    if (!token) {
+      throw new Error("Captcha verification failed");
+    }
+    // Здесь можно отправить токен на сервер для валидации
+    return token;
+  } catch (error) {
+    return "Captcha verification failed";
+  }
+}
+
 function handleNicknameValidation() {
   const validationResult: string = nicknameValidation(nickname.value)
   if(validationResult) {
@@ -64,32 +86,52 @@ function handlePasswordValidation() {
   }
 }
 
-//Сброс инпута при ошибки
+function handlePasswordTestValidation() {
+  const validationResult: string = passwordTestValidation(passwordTest.value)
+  if(validationResult) {
+    errorPasswordTest.value = validationResult;
+    return
+  }
+}
+
 function clearNicknameError() {
   if (errorNickname.value) {
-    nickname.value = '';  // сбрасываем значение
-    errorNickname.value = '';  // очищаем текст ошибки
+    nickname.value = '';  
+    errorNickname.value = '';  
   }
 }
 
 function clearEmailError() {
   if ( errorEmail.value) {
-    email.value = '';  // сбрасываем значение
-     errorEmail.value = '';  // очищаем текст ошибки
+    email.value = '';  
+    errorEmail.value = '';  
   }
 }
 
 function clearPasswordError() {
   if ( errorPassword.value) {
-    password.value = '';  // сбрасываем значение
-     errorPassword.value = '';  // очищаем текст ошибки
+    password.value = '';  
+    errorPassword.value = '';  
   }
 }
 
-function MainValidation() {
-handleNicknameValidation();
-handleEmailValidation();
-handlePasswordValidation();
+function clearPasswordTestError() {
+  if ( errorPasswordTest.value) {
+    passwordTest.value = '';  
+    errorPasswordTest.value = '';  
+  }
+}
+
+async function MainValidation() {
+  const captchaError = await handleCaptchaValidation();
+  if (captchaError) {
+    errorCaptcha.value = captchaError;
+    return;
+  }
+  handleNicknameValidation();
+  handleEmailValidation();
+  handlePasswordValidation();
+  handlePasswordTestValidation()
 }
 </script>
 
@@ -103,11 +145,20 @@ handlePasswordValidation();
         <input type="email" placeholder="Email" v-model="email" @focus="clearEmailError"/>
         <p class="error"> {{ errorEmail }}</p>
         <div class="verification-code-wrapper">
-        <input type="text" placeholder="Verification Code" v-model="verificationCode"/>
-        <button class="verification-code__btn">Send</button>
+          <input type="text" placeholder="Verification Code" v-model="verificationCode"/>
+          <button class="verification-code__btn">Send</button>
         </div>
         <input type="password" placeholder="Password" v-model="password" @focus="clearPasswordError"/>
         <p class="error"> {{ errorPassword }}</p>
+
+        <input type="password" placeholder="Re-enter password" v-model="passwordTest" @focus="clearPasswordTestError"/>
+        <p class="error"> {{ errorPasswordTest }}</p>
+
+        <!-- CAPTCHA -->
+        <!-- TODO сделать капчу когда появится домен -->
+        <vue-recaptcha ref="captchaRef" sitekey="YOUR_PUBLIC_SITE_KEY"/> 
+        <p class="error"> {{ errorCaptcha }}</p>
+
         <button type="submit" @click.prevent="MainValidation">Register</button>
       </form>
     </div>
