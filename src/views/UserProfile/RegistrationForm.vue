@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { VueReCaptcha } from 'vue3-recaptcha';
 
+// переменный для отслеживания инпутов
 const nickname = ref<string>('');
 const email = ref<string>('');
 const password = ref<string>('');
@@ -122,6 +123,7 @@ function clearPasswordTestError() {
   }
 }
 
+// финальная логика отправки всех полей прошедших валидацию на сервер
 async function MainValidation() {
   const captchaError = await handleCaptchaValidation();
   if (captchaError) {
@@ -132,6 +134,33 @@ async function MainValidation() {
   handleEmailValidation();
   handlePasswordValidation();
   handlePasswordTestValidation()
+
+  // Проверка на ошибки
+  if (errorNickname.value || errorEmail.value || errorPassword.value || errorPasswordTest.value) {
+    return; // Прерываем выполнение, если есть ошибки
+  }
+
+  // Логика отправки данных на сервер
+  const formData = new FormData();
+  formData.append('email', email.value);
+  formData.append('name', nickname.value);
+  formData.append('password', password.value);
+
+  try {
+    const response = await fetch('http://185.218.0.121:8080/user/signup', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    
+    const data = await response.json();
+    console.log('Success:', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 </script>
 
