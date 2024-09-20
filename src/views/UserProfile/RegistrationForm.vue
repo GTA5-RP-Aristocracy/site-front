@@ -17,7 +17,7 @@ const errorCaptcha = ref<string>('')
 
 // функция проверки валидации nickname
 function nicknameValidation(nickname: string): string {
-  const nicknamePattern: RegExp =/^[a-zA-Z\s]+$/;
+  const nicknamePattern: RegExp = /^[a-zA-Z0-9\s]+$/;
   if (!nicknamePattern.test(nickname)) {
     return "Invalid name format. Only Latin characters are allowed.";
   }
@@ -133,7 +133,7 @@ async function MainValidation() {
   handleNicknameValidation();
   handleEmailValidation();
   handlePasswordValidation();
-  handlePasswordTestValidation()
+  handlePasswordTestValidation();
 
   // Проверка на ошибки
   if (errorNickname.value || errorEmail.value || errorPassword.value || errorPasswordTest.value) {

@@ -18,8 +18,9 @@ const language = ref<string>('Russian');
 
 // Переменная для управления отображением попапа
 const settingsPopUpRef = ref<InstanceType<typeof SettingsPopUp> | null>(null); // Ссылка на дочерний компонент
-const popUpNickname = ref<boolean>(false); // Попап скрыт по умолчанию
-const popUpEmail = ref<boolean>(false); // Переменная для попапа почты
+const popUpNickname = ref<boolean>(false); 
+const popUpEmail = ref<boolean>(false);
+const popUpPassword = ref<boolean>(false);
 
 // Универсальная функция для открытия попапов
 function openPopUp(popupRef: Ref<boolean>) {
@@ -30,9 +31,14 @@ function openNicknamePopup() { // для открытия/закрытия ло�
   openPopUp(popUpNickname);
 }
 
-function openEmailPopup() { // для открытия/закрытия почты
+function openEmailPopup() {
   openPopUp(popUpEmail);
 }
+
+function openPasswordPopup() {
+  openPopUp(popUpPassword);
+}
+
 
 // Обработчик события изменения ника
 function handleNicknameChange(newNickname: string) {
@@ -62,7 +68,10 @@ function handleNicknameChange(newNickname: string) {
             v-if="popUpEmail"
             @close="popUpEmail = false"
           />
-          <SettingsPopUpPassword/>
+          <SettingsPopUpPassword
+            v-if="popUpPassword"
+            @close="popUpPassword = false"
+            />
           <li class="settings__item">
             Nickname <span>{{ nickname }}</span>
             <button @click="openNicknamePopup" class="edit-button">edit</button>
@@ -74,7 +83,7 @@ function handleNicknameChange(newNickname: string) {
           </li>
           <li class="settings__item">
             Password <span>{{ password }}</span> 
-            <button class="edit-button">edit</button>
+            <button @click="openPasswordPopup" class="edit-button">edit</button>
           </li>
           <li class="settings__item">
             Date of Birth <span>{{ birth }}</span> 

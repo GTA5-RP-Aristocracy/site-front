@@ -17,8 +17,8 @@ function resetForm() {
 
 // Функция для закрытия попапа
 function closePopUp() {
-  resetForm(); // Сброс формы
-  emit('close'); // Эмит события закрытия
+  resetForm();
+  emit('close');
 }
 
 // Функция для сохранения изменений
@@ -33,8 +33,8 @@ function saveChanges() {
     return;
   }
 
-  emit('nickname-changed', newUsername.value); // Эмит нового ника
-  closePopUp(); // Закрываем попап
+  emit('nickname-changed', newUsername.value);
+  closePopUp();
 }
 
 // Слежение за паролем для скрытия ошибок
