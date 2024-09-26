@@ -96,7 +96,7 @@ function closePopUp() {
   z-index: 10;
 }
 .SettingsPopUpEmail__container {
-    background-image: url(@/assets/images/Bandit-PopUp-Settings.png);
+  background-image: url(@/assets/images/Bandit-PopUp-Settings.png);
   position: relative;
   display: flex;
   flex-direction: column;

@@ -2,6 +2,7 @@
 import SettingsPopUp from '@/components/SettingsPopUp/SettingsPopUpNickname.vue';
 import SettingsPopUpEmail from '@/components/SettingsPopUp/SettingsPopUpEmail.vue';
 import SettingsPopUpPassword from '@/components/SettingsPopUp/SettingsPopUpPassword.vue';
+import SettingsPopUpBio from '@/components/SettingsPopUp/SettingsPopUpBio.vue';
 import Footer from '@/components/Footer.vue';
 
 import { ref } from 'vue';
@@ -72,6 +73,7 @@ function handleNicknameChange(newNickname: string) {
             v-if="popUpPassword"
             @close="popUpPassword = false"
             />
+            <!-- <SettingsPopUpBio/> -->
           <li class="settings__item">
             Nickname <span>{{ nickname }}</span>
             <button @click="openNicknamePopup" class="edit-button">edit</button>

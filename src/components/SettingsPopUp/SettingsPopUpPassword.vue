@@ -46,9 +46,8 @@ const checkCurrentPassword = async () => {
 
     if (data.success) {
       errorMessageCurrentPassword.value = '';
-    } else {
-      errorMessageCurrentPassword.value = 'The current password is incorrect';
-    }
+    } else errorMessageCurrentPassword.value = 'The current password is incorrect';
+    
 
   } catch(error) {
     errorMessageCurrentPassword.value = 'Server connection error'
@@ -134,6 +133,35 @@ function CheckTestPassword() {
   }
 }
 
+// Проверка, использовался ли пароль ранее
+const checkPasswordHistory = async () => {
+  try {
+    const response = await fetch('http://185.218.0.121:8080/user/check_password_history', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        password: newPassword.value
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.passwordUsed) { //TODO нужно сравнить с эндпоинтом на сервере
+      errorMessageNewPassword.value = 'This password was used before. Please choose a different one.';
+      return false;
+    } else {
+      errorMessageNewPassword.value = '';
+      return true;
+    }
+    
+  } catch (error) {
+    errorMessageNewPassword.value = 'Server connection error';
+    return false;
+  }
+};
+
 // Очищаем инпуты
 function clearCurrentPasswordError () {
   if(errorMessageCurrentPassword) {
@@ -156,8 +184,12 @@ function clearTestPasswordError () {
   }
 }
 
-function MainValidation() {
+async function MainValidation() {
+  
   validationPasswordStrength()
+  const isPasswordUsed = await checkPasswordHistory();
+  if (!isPasswordUsed) return; // Если пароль использовался, прекращаем валидацию
+
   checkCurrentPassword();
   CheckTestPassword();
 
