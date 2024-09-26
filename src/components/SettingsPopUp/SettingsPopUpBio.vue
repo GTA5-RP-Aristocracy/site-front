@@ -10,13 +10,13 @@ watch(watchCountChar, (newValue : string) => {
 
 function bioErrorClear() {
   if(bioError) {
-    bioError.value = ''
+    bioError.value = '';
   }
 }
 
 const ChangeBio = async () => {
   try {
-    const response = await fetch('http://185.218.0.121:8080/user/check_current_bio', {
+    const response = await fetch('http://185.218.0.121:8080/user/bio', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

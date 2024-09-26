@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import SettingsPopUpBio from '@/components/SettingsPopUp/SettingsPopUpBio.vue';
+import SettingsPopUpRegion from '@/components/SettingsPopUp/SettingsPopUpRegion.vue';
 import Footer from '@/components/Footer.vue';
 </script>
 
@@ -10,7 +10,7 @@ import Footer from '@/components/Footer.vue';
             <router-link to="/settings">Settings demo</router-link>
       </button>
     </div>
-    <SettingsPopUpBio/>
+    <SettingsPopUpRegion/>
     <Footer/>
   </div>
   <router-view />
