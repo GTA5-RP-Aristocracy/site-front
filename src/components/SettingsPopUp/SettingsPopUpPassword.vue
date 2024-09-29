@@ -10,7 +10,7 @@ const errorMessageCurrentPassword = ref<string>('')
 const errorMessageNewPassword = ref<string>('')
 const errorMessageTestPassword = ref<string>('')
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'password-changed']);
 
 function resetForm() {
  currentPassword.value = '';
@@ -218,7 +218,7 @@ async function MainValidation() {
 </script>
 
 <template>
-  <div class="SettingsPopUp">
+  <div class="SettingsPopUp" @click.self="closePopUp">
     <div class="SettingsPopUp__container">
       <input type="password" placeholder="Current password" v-model="currentPassword" @focus="clearCurrentPasswordError">
       <p v-if="errorMessageCurrentPassword" class="error">{{errorMessageCurrentPassword}}</p>

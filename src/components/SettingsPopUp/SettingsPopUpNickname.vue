@@ -6,7 +6,7 @@ const password = ref<string>(''); // Пароль
 const errorMessage = ref<string>(''); // Сообщение об ошибке
 const correctPassword = '1234'; // Пример правильного пароля
 
-const emit = defineEmits(['close', 'nickname-changed']); // Эмит событий
+const emit = defineEmits(['close', 'nickname-changed']);
 
 // Функция для сброса формы
 function resetForm() {

@@ -4,6 +4,18 @@ const countChar = ref<number>(0)
 const watchCountChar = ref<string>('')
 const bioError = ref<string>('')
 
+const emit = defineEmits(["close", 'bio-changed'])
+
+function resetForm() {
+  watchCountChar.value = '';
+  bioError.value = '';
+}
+
+function closePopUp() {
+  resetForm();
+  emit('close');
+}
+
 watch(watchCountChar, (newValue : string) => {
   countChar.value = newValue.length;
 })
@@ -44,7 +56,7 @@ const ChangeBio = async () => {
 </script>
 
 <template>
-  <div class="SettingsPopUpBio">
+  <div class="SettingsPopUpBio" @click.self="closePopUp">
     <div class="SettingsPopUpBio__container">
       <textarea name="bio"  placeholder="Update status..." maxlength="300" v-model="watchCountChar" @focus="bioErrorClear"></textarea>
       <p v-if="bioError" class="error"> {{ bioError }}</p>

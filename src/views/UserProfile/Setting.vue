@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import SettingsPopUp from '@/components/SettingsPopUp/SettingsPopUpNickname.vue';
+import SettingsPopUpNickname from '@/components/SettingsPopUp/SettingsPopUpNickname.vue';
 import SettingsPopUpEmail from '@/components/SettingsPopUp/SettingsPopUpEmail.vue';
 import SettingsPopUpPassword from '@/components/SettingsPopUp/SettingsPopUpPassword.vue';
 import SettingsPopUpBio from '@/components/SettingsPopUp/SettingsPopUpBio.vue';
+import SettingsPopUpRegion from '@/components/SettingsPopUp/SettingsPopUpRegion.vue';
 import Footer from '@/components/Footer.vue';
 
 import { ref } from 'vue';
@@ -12,39 +13,57 @@ const nickname = ref<string>('BiscuitJerry');
 const email = ref<string>('dreamrunner891@gmail.com');
 const password = ref<string>('*****');
 const birth = ref<string>('August 4, 1998');
-const region = ref<string>('Russian Federation');
 const bio = ref<string>('Top gamer in the world!');
+const region = ref<string>('Russian Federation');
 const since = ref<string>('August 21, 2024');
 const language = ref<string>('Russian');
 
-// Переменная для управления отображением попапа
-const settingsPopUpRef = ref<InstanceType<typeof SettingsPopUp> | null>(null); // Ссылка на дочерний компонент
-const popUpNickname = ref<boolean>(false); 
-const popUpEmail = ref<boolean>(false);
-const popUpPassword = ref<boolean>(false);
+// Состояние для каждого поп-апа
+const isNicknamePopupOpen = ref<boolean>(false);
+const isEmailPopupOpen = ref<boolean>(false);
+const isPasswordPopupOpen = ref<boolean>(false);
+const isBioPopupOpen = ref<boolean>(false);
+const isRegionPopupOpen = ref<boolean>(false);
 
-// Универсальная функция для открытия попапов
-function openPopUp(popupRef: Ref<boolean>) {
-  popupRef.value = true; // Отображаем попап
-}
-
-function openNicknamePopup() { // для открытия/закрытия логина
-  openPopUp(popUpNickname);
+// Функции для открытия поп-апов
+function openNicknamePopup() {
+  isNicknamePopupOpen.value = true;
 }
 
 function openEmailPopup() {
-  openPopUp(popUpEmail);
+  isEmailPopupOpen.value = true
 }
 
 function openPasswordPopup() {
-  openPopUp(popUpPassword);
+  isPasswordPopupOpen.value = true
 }
 
+function openBioPopup() {
+  isBioPopupOpen.value = true
+}
 
-// Обработчик события изменения ника
-function handleNicknameChange(newNickname: string) {
-  nickname.value = newNickname; // Обновляем ник в родительском компоненте
-  popUpNickname.value = false; // Закрываем попап
+function openRegionPopup() {
+  isRegionPopupOpen.value = true
+}
+
+//  Функции для закрытия поп-апов
+function closeNicknamePopup() {
+  isNicknamePopupOpen.value = false;
+}
+
+function closeEmailPopup() {
+  isEmailPopupOpen.value = false;
+}
+
+function closePasswordPopup() {
+  isPasswordPopupOpen.value = false;
+}
+
+function closeBioPopup() {
+  isBioPopupOpen.value = false 
+}
+function closeRegionPopup() {
+  isRegionPopupOpen.value = false;
 }
 </script>
 
@@ -58,31 +77,29 @@ function handleNicknameChange(newNickname: string) {
       <div class="settings__inputs">
         <h1>My Account</h1>
         <ul class="settings__list">
-          <!-- Попап для изменения ника -->
-          <SettingsPopUp
-            v-if="popUpNickname"
-            ref="settingsPopUpRef"
-            @close="popUpNickname = false"
-            @nickname-changed="handleNicknameChange" 
+          <SettingsPopUpNickname
+          v-if="isNicknamePopupOpen" 
+          @close="closeNicknamePopup" 
+          @nickname-changed="nickname = $event"
           />
-          <SettingsPopUpEmail
-            v-if="popUpEmail"
-            @close="popUpEmail = false"
-          />
-          <SettingsPopUpPassword
-            v-if="popUpPassword"
-            @close="popUpPassword = false"
-            />
-            <!-- <SettingsPopUpBio/> -->
           <li class="settings__item">
             Nickname <span>{{ nickname }}</span>
             <button @click="openNicknamePopup" class="edit-button">edit</button>
           </li>
-          <!-- Попап для изменения почты -->
+         <SettingsPopUpEmail
+            v-if="isEmailPopupOpen" 
+            @close="closeEmailPopup" 
+            @email-changed="email = $event"
+          />
           <li class="settings__item">
             Email <span>{{ email }}</span> 
             <button @click="openEmailPopup" class="edit-button">edit</button>
           </li>
+            <SettingsPopUpPassword
+            v-if="isPasswordPopupOpen"
+            @close="closePasswordPopup"
+            @password-changed="password = $event"
+            />
           <li class="settings__item">
             Password <span>{{ password }}</span> 
             <button @click="openPasswordPopup" class="edit-button">edit</button>
@@ -91,13 +108,23 @@ function handleNicknameChange(newNickname: string) {
             Date of Birth <span>{{ birth }}</span> 
             <button class="edit-button hidden">edit</button>
           </li>
+          <SettingsPopUpBio
+          v-if="isBioPopupOpen"
+          @close="closeBioPopup"
+          @bio-changed="bio = $event"
+          />
           <li class="settings__item">
             Bio <span>{{ bio }}</span> 
-            <button class="edit-button">edit</button>
+            <button @click="openBioPopup" class="edit-button">edit</button>
           </li>
+          <SettingsPopUpRegion
+          v-if="isRegionPopupOpen"
+          @close="closeRegionPopup"
+          @region-changed="region = $event"
+          /> 
           <li class="settings__item">
             Region <span>{{ region }}</span> 
-            <button class="edit-button">edit</button>
+            <button @click="openRegionPopup" class="edit-button">edit</button>
           </li>
           <li class="settings__item">
             Member Since <span>{{ since }}</span> 

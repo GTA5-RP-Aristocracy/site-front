@@ -1,5 +1,4 @@
 <script lang='ts' setup>
-import SettingsPopUpRegion from '@/components/SettingsPopUp/SettingsPopUpRegion.vue';
 import Footer from '@/components/Footer.vue';
 </script>
 
@@ -10,7 +9,6 @@ import Footer from '@/components/Footer.vue';
             <router-link to="/settings">Settings demo</router-link>
       </button>
     </div>
-    <SettingsPopUpRegion/>
     <Footer/>
   </div>
   <router-view />

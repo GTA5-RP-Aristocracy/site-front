@@ -5,6 +5,17 @@ const countries = ref<string[]>([]);
 const isOpen = ref(false);  // Управление открытием/закрытием списка
 const selectedCountry = ref<string | null>(null);  // Сохранение выбранной страны
 
+const emit = defineEmits(['close', 'region-changed'])
+
+function resetForm () {
+  countries.value = []
+}
+
+function closePopUp(){
+  resetForm()
+  emit('close')
+}
+
 onMounted(async () => {
   try {
     const response = await fetch('https://restcountries.com/v3.1/all');
@@ -49,7 +60,7 @@ async function submitChanges() {
 </script>
 
 <template>
-  <div class="SettingsPopUpRegion">
+  <div class="SettingsPopUpRegion" @click.self="closePopUp">
     <div class="SettingsPopUpRegion__container">
       <div class="SettingsPopUpRegion__country-select" @click="isOpen = !isOpen">
         <span>{{ selectedCountry ? selectedCountry : 'Select your country' }}</span>
@@ -84,7 +95,7 @@ async function submitChanges() {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 200px;
   border-radius: 5%;
   margin-left: 400px;
   margin-top: 150px;
