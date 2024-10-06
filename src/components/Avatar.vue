@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import AuthorizationPopUp from './AuthorizationPopUp.vue';
+import { useI18n } from 'vue-i18n';
 
 // Переменная для отслеживания состояния пользователя (залогинен или нет)
 const isLoggedIn = ref<boolean>(false);
@@ -31,6 +32,9 @@ const toggleLogin = (): void => {
   isLoggedIn.value = !isLoggedIn.value;
   isMenuVisible.value = false; // Скрываем меню при переключении состояния
 };
+
+// Локализация
+const { t } = useI18n();
 </script>
 
 <template>
@@ -43,8 +47,8 @@ const toggleLogin = (): void => {
       v-if="!isLoggedIn" 
       :class="['avatar__container-anonym', { 'is-visible': isMenuVisible }]"
     >
-      <div class="avatar__container-one" @click="showPopUp">Sign In</div>
-      <div class="avatar__container-two" @click="$router.push('/registration')">Sign Up</div>
+      <div class="avatar__container-one" @click="showPopUp">{{ t('auth.signIn') }}</div>
+      <div class="avatar__container-two" @click="$router.push('/registration')">{{ t('auth.signUp') }}</div>
     </div>
     <!-- Меню для залогиненного пользователя -->
     <div 
@@ -59,6 +63,7 @@ const toggleLogin = (): void => {
   <!-- Компонент AuthorizationPopUp -->
   <AuthorizationPopUp v-if="isPopUpVisible" @close="closePopUp" />
 </template>
+
 
 <style scoped>
 .avatar {

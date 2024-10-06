@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { VueReCaptcha } from 'vue3-recaptcha';
+
+// Инициализация i18n
+const { t } = useI18n();
 
 // переменный для отслеживания инпутов
 const nickname = ref<string>('');
@@ -167,28 +171,26 @@ async function MainValidation() {
 <template>
   <div class="registrationForm">
     <div class="registrationForm__container">
-      <h1>Sign Up</h1>
+      <h1>{{ t('registration.title') }}</h1>
       <form>
-        <input type="text" placeholder="Name" v-model="nickname" @focus="clearNicknameError"/>
+        <input type="text" :placeholder="t('registration.namePlaceholder')" v-model="nickname" @focus="clearNicknameError"/>
         <p class="error"> {{ errorNickname }}</p>
-        <input type="email" placeholder="Email" v-model="email" @focus="clearEmailError"/>
+        <input type="email" :placeholder="t('registration.emailPlaceholder')" v-model="email" @focus="clearEmailError"/>
         <p class="error"> {{ errorEmail }}</p>
         <div class="verification-code-wrapper">
-          <input type="text" placeholder="Verification Code" v-model="verificationCode"/>
-          <button class="verification-code__btn">Send</button>
+          <input type="text" :placeholder="t('registration.verificationCodePlaceholder')" v-model="verificationCode"/>
+          <button class="verification-code__btn">{{ t('registration.sendButton') }}</button>
         </div>
-        <input type="password" placeholder="Password" v-model="password" @focus="clearPasswordError"/>
+        <input type="password" :placeholder="t('registration.passwordPlaceholder')" v-model="password" @focus="clearPasswordError"/>
         <p class="error"> {{ errorPassword }}</p>
 
-        <input type="password" placeholder="Re-enter password" v-model="passwordTest" @focus="clearPasswordTestError"/>
+        <input type="password" :placeholder="t('registration.passwordTestPlaceholder')" v-model="passwordTest" @focus="clearPasswordTestError"/>
         <p class="error"> {{ errorPasswordTest }}</p>
 
-        <!-- CAPTCHA -->
-        <!-- TODO сделать капчу когда появится домен -->
         <vue-recaptcha ref="captchaRef" sitekey="YOUR_PUBLIC_SITE_KEY"/> 
         <p class="error"> {{ errorCaptcha }}</p>
 
-        <button type="submit" @click.prevent="MainValidation">Register</button>
+        <button type="submit" @click.prevent="MainValidation">{{ t('registration.registerButton') }}</button>
       </form>
     </div>
   </div>

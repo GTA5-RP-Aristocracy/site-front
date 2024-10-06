@@ -5,7 +5,7 @@ import Footer from '@/components/Footer.vue';
 <template>
   <div class="rules">
     <div class="rules__container">
-      <h1>Community Rules</h1>
+      <h1>{{ $t("rules.community1.header1") }}</h1>
       <ol>
         <li>No win-only mentalities. Counter play is necessary to successful roleplay.</li>
         <li>Role Play Before Bloodshed: No Random Death Matching (RDM) or Kill on Sight (KOS). All conflict must be initiated verbally or with an abundance of story lead-up within close proximity of the conflict. The target of conflict attack must be able to recognize they’re being threatened with harm, why and by whom before they’re injured.</li>

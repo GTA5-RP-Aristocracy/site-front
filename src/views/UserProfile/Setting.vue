@@ -6,7 +6,11 @@ import SettingsPopUpBio from '@/components/SettingsPopUp/SettingsPopUpBio.vue';
 import SettingsPopUpRegion from '@/components/SettingsPopUp/SettingsPopUpRegion.vue';
 import Footer from '@/components/Footer.vue';
 
+import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
+
+// Инициализация i18n
+const { t } = useI18n();
 
 // Переменные для инпутов
 const nickname = ref<string>('BiscuitJerry');
@@ -72,67 +76,67 @@ function closeRegionPopup() {
     <div class="settings__container">
       <div class="settings__avatar">
         <img src="@/assets/images/default-avatar.jpg" alt="Avatar">
-        <strong>Settings</strong>
+        <strong>{{ t('settings.title') }}</strong>
       </div>
       <div class="settings__inputs">
-        <h1>My Account</h1>
+        <h1>{{ t('settings.title') }}</h1>
         <ul class="settings__list">
           <SettingsPopUpNickname
-          v-if="isNicknamePopupOpen" 
-          @close="closeNicknamePopup" 
-          @nickname-changed="nickname = $event"
+            v-if="isNicknamePopupOpen" 
+            @close="closeNicknamePopup" 
+            @nickname-changed="nickname = $event"
           />
           <li class="settings__item">
-            Nickname <span>{{ nickname }}</span>
-            <button @click="openNicknamePopup" class="edit-button">edit</button>
+            {{ t('settings.nickname') }} <span>{{ nickname }}</span>
+            <button @click="openNicknamePopup" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
-         <SettingsPopUpEmail
+          <SettingsPopUpEmail
             v-if="isEmailPopupOpen" 
             @close="closeEmailPopup" 
             @email-changed="email = $event"
           />
           <li class="settings__item">
-            Email <span>{{ email }}</span> 
-            <button @click="openEmailPopup" class="edit-button">edit</button>
+            {{ t('settings.email') }} <span>{{ email }}</span> 
+            <button @click="openEmailPopup" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
-            <SettingsPopUpPassword
+          <SettingsPopUpPassword
             v-if="isPasswordPopupOpen"
             @close="closePasswordPopup"
             @password-changed="password = $event"
-            />
-          <li class="settings__item">
-            Password <span>{{ password }}</span> 
-            <button @click="openPasswordPopup" class="edit-button">edit</button>
-          </li>
-          <li class="settings__item">
-            Date of Birth <span>{{ birth }}</span> 
-            <button class="edit-button hidden">edit</button>
-          </li>
-          <SettingsPopUpBio
-          v-if="isBioPopupOpen"
-          @close="closeBioPopup"
-          @bio-changed="bio = $event"
           />
           <li class="settings__item">
-            Bio <span>{{ bio }}</span> 
-            <button @click="openBioPopup" class="edit-button">edit</button>
+            {{ t('settings.password') }} <span>{{ password }}</span> 
+            <button @click="openPasswordPopup" class="edit-button">{{ t('settings.edit') }}</button>
+          </li>
+          <li class="settings__item">
+            {{ t('settings.dateOfBirth') }} <span>{{ birth }}</span> 
+            <button class="edit-button hidden">{{ t('settings.edit') }}</button>
+          </li>
+          <SettingsPopUpBio
+            v-if="isBioPopupOpen"
+            @close="closeBioPopup"
+            @bio-changed="bio = $event"
+          />
+          <li class="settings__item">
+            {{ t('settings.bio') }} <span>{{ bio }}</span> 
+            <button @click="openBioPopup" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
           <SettingsPopUpRegion
-          v-if="isRegionPopupOpen"
-          @close="closeRegionPopup"
-          @region-changed="region = $event"
+            v-if="isRegionPopupOpen"
+            @close="closeRegionPopup"
+            @region-changed="region = $event"
           /> 
           <li class="settings__item">
-            Region <span>{{ region }}</span> 
-            <button @click="openRegionPopup" class="edit-button">edit</button>
+            {{ t('settings.region') }} <span>{{ region }}</span> 
+            <button @click="openRegionPopup" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
           <li class="settings__item">
-            Member Since <span>{{ since }}</span> 
-            <button class="edit-button hidden">edit</button>
+            {{ t('settings.memberSince') }} <span>{{ since }}</span> 
+            <button class="edit-button hidden">{{ t('settings.edit') }}</button>
           </li>
           <li class="settings__item">
-            Language <span>{{ language }}</span> 
-            <button class="edit-button">edit</button>
+            {{ t('settings.language') }} <span>{{ language }}</span> 
+            <button class="edit-button">{{ t('settings.edit') }}</button>
           </li>
         </ul>
       </div>
