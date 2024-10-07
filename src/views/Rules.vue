@@ -7,19 +7,18 @@ import Footer from '@/components/Footer.vue';
     <div class="rules__container">
       <h1>{{ $t("rules.community1.header1") }}</h1>
       <ol>
-        <li>No win-only mentalities. Counter play is necessary to successful roleplay.</li>
-        <li>Role Play Before Bloodshed: No Random Death Matching (RDM) or Kill on Sight (KOS). All conflict must be initiated verbally or with an abundance of story lead-up within close proximity of the conflict. The target of conflict attack must be able to recognize they’re being threatened with harm, why and by whom before they’re injured.</li>
+        <li>{{ $t("rules.community1.list1[0]") }}</li>
+        <li>{{ $t("rules.community1.list1[1]") }}</li>
         <li>
-          Metagaming is prohibited.
+          {{ $t("rules.community1.list1[2].sublist1[0]") }}
           <ol>
             <li>
-              You are not your character; do not act on or disclose information your character didn’t gain on-server.
-              Power gaming is prohibited.
+              {{ $t("rules.community1.list1[2].sublist1[1].sublist2[0]") }}
             </li>
           </ol>
         </li>
         <li>
-          Power gaming is prohibited.
+          {{ $t("rules.community1.list1[3].sublist3[0]") }}
           <ol>
             <li>
               Roleplay that does not give other players the opportunity to roleplay their character’s own actions is considered power gaming (e.g., using the /me command to force an outcome: /me knocks them out with the butt of a gun instead of /me hits your temple with the butt of a gun ).
