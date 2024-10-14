@@ -17,10 +17,6 @@ const i18n = createI18n({
 })
 
 	const app = createApp(App, {
-		setup(){
-			const {t} = useI18n()
-			return {t}
-		}
 	})
 
 	app.use(createPinia())

@@ -7,10 +7,11 @@ import SettingsPopUpRegion from '@/components/SettingsPopUp/SettingsPopUpRegion.
 import Footer from '@/components/Footer.vue';
 
 import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
+import { useLanguageStore } from '@/stores/language'
 
-// Инициализация i18n
-const { t } = useI18n();
+const { t } = useI18n(); // Инициализация i18n
+const languageStore = useLanguageStore(); 
 
 // Переменные для инпутов
 const nickname = ref<string>('BiscuitJerry');
@@ -20,7 +21,7 @@ const birth = ref<string>('August 4, 1998');
 const bio = ref<string>('Top gamer in the world!');
 const region = ref<string>('Russian Federation');
 const since = ref<string>('August 21, 2024');
-const language = ref<string>('Russian');
+const language = ref<string>(languageStore.locale === 'ru' ? 'Русский' : 'English');
 
 // Состояние для каждого поп-апа
 const isNicknamePopupOpen = ref<boolean>(false);
@@ -28,6 +29,11 @@ const isEmailPopupOpen = ref<boolean>(false);
 const isPasswordPopupOpen = ref<boolean>(false);
 const isBioPopupOpen = ref<boolean>(false);
 const isRegionPopupOpen = ref<boolean>(false);
+
+// Следим за изменениями локали и обновляем переменную language
+watchEffect(() => {
+  language.value = languageStore.locale === 'ru' ? 'Русский' : 'English';
+});
 
 // Функции для открытия поп-апов
 function openNicknamePopup() {
@@ -69,6 +75,15 @@ function closeBioPopup() {
 function closeRegionPopup() {
   isRegionPopupOpen.value = false;
 }
+
+// Функция для переключения языка при нажатии на кнопку "edit"
+const switchLanguage = (): void => {
+  if (languageStore.locale === 'ru') {
+    languageStore.setLocale('en');
+  } else {
+    languageStore.setLocale('ru');
+  }
+};
 </script>
 
 <template>
@@ -136,7 +151,7 @@ function closeRegionPopup() {
           </li>
           <li class="settings__item">
             {{ t('settings.language') }} <span>{{ language }}</span> 
-            <button class="edit-button">{{ t('settings.edit') }}</button>
+            <button @click="switchLanguage" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
         </ul>
       </div>

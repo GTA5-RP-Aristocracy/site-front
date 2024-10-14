@@ -28,11 +28,6 @@ const router = createRouter({
 			component: defineAsyncComponent(() => import('@/views/Download.vue')),
 		},
 		{
-			path: '/test',
-			name: 'test',
-			component: defineAsyncComponent(() => import('@/views/TEST.vue')),
-		},
-		{
 			path: '/settings',
 			name: 'settings',
 			component: defineAsyncComponent(

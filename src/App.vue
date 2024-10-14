@@ -45,9 +45,6 @@ const Loader = defineAsyncComponent(() => import('@/components/Loader.vue'));
                   <router-link to="/download">{{ t('nav.pages.download') }}</router-link>
                 </li>
                 <li>
-                  <router-link to="/test">{{ t('nav.pages.test') }}</router-link>
-                </li>
-                <li>
                   <Avatar />
                 </li>
               </ul>
