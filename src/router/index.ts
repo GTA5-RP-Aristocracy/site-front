@@ -32,6 +32,11 @@ const router = createRouter({
 			name: 'test',
 			component: defineAsyncComponent(() => import('@/views/TEST.vue')),
 		},
+		{
+			path: '/settings',
+			name: 'settings',
+			component: defineAsyncComponent(() => import('@/views/UserProfile/Setting.vue')),
+		},
 	],
 })
 
