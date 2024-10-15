@@ -28,14 +28,18 @@ const router = createRouter({
 			component: defineAsyncComponent(() => import('@/views/Download.vue')),
 		},
 		{
-			path: '/test',
-			name: 'test',
-			component: defineAsyncComponent(() => import('@/views/TEST.vue')),
-		},
-		{
 			path: '/settings',
 			name: 'settings',
-			component: defineAsyncComponent(() => import('@/views/UserProfile/Setting.vue')),
+			component: defineAsyncComponent(
+				() => import('@/views/UserProfile/Setting.vue')
+			),
+		},
+		{
+			path: '/registration',
+			name: 'registration',
+			component: defineAsyncComponent(
+				() => import('@/views/UserProfile/RegistrationForm.vue')
+			),
 		},
 	],
 })

@@ -7,8 +7,8 @@ const errorMessage = ref<string>('');   // Сообщение об ошибке
 
 const correctPassword = '1234';         // Пример правильного пароля для проверки //TODO ждем связь с сервером что бы реализовать логику пароля
 
-// Объявляем метод для эмита событий
-const emit = defineEmits(['close']);
+
+const emit = defineEmits(['close','email-changed']);
 
 // Функция для проверки валидации email
 function emailValidation(email: string): string {
@@ -36,6 +36,12 @@ function handleEmailValidation() {
   saveChanges();
 }
 
+// Функция для сброса данных формы
+function resetForm() {
+  email.value = '';  // Сброс поля с email
+  password.value = '';     // Сброс поля с паролем
+}
+
 // Функция для сохранения изменений
 function saveChanges() {
   // Проверка длины нового email
@@ -47,11 +53,6 @@ function saveChanges() {
   resetForm(); // Сброс формы после успешного сохранения
 }
 
-// Функция для сброса данных формы
-function resetForm() {
-  email.value = '';  // Сброс поля с email
-  password.value = '';     // Сброс поля с паролем
-}
 
 // Следим за изменением email, чтобы скрывать ошибку при вводе
 watch(email, () => {
@@ -69,8 +70,8 @@ watch(password, () => {
 
 // Функция закрытия попапа при клике на серую зону
 function closePopUp() {
-  resetForm(); // Сбросить данные
-  emit('close'); // Отправить событие закрытия родителю
+  resetForm();
+  emit('close');
 }
 </script>
 
@@ -96,7 +97,7 @@ function closePopUp() {
   z-index: 10;
 }
 .SettingsPopUpEmail__container {
-    background-image: url(@/assets/images/Bandit-PopUp-Settings.png);
+  background-image: url(@/assets/images/Bandit-PopUp-Settings.png);
   position: relative;
   display: flex;
   flex-direction: column;

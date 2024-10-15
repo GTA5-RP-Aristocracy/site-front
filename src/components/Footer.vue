@@ -1,63 +1,66 @@
-<script lang='ts' setup>
+<script lang="ts" setup>
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n({ useScope: 'global' });
 </script>
+
 
 <template>
   <div class="footer">
     <div class="footer__logo">
       <div class="footer__logo__slogan">
         <div class="footer__logo__slogan-image">
-          <img src="../assets/images/server-status.svg" alt="server-status"></div>
+          <img src="../assets/images/server-status.svg" :alt="t('images.serverStatusAlt')" />
+        </div>
         <div class="footer__logo__slogan-text">
           <h1>
-                            <span>Role play Aristocracy</span>
-                            <br>от игроков для игроков<br/></h1>
+            <span>{{ t('footer.sloganTitle') }}</span>
+            <br />{{ t('footer.sloganText') }}<br />
+          </h1>
         </div>
       </div>
-      <p>
-        Role play Aristocracy is not affiliated with or endorsed by Rockstar North, Take-Two Interactive or other rightsholders.</p>
-      <p>Any trademarks used belong to their respective owners. Role play Aristocracy reserves all rights on rightly owned images and other visual content provided GTA ROLEPLAY SERVER.</p>
+      <p>{{ t('footer.disclaimer1') }}</p>
+      <p>{{ t('footer.disclaimer2') }}</p>
     </div>
     <div class="footer__link">
       <ul class="footer__link__list">
-        <strong>
-                            Link & Resources</strong>
-        <hr>
+        <strong>{{ t('footer.linksTitle') }}</strong>
+        <hr />
         <li>
-          <router-link to="/">HOME</router-link>
+          <router-link to="/">{{ t('nav.pages.home') }}</router-link>
         </li>
         <li>
-          <router-link to="/shop">SHOP</router-link>
+          <router-link to="/shop">{{ t('nav.pages.shop') }}</router-link>
         </li>
         <li>
-          <router-link to="/rules">RULES</router-link>
+          <router-link to="/rules">{{ t('nav.pages.rules') }}</router-link>
         </li>
         <li>
-          <a href="https://discord.gg/K4QADYZx" target="_blank">DISCORD</a>
+          <a href="https://discord.gg/K4QADYZx" target="_blank">{{ t('nav.pages.discord') }}</a>
         </li>
         <li>
-          <router-link to="/download">DOWNLOAD & PLAY</router-link>
+          <router-link to="/download">{{ t('nav.pages.download') }}</router-link>
         </li>
       </ul>
     </div>
     <div class="footer__help">
-      <strong>Need help?</strong>
-      <hr>
+      <strong>{{ t('footer.helpTitle') }}</strong>
+      <hr />
       <ul class="footer__help__list">
         <li class="footer__help__item">
-          <a href="https://drive.google.com/file/d/1dh6nJWWeExKKdhu6vaoQ0gPanfRhRW_8/view?usp=sharing" target="_blank">Terms & Conditions</a>
+          <a href="https://drive.google.com/file/d/1dh6nJWWeExKKdhu6vaoQ0gPanfRhRW_8/view?usp=sharing" target="_blank">{{ t('footer.terms') }}</a>
         </li>
         <li class="footer__help__item">
-          <a href="https://drive.google.com/file/d/1KWYs1-gWCtE8VWLKQmY0_sWu3JdMhh2L/view?usp=sharing" target="_blank">Privacy policy</a>
+          <a href="https://drive.google.com/file/d/1KWYs1-gWCtE8VWLKQmY0_sWu3JdMhh2L/view?usp=sharing" target="_blank">{{ t('footer.privacyPolicy') }}</a>
         </li>
         <li class="footer__help__item">
-          <a href="https://drive.google.com/file/d/1MlHinEwD3iMrXxgLEZP5QDpZPCR3OF39/view?usp=sharing" target="_blank">Affiliate</a>
+          <a href="https://drive.google.com/file/d/1MlHinEwD3iMrXxgLEZP5QDpZPCR3OF39/view?usp=sharing" target="_blank">{{ t('footer.affiliate') }}</a>
         </li>
       </ul>
     </div>
     <div class="footer__follow">
-      <strong>Follow Us</strong>
-      <hr>
+      <strong>{{ t('footer.followTitle') }}</strong>
+      <hr />
       <ul class="footer__follow__list">
         <li class="footer__follow__item">
           <a href="https://www.instagram.com/cykctacik/" target="_blank">Instagram</a>
@@ -71,11 +74,11 @@
         <li class="footer__follow__item">
           <a href="https://www.youtube.com/@AzazinKreet" target="_blank">Youtube</a>
         </li>
-
       </ul>
     </div>
   </div>
 </template>
+
 
 <style  scoped>
   hr {
