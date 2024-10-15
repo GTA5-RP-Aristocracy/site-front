@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import SettingsPopUp from '@/components/SettingsPopUp/SettingsPopUpNickname.vue';
 import SettingsPopUpEmail from '@/components/SettingsPopUp/SettingsPopUpEmail.vue';
+import SettingsPopUpPassword from '@/components/SettingsPopUp/SettingsPopUpPassword.vue';
 import Footer from '@/components/Footer.vue';
 
 import { ref } from 'vue';
@@ -8,7 +9,7 @@ import { ref } from 'vue';
 // Переменные для инпутов
 const nickname = ref<string>('BiscuitJerry');
 const email = ref<string>('dreamrunner891@gmail.com');
-const password = ref<string>('Jugger69');
+const password = ref<string>('*****');
 const birth = ref<string>('August 4, 1998');
 const region = ref<string>('Russian Federation');
 const bio = ref<string>('Top gamer in the world!');
@@ -61,6 +62,7 @@ function handleNicknameChange(newNickname: string) {
             v-if="popUpEmail"
             @close="popUpEmail = false"
           />
+          <SettingsPopUpPassword/>
           <li class="settings__item">
             Nickname <span>{{ nickname }}</span>
             <button @click="openNicknamePopup" class="edit-button">edit</button>

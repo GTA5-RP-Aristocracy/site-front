@@ -35,7 +35,16 @@ const router = createRouter({
 		{
 			path: '/settings',
 			name: 'settings',
-			component: defineAsyncComponent(() => import('@/views/UserProfile/Setting.vue')),
+			component: defineAsyncComponent(
+				() => import('@/views/UserProfile/Setting.vue')
+			),
+		},
+		{
+			path: '/registration',
+			name: 'registration',
+			component: defineAsyncComponent(
+				() => import('@/views/UserProfile/RegistrationForm.vue')
+			),
 		},
 	],
 })

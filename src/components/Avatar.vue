@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import VideoPopUp from './VideoPopUp.vue';
+import AuthorizationPopUp from './AuthorizationPopUp.vue';
 
 // Переменная для отслеживания состояния пользователя (залогинен или нет)
 const isLoggedIn = ref<boolean>(false);
@@ -8,22 +8,22 @@ const isLoggedIn = ref<boolean>(false);
 // Переменная для отслеживания видимости меню
 const isMenuVisible = ref<boolean>(false);
 
-// Переменная для отслеживания видимости компонента VideoPopUp
-const isVideoPopUpVisible = ref<boolean>(false);
+// Переменная для отслеживания видимости компонента AuthorizationPopUp
+const isPopUpVisible = ref<boolean>(false);
 
 // Функция для переключения видимости меню
 const toggleMenuVisibility = (): void => {
   isMenuVisible.value = !isMenuVisible.value;
 };
 
-// Функция для отображения VideoPopUp при нажатии на "Sign In"
-const showVideoPopUp = (): void => {
-  isVideoPopUpVisible.value = true;
+// Функция для отображения AuthorizationPopUp при нажатии на "Sign In"
+const showPopUp = (): void => {
+  isPopUpVisible.value = true;
 };
 
-// Функция для скрытия VideoPopUp при закрытии попапа
-const closeVideoPopUp = (): void => {
-  isVideoPopUpVisible.value = false;
+// Функция для скрытия AuthorizationPopUp при закрытии попапа
+const closePopUp = (): void => {
+  isPopUpVisible.value = false;
 };
 
 // Функция для переключения состояния пользователя (для тестирования)
@@ -43,8 +43,8 @@ const toggleLogin = (): void => {
       v-if="!isLoggedIn" 
       :class="['avatar__container-anonym', { 'is-visible': isMenuVisible }]"
     >
-      <div class="avatar__container-one" @click="showVideoPopUp">Sign In</div>
-      <div class="avatar__container-two">Sign Up</div>
+      <div class="avatar__container-one" @click="showPopUp">Sign In</div>
+      <div class="avatar__container-two" @click="$router.push('/registration')">Sign Up</div>
     </div>
     <!-- Меню для залогиненного пользователя -->
     <div 
@@ -56,8 +56,8 @@ const toggleLogin = (): void => {
     </div>
   </div>
 
-  <!-- Компонент VideoPopUp -->
-  <VideoPopUp v-if="isVideoPopUpVisible" @close="closeVideoPopUp" />
+  <!-- Компонент AuthorizationPopUp -->
+  <AuthorizationPopUp v-if="isPopUpVisible" @close="closePopUp" />
 </template>
 
 <style scoped>
