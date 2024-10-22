@@ -6,7 +6,7 @@ const password = ref<string>(''); // Пароль
 const errorMessage = ref<string>(''); // Сообщение об ошибке
 const correctPassword = '1234'; // Пример правильного пароля
 
-const emit = defineEmits(['close', 'nickname-changed']); // Эмит событий
+const emit = defineEmits(['close', 'nickname-changed']);
 
 // Функция для сброса формы
 function resetForm() {
@@ -17,8 +17,8 @@ function resetForm() {
 
 // Функция для закрытия попапа
 function closePopUp() {
-  resetForm(); // Сброс формы
-  emit('close'); // Эмит события закрытия
+  resetForm();
+  emit('close');
 }
 
 // Функция для сохранения изменений
@@ -33,8 +33,8 @@ function saveChanges() {
     return;
   }
 
-  emit('nickname-changed', newUsername.value); // Эмит нового ника
-  closePopUp(); // Закрываем попап
+  emit('nickname-changed', newUsername.value);
+  closePopUp();
 }
 
 // Слежение за паролем для скрытия ошибок

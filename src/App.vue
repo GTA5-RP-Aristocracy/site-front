@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import { onMounted, watch } from 'vue';
+import Avatar from './components/Avatar.vue';
+import { defineAsyncComponent, Suspense } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+
+const {t, locale} = useI18n({useScope: 'global'})
+const Loader = defineAsyncComponent(() => import('@/components/Loader.vue'));
+
+//подстраиваем стили в зависимости от языка
+onMounted(() => {
+  document.documentElement.setAttribute('lang', locale.value);
+});
+
+watch(locale, (newLang) => {
+  document.documentElement.setAttribute('lang', newLang);
+});
+</script>.
+
 <template>
   <Suspense>
     <template #default>
@@ -7,41 +27,35 @@
             <div class="nav__server-status">
               <img
                 src="./assets/images/server-status.svg"
-                alt="server-status"
+                :alt="t('images.serverStatusAlt')"
                 @error="console.error('Error loading server-status.svg')"
               />
               <div class="nav__server-status-column">
+                <p>{{ t('nav.serverStatus.title') }} <span>{{ t('nav.serverStatus.online') }}</span></p>
                 <p>
-                  Server Status: <span>Online</span>
-                </p>
-                <p>
-                  <strong>Players online:</strong> 98/300
+                  <strong>{{ t('nav.serverStatus.playersOnline') }}</strong>
                 </p>
               </div>
             </div>
             <div class="nav__pages">
               <ul class="nav__pages-list">
                 <li>
-                  <router-link to="/">HOME</router-link>
+                  <router-link to="/">{{ t('nav.pages.home') }}</router-link>
                 </li>
                 <li>
-                  <router-link to="/shop">SHOP</router-link>
+                  <router-link to="/shop">{{ t('nav.pages.shop') }}</router-link>
                 </li>
                 <li>
-                  <router-link to="/rules">RULES</router-link>
+                  <router-link to="/rules">{{ t('nav.pages.rules') }}</router-link>
                 </li>
                 <li>
-                  <a href="https://discord.gg/K4QADYZx" target="_blank">DISCORD</a>
+                  <a href="https://discord.gg/K4QADYZx" target="_blank">{{ t('nav.pages.discord') }}</a>
                 </li>
                 <li>
-                  <router-link to="/download">DOWNLOAD & PLAY</router-link>
+                  <router-link to="/download">{{ t('nav.pages.download') }}</router-link>
                 </li>
                 <li>
-                  <!-- временная страница для теста других компонентов -->
-                  <router-link to="/test">TEST</router-link>
-                </li>
-                <li>
-                  <Avatar/>
+                  <Avatar />
                 </li>
               </ul>
             </div>
@@ -51,17 +65,11 @@
       </div>
     </template>
     <template #fallback>
-      <Loader/>
+      <Loader />
     </template>
   </Suspense>
 </template>
 
-<script setup lang="ts">
-import Avatar from './components/Avatar.vue';
-import { defineAsyncComponent, Suspense } from 'vue';
-
-const Loader = defineAsyncComponent(() => import('@/components/Loader.vue'));
-</script>.
 
 <style scoped>
 .nav {

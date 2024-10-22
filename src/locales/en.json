@@ -1,0 +1,354 @@
+{
+	"heading": "GTA V Role play Aristocracy",
+	"description1": "Discover the exciting world of role-playing, where every action matters. Create unique characters, interact with other players, and dive into a rich history and development opportunities.",
+	"description2": "Our GTA 5 Roleplay server stands out not only for its deep story and diverse characters but also for innovative game mechanics. We offer unique economic systems, flexible character customization options, and a world brought to life by an active community. Join Aristocracy Roleplay and experience unforgettable moments in a whole new light of GTA 5!",
+	"play_now": "Play Now!",
+	"learn_more": "Learn More",
+  "buffalo": {
+    "name": "Buffalo",
+    "description": "The Bravado marketing department knows just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It's a vehicle with aggressive lines for aggressive drivers."
+  },
+  "jester": {
+    "name": "Jester",
+    "description": "A Japanese hybrid-electric sportscar with a front-end designed to look like an angry grin might be too whimsical for some, but with a 4-liter V6 engine, 420 hp, and a top speed of 180mph, the Dinka Jester still packs a serious punchline."
+  },
+  "redwood_gauntlet": {
+    "name": "Redwood Gauntlet",
+    "description": "An American muscle car in a class by itself. Roll down the windows and scream in testosterone-filled rage as you gun the engine while stuck in traffic. DNA wipes easily off the leather seats. Now available with exclusive Redwood Livery."
+  },
+  "shop": {
+    "buy_now": "Buy Now"
+  },
+  "rules": {
+    "community1": {
+      "header1": "Community Rules",
+      "list1": [
+        "No win-at-all-cost mentality. Counterplay is necessary for successful roleplay interaction.",
+        "Roleplay interaction before bloodshed: no random deathmatch (RDM) or kill on sight (KOS). All conflicts must be initiated verbally or with ample backstory in close proximity to the conflict. The goal of the conflict must be aware that they are in danger, why, and by whom before they are harmed.",
+        {
+          "sublist1": [
+            "Metagaming is prohibited.",
+            {
+              "sublist2": [
+                "You are not your character; do not act on or disclose information that your character did not obtain in-game. Powergaming is prohibited."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist3": [
+            "Powergaming is prohibited.",
+            {
+              "sublist4": [
+                "Roleplay interaction that does not allow other players the opportunity to act out their character's actions is considered powergaming (e.g., using the /me command to force a result: /me knocks them down with the butt of a gun instead of /me hits them on the temple with the butt of a gun)."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist5": [
+            "Stream sniping is prohibited.",
+            {
+              "sublist6": [
+                "Being in a streamer's chat while playing on the server will be considered evidence of stream sniping if a complaint is filed."
+              ]
+            }
+          ]
+        },
+        "RP that violates Twitch's Terms of Service (ToS) and community rules is prohibited.",
+        "Players and their characters must be over 18 years old.",
+        "Players must be fluent in English/Russian to easily understand and be understood.",
+        {
+          "sublist7": [
+            "You must link your Steam account to your Discord, in case the administrators need to find you for whitelisting. You should also have your character names as part of your name.",
+            {
+              "sublist8": [
+                "If you do not want to show your Steam account, ensure your name matches your Steam name in your application."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist9": [
+            "Admin actions through Discord take precedence.",
+            {
+              "sublist10": [
+                "If an admin contacts you to discuss a timeout, the ban will not be lifted (regardless of its initial duration) until you speak with the admin. If an admin contacts you to discuss a rule violation and you do not respond to the message, you may be temporarily banned until you respond."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist11": [
+            "Respect other players in the community; personal insults or attacks outside of roleplay are strictly prohibited.",
+            {
+              "sublist12": [
+                "Badmouthing others on streams, chats, or elsewhere will not be tolerated. If you have concerns that someone has violated community rules or the server, please report it.",
+                "Any player caught stalking or harassing another player on the server or outside of it, but related to their presence on the server, will be permanently removed and banned from participating in the current and any future whitelist."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist13": [
+            "Voice Communication:",
+            {
+              "sublist14": [
+                "Players must have a quality and functioning microphone and headset for VoIP RP.",
+                "Players or characters who are mute may use /mu or /me for roleplay interaction (See also Getting Started).",
+                "You should not use external communication to interact with other players while playing on the server.",
+                "Any music playing on the server must comply with DMCA."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist15": [
+            "Use appropriate tools and #channels to report issues or request support.",
+            {
+              "sublist16": [
+                "If you need to send a private message to another community member for any reason, first obtain permission in a public channel."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist17": [
+            "Exploiting bugs/bugs is prohibited.",
+            {
+              "sublist18": [
+                "Using game mechanics (intended or otherwise) to gain an unfair advantage is considered exploitation (e.g., using known bugs or using game features inappropriately and unexpectedly).",
+                "Logging out during a conflict (\"combat-logging\") is prohibited."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist19": [
+            "Players must remain in-character (IC) at all times while on the server. This includes communication and actions.",
+            {
+              "sublist20": [
+                "IC conflicts should be resolved IC. If issues arise regarding the rules, players are expected to remain IC until the scene is complete and file a player report."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist21": [
+            "Content Restrictions:",
+            {
+              "sublist22": [
+                "Extreme violence: consent must be obtained OOC through Discord from all parties before roleplay interaction involving torture/mutilation. Descriptions (verbal or /me) may not be excessively detailed or horrific.",
+                "Prohibited topics: Roleplay interaction and references to the following topics, both verbal and written, are absolutely not permitted on TwitchRP or any of its servers, Discord, or other hosted services and may result in a permanent community ban:",
+                "Racism or sexism",
+                "Suicide or self-harm",
+                "Roleplay interaction with children/pregnancy",
+                "Erotic roleplay (ERP), especially anything that is actually or implied to be non-consensual",
+                "Roleplay interaction with slavery",
+                "Depictions of murder by hanging (including references in scenes or /me)",
+                "Any expressions of hate, insults, or depictions of hate crimes are prohibited."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist23": [
+            "Discord Rules:",
+            {
+              "sublist24": [
+                "You must follow Discord's Terms of Service.",
+                "Advertising of any kind will not be tolerated unless explicit permission is obtained from an administrator.",
+                "Do not spam the bot. It has feelings too, you know.",
+                "Offensive/NSFW names and avatars are not allowed and will result in a warning.",
+                "Staff has the final say on what is allowed. They reserve the right to delete messages at their discretion."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "server": {
+      "header2": "Server Rules",
+      "list2": [
+        "You must value your life, freedom, and the lives of others. For example, do not try to pull out a weapon while being held at gunpoint or harm NPCs without necessity.",
+        "Do not script stories. It is fine to set loose plotlines at the beginning of a story, but trying to control the narrative goes against server rules. This server is intended for collaborative storytelling.",
+        {
+          "sublist26": [
+            "Groups, families, or businesses (civilian or criminal) are limited to a maximum of 16 members. We ask that you apply to create a supergroup through the supergroup agreement here and that a representative is present in the group's Discord."
+          ]
+        },
+        {
+          "sublist27": [
+            "Any LORE groups or characters must be approved through a supergroup agreement request here."
+          ]
+        },
+        {
+          "sublist28": [
+            "You cannot play as a serial killer without a serial killer agreement here. This is necessary to ensure you receive the support you need from the admin team to implement your story."
+          ]
+        },
+        {
+          "sublist29": [
+            "Numbers in combat are as follows:",
+            {
+              "sublist30": [
+                "6 on 6 for gang vs. gang conflict",
+                "6 on 6 for conflicts not involving a group (examples: theft, other discrepancies)",
+                "2 on 1 for any conflicts involving fewer people or involving other groups, such as in three-way situations."
+              ]
+            }
+          ]
+        },
+        "Ensure you can block action if it is moved into a normal, well-thought-out scene.",
+        {
+          "sublist31": [
+            "Limit the number of fights to avoid misunderstandings and unnecessary conflicts. Pre-arrange combat actions or fights.",
+            {
+              "sublist32": [
+                "Ensure that all players agree and can communicate."
+              ]
+            }
+          ]
+        },
+        "Please note that attempting to force another player to retract an action will be considered RDM.",
+        {
+          "sublist33": [
+            "If your actions provoke a clear reaction and your characters cannot avoid the situation, expect to be held accountable.",
+            {
+              "sublist34": [
+                "An individual who insults a player or team will be excluded.",
+                "Continued disregard for community rules may result in temporary or permanent bans."
+              ]
+            }
+          ]
+        },
+        {
+          "sublist35": [
+            "If you are unsure about any rule, contact an administrator before you begin to act to avoid potential rule violations."
+          ]
+        },
+        {
+          "sublist36": [
+            "Characters that allow for controversial actions, such as killing another player, must have motivation for this. You cannot create a character solely for murder based on personal hatred."
+          ]
+        },
+        {
+          "sublist37": [
+            "When participating in any roleplay actions, keep in mind that another player may participate in the conflict if they react to your action. This means that if they cannot find a way to react logically and safely in a situation, they may find it necessary to leave or avoid the conflict entirely."
+          ]
+        },
+        {
+          "sublist38": [
+            "Overall, consider the risk associated with your character’s actions. Not all characters must die in the process of roleplay interactions, but they must be believable in their interactions and responses."
+          ]
+        },
+        {
+          "sublist39": [
+            "If an admin joins your scene, you should stop the current RP, otherwise you risk being removed from the scene and server."
+          ]
+        },
+        {
+          "sublist40": [
+            "If your character dies in a way that is caused by your own fault (e.g., failing to value your life), you will be warned."
+          ]
+        }
+      ]
+    }
+  },
+  "step1": {
+    "title": "STEP 1",
+    "heading": "register\nan account",
+    "description": "you'll need an official copy of the game Grand Theft Auto V.",
+    "button": "REGISTRATION"
+  },
+  "step2": {
+    "title": "STEP 2",
+    "heading": "download\nthe launcher",
+    "description": "you'll need our launcher to play on the server.",
+    "button": "DOWNLOAD"
+  },
+  "step3": {
+    "title": "STEP 3",
+    "heading": "read\nserver rules",
+    "description": "to be able to work on our server you need to know our rules that apply on the server.",
+    "button": "READ RULES"
+  },
+  "downloadCarAlt": "download-car",
+  "arrowsTopAlt": "arrows-top",
+  "arrowsBottomAlt": "arrows-bottom",
+  "nav": {
+    "serverStatus": {
+      "title": "Server Status:",
+      "online": "Online",
+      "playersOnline": "Players online: 98/300"
+    },
+    "pages": {
+      "home": "HOME",
+      "shop": "SHOP",
+      "rules": "RULES",
+      "discord": "DISCORD",
+      "download": "DOWNLOAD & PLAY",
+      "test": "TEST"
+    }
+  },
+  "images": {
+    "serverStatusAlt": "server-status"
+  },
+  "footer": {
+    "sloganTitle": "Role play Aristocracy",
+    "sloganText": "from players for players",
+    "disclaimer1": "Role play Aristocracy is not affiliated with or endorsed by Rockstar North, Take-Two Interactive, or other rightsholders.",
+    "disclaimer2": "Any trademarks used belong to their respective owners. Role play Aristocracy reserves all rights to rightly owned images and other visual content.",
+    "linksTitle": "Links & Resources",
+    "helpTitle": "Need help?",
+    "terms": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "affiliate": "Affiliate",
+    "followTitle": "Follow Us"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "auth2": {
+    "loginPlaceholder": "Username / Email",
+    "passwordPlaceholder": "Password",
+    "loginErrorShort": "Login must be at least 4 characters long",
+    "loginErrorLong": "Login must be less than 32 characters",
+    "passwordErrorShort": "Password must be at least 4 characters long",
+    "passwordErrorLong": "Password must not exceed 40 characters",
+    "loginButton": "Log In",
+    "forgotPassword": "Forgot your password?",
+    "registerNow": "Register now"
+  },
+  "registration": {
+    "title": "Sign Up",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "verificationCodePlaceholder": "Verification Code",
+    "sendButton": "Send",
+    "passwordPlaceholder": "Password",
+    "passwordTestPlaceholder": "Re-enter password",
+    "captchaError": "Captcha verification failed",
+    "error": {
+      "nickname": "Invalid nickname. Only Latin characters and spaces allowed.",
+      "email": "Invalid email format. Only Latin characters and certain symbols are allowed.",
+      "password": "Password must have a minimum of 4 characters.",
+      "passwordTest": "Passwords do not match."
+    },
+    "registerButton": "Register"
+  },
+  "settings": {
+    "title": "My Account",
+    "nickname": "Nickname",
+    "email": "Email",
+    "password": "Password",
+    "dateOfBirth": "Date of Birth",
+    "bio": "Bio",
+    "region": "Region",
+    "memberSince": "Member Since",
+    "language": "Language",
+    "edit": "edit"
+  }
+}
+

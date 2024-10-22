@@ -1,6 +1,22 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import VideoPopUp from './VideoPopUp.vue';
+import { ref, watch } from 'vue';
+import AuthorizationPopUp from './AuthorizationPopUp.vue';
+import { useI18n } from 'vue-i18n';
+import { useLanguageStore } from '../stores/language';
+
+// Локализация
+const { t, locale } = useI18n(); // Подключаем локализацию через useI18n
+
+// Подключаем хранилище языка (Pinia)
+const languageStore = useLanguageStore();
+
+// Устанавливаем начальный язык в I18n из хранилища Pinia
+locale.value = languageStore.locale;
+
+// Следим за изменением языка в Pinia и обновляем I18n
+watch(() => languageStore.locale, (newLocale) => {
+  locale.value = newLocale;
+});
 
 // Переменная для отслеживания состояния пользователя (залогинен или нет)
 const isLoggedIn = ref<boolean>(false);
@@ -8,22 +24,22 @@ const isLoggedIn = ref<boolean>(false);
 // Переменная для отслеживания видимости меню
 const isMenuVisible = ref<boolean>(false);
 
-// Переменная для отслеживания видимости компонента VideoPopUp
-const isVideoPopUpVisible = ref<boolean>(false);
+// Переменная для отслеживания видимости компонента AuthorizationPopUp
+const isPopUpVisible = ref<boolean>(false);
 
 // Функция для переключения видимости меню
 const toggleMenuVisibility = (): void => {
   isMenuVisible.value = !isMenuVisible.value;
 };
 
-// Функция для отображения VideoPopUp при нажатии на "Sign In"
-const showVideoPopUp = (): void => {
-  isVideoPopUpVisible.value = true;
+// Функция для отображения AuthorizationPopUp при нажатии на "Sign In"
+const showPopUp = (): void => {
+  isPopUpVisible.value = true;
 };
 
-// Функция для скрытия VideoPopUp при закрытии попапа
-const closeVideoPopUp = (): void => {
-  isVideoPopUpVisible.value = false;
+// Функция для скрытия AuthorizationPopUp при закрытии попапа
+const closePopUp = (): void => {
+  isPopUpVisible.value = false;
 };
 
 // Функция для переключения состояния пользователя (для тестирования)
@@ -31,34 +47,42 @@ const toggleLogin = (): void => {
   isLoggedIn.value = !isLoggedIn.value;
   isMenuVisible.value = false; // Скрываем меню при переключении состояния
 };
+
+// Функция для переключения языка на русский
+const switchToRussian = (): void => {
+  languageStore.setLocale('ru'); // Меняем язык через Pinia store
+};
+
+// Функция для переключения языка на английский
+const switchToEnglish = (): void => {
+  languageStore.setLocale('en'); // Меняем язык через Pinia store
+};
 </script>
 
 <template>
   <div class="avatar">
-    <button class="avatar__btn" @click="toggleMenuVisibility">
-      <!-- Заменить на изображение пользователя или иконку -->
-    </button>
-    <!-- Меню для незалогиненного пользователя -->
-    <div 
-      v-if="!isLoggedIn" 
-      :class="['avatar__container-anonym', { 'is-visible': isMenuVisible }]"
-    >
-      <div class="avatar__container-one" @click="showVideoPopUp">Sign In</div>
-      <div class="avatar__container-two">Sign Up</div>
+    <button class="avatar__btn" @click="toggleMenuVisibility"></button>
+    
+    <div v-if="!isLoggedIn" :class="['avatar__container-anonym', { 'is-visible': isMenuVisible }]">
+      <div class="avatar__container-languages" :class="{ 'move-right': isMenuVisible }">
+        <img src="../assets/images/russia_flags_flag.png" alt="russian" @click="switchToRussian">
+        <img src="../assets/images/united_kingdom_flag.png" alt="english" @click="switchToEnglish">
+      </div>
+      <div class="avatar__container-one" @click="showPopUp">{{ t('auth.signIn') }}</div>
+      <div class="avatar__container-two" @click="$router.push('/registration')">{{ t('auth.signUp') }}</div>
     </div>
+    
     <!-- Меню для залогиненного пользователя -->
-    <div 
-      v-if="isLoggedIn" 
-      :class="['avatar__container-user', { 'is-visible': isMenuVisible }]"
-    >
+    <div v-if="isLoggedIn" :class="['avatar__container-user', { 'is-visible': isMenuVisible }]">
       <div class="avatar__container-user-one">Account</div>
       <div class="avatar__container-user-two" @click="toggleLogin">Log out</div>
     </div>
   </div>
 
-  <!-- Компонент VideoPopUp -->
-  <VideoPopUp v-if="isVideoPopUpVisible" @close="closeVideoPopUp" />
+  <!-- Компонент AuthorizationPopUp -->
+  <AuthorizationPopUp v-if="isPopUpVisible" @close="closePopUp" />
 </template>
+
 
 <style scoped>
 .avatar {
@@ -103,6 +127,36 @@ const toggleLogin = (): void => {
   opacity: 1;
   transform: translateY(0);
 }
+
+.avatar__container-languages {
+  scale: 0.5;
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  margin-top: -140px;
+  margin-left: 20px;
+  transition: transform 0.4s ease;
+}
+
+.avatar__container-languages.move-right {
+  transform: translateX(50px);
+}
+
+.avatar__container-languages img {
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+.avatar__container-languages img:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.avatar__container-languages img:active {
+  transform: scale(1.1);
+  opacity: 0.6;
+}
+
 
 .avatar__container-one,
 .avatar__container-user-one,

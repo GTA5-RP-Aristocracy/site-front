@@ -1,8 +1,10 @@
 <script lang='ts' setup>
 import { ref, computed, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 // Определение событий
 const emit = defineEmits(['close']);
+const { t } = useI18n();
 
 const login = ref<string>('');
 const password = ref<string>('');
@@ -17,17 +19,17 @@ function validateInput() {
 
 function loginValidation(login: string): string {
   if (login.length < 4) {
-    return 'Логин должен иметь минимум 4 символа';
+    return t('auth.loginErrorShort');
   } else if (login.length > 32) {
-    return 'Логин должен иметь меньше 32 символов';
+    return t('auth.loginErrorLong');
   } else return '';
 }
 
 function passwordValidation(password: string): string {
   if (password.length < 4) {
-    return 'Пароль должен иметь минимум 4 символа';
+    return t('auth.passwordErrorShort');
   } else if (password.length > 40) {
-    return 'Пароль не должен превышать 40 символов';
+    return t('auth.passwordErrorLong');
   } else return '';
 }
 
@@ -74,7 +76,7 @@ function closePopup() {
 
 function handleOverlayClick(event: MouseEvent) {
   const target = event.target as HTMLElement;
-  if (target.classList.contains('video-pop-up__overlay')) {
+  if (target.classList.contains('authorization-pop-up__overlay')) {
     closePopup();
   }
 }
@@ -87,15 +89,15 @@ function handleKeyDown(event: KeyboardEvent) {
 </script>
 
 <template>
-  <div v-if="isPopupVisible" class="video-pop-up__overlay" @click="handleOverlayClick">
-    <div class="video-pop-up__interface" @keydown="handleKeyDown">
+  <div v-if="isPopupVisible" class="authorization-pop-up__overlay" @click="handleOverlayClick">
+    <div class="authorization-pop-up__interface" @keydown="handleKeyDown">
       <strong>Aristocracy</strong>
-      <div class="video-pop-up__interface__container">
+      <div class="authorization-pop-up__interface__container">
         <input
           v-model="login"
           @input="loginError = ''"
           type="text"
-          placeholder="Имя пользователя / эл.почта"
+          :placeholder="t('auth2.loginPlaceholder')"
           minlength="4"
           maxlength="32"
         />
@@ -104,20 +106,21 @@ function handleKeyDown(event: KeyboardEvent) {
           v-model="password"
           @input="passwordError = ''"
           type="password"
-          placeholder="Пароль"
+          :placeholder="t('auth2.passwordPlaceholder')"
           minlength="4"
           maxlength="40"
         />
         <p v-if="passwordError" class="error-message-password">{{ passwordError }}</p>
-        <button :disabled="!isFormValid" @click="handleSubmit">Войти</button>
+        <button :disabled="!isFormValid" @click="handleSubmit">{{ t('auth2.loginButton') }}</button>
       </div>
-      <div class="video-pop-up__reset-password">
-        <a href="#">Забыли пароль?</a>
-        <a href="#">Зарегистрироваться сейчас</a>
+      <div class="authorization-pop-up__reset-password">
+        <a href="#">{{ t('auth2.forgotPassword') }}</a>
+        <a @click="$router.push('/registration')">{{ t('auth2.registerNow') }}</a>
       </div>
     </div>
   </div>
 </template>
+
 <style scoped>
 body {
   font-family: var(--font-family-outfit);
@@ -125,6 +128,7 @@ body {
 
 a {
   color: inherit;
+  cursor: pointer;
   text-decoration: none !important;
 }
 
@@ -138,7 +142,7 @@ strong {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.video-pop-up__overlay {
+.authorization-pop-up__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -148,7 +152,7 @@ strong {
   z-index: 10;
 }
 
-.video-pop-up__interface {
+.authorization-pop-up__interface {
   background-image: url(../assets/images/girl.png);
   position: relative;
   border-radius: 5%;
@@ -162,7 +166,7 @@ strong {
   background-repeat: no-repeat;
 }
 
-.video-pop-up__interface__container {
+.authorization-pop-up__interface__container {
   padding-top: 100px;
   display: flex;
   flex-direction: column;
@@ -170,7 +174,7 @@ strong {
   width: 500px;
 }
 
-.video-pop-up__interface input {
+.authorization-pop-up__interface input {
   position: relative;
   margin-left: 150px;
   padding: 10px;
@@ -196,7 +200,7 @@ strong {
 }
 
 
-.video-pop-up__interface button {
+.authorization-pop-up__interface button {
   margin-left: 250px;
   border: none;
   border-radius: 10%;
@@ -210,20 +214,20 @@ strong {
   transition: background-color 0.3s, color 0.3s, transform 0.3s ease;
 }
 
-.video-pop-up__interface button:disabled {
+.authorization-pop-up__interface button:disabled {
   background-color: #ccc;
   color: #666;
   cursor: not-allowed;
 }
 
-.video-pop-up__interface button:hover:not(:disabled) {
+.authorization-pop-up__interface button:hover:not(:disabled) {
   background-color: #ffa500;
   color: white;
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.video-pop-up__reset-password {
+.authorization-pop-up__reset-password {
   margin-top: 100px;
   display: flex;
   gap: 15px;
@@ -231,7 +235,7 @@ strong {
   font-weight: var(--font-weight-bold);
 }
 
-.video-pop-up__reset-password a:hover {
+.authorization-pop-up__reset-password a:hover {
   color: #ffa500;
   transform: scale(1.1);
 }
