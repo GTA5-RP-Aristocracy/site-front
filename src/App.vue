@@ -1,11 +1,21 @@
 <script setup lang="ts">
+import { onMounted, watch } from 'vue';
 import Avatar from './components/Avatar.vue';
 import { defineAsyncComponent, Suspense } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 
-const {t} = useI18n({useScope: 'global'})
+const {t, locale} = useI18n({useScope: 'global'})
 const Loader = defineAsyncComponent(() => import('@/components/Loader.vue'));
+
+//подстраиваем стили в зависимости от языка
+onMounted(() => {
+  document.documentElement.setAttribute('lang', locale.value);
+});
+
+watch(locale, (newLang) => {
+  document.documentElement.setAttribute('lang', newLang);
+});
 </script>.
 
 <template>

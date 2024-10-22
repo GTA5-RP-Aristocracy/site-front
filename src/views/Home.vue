@@ -81,6 +81,12 @@ import WhiteLine from "../components/WhiteLine.vue";
     font-size: 20px;
   }
   
+html[lang="en"] .home__text h2 {
+    font-family: var(--font-family-outfit);
+    font-weight: 400;
+    font-size: 20px;
+  }
+
 .home__btn {
   display: flex;
   gap: 30px;

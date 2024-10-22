@@ -155,7 +155,16 @@ const { t } = useI18n({ useScope: 'global' });
     height: auto;
     display: flex;
     flex-direction: column;
-    margin-top: 14px;
+    margin-top: 35px;
+    gap: 10px;
+  }
+
+  html[lang="en"]  .footer__help {
+    width: 297px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
     gap: 10px;
   }
   
@@ -185,7 +194,17 @@ const { t } = useI18n({ useScope: 'global' });
     display: flex;
     flex-direction: column;
     margin-right: 86px;
-    margin-top: 14px;
+    margin-top: 15px;
+    gap: 10px;
+  }
+
+  html[lang="ru"]  .footer__follow {
+    width: 297px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-right: 86px;
+    margin-top: 15px;
     gap: 10px;
   }
   

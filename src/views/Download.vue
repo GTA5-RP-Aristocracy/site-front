@@ -16,33 +16,34 @@ const downloadFile = () => {
 <template>
   <div>
     <div class="download">
-      <img src="../assets/images/download-car.svg" alt="download-car">
+      <img src="../assets/images/download-car.svg" :alt="$t('downloadCarAlt')">
     </div>
     <div class="download__content">
-      <img class="download__content__arrows-top" src="../assets/images/arrows-top.svg" alt="arrows-top">
+      <img class="download__content__arrows-top" src="../assets/images/arrows-top.svg" :alt="$t('arrowsTopAlt')">
       <div class="download__content__register">
-        <p class="download__content__step">ШАГ 1</p>
-        <h1 class="download__content__main"><br>зарегистрируйтесь<br/> на сайте</h1>
-        <p class="download__content__description">вам потребуется официальная копия игры Grand Theft Auto V.</p>
-        <button class="download__content__btn">РЕГИСТРАЦИЯ</button>
+        <p class="download__content__step">{{ $t('step1.title') }}</p>
+        <h1 class="download__content__main"><br>{{ $t('step1.heading') }}</h1>
+        <p class="download__content__description">{{ $t('step1.description') }}</p>
+        <button class="download__content__btn">{{ $t('step1.button') }}</button>
       </div>
       <div class="download__content__launcher">
-        <p class="download__content__step">ШАГ 2</p>
-        <h1 class="download__content__main"><br>скачайте<br/> лаунчер</h1>
-        <p class="download__content__description">вам нужен наш лаунчер для игры на сервере.</p>
-        <button class="download__content__btn" @click="downloadFile">СКАЧАТЬ</button>
+        <p class="download__content__step">{{ $t('step2.title') }}</p>
+        <h1 class="download__content__main"><br>{{ $t('step2.heading') }}</h1>
+        <p class="download__content__description">{{ $t('step2.description') }}</p>
+        <button class="download__content__btn" @click="downloadFile">{{ $t('step2.button') }}</button>
       </div>
-      <img class="download__content__arrows-bottom" src="../assets/images/arrows-bottom.svg" alt="arrows-bottom.svg">
+      <img class="download__content__arrows-bottom" src="../assets/images/arrows-bottom.svg" :alt="$t('arrowsBottomAlt')">
       <div class="download__content__read">
-        <p class="download__content__step">ШАГ 3</p>
-        <h1 class="download__content__main"><br>прочитайте<br/> правила сервера</h1>
-        <p class="download__content__description">чтобы играть на нашем сервере, вам необходимо знать наши правила.</p>
-        <button class="download__content__btn">ЧИТАТЬ ПРАВИЛА</button>
+        <p class="download__content__step">{{ $t('step3.title') }}</p>
+        <h1 class="download__content__main"><br>{{ $t('step3.heading') }}</h1>
+        <p class="download__content__description">{{ $t('step3.description') }}</p>
+        <button class="download__content__btn">{{ $t('step3.button') }}</button>
       </div>
     </div>
     <Footer id="only__download"/>
   </div>
 </template>
+
 
 
 <style scoped>
@@ -69,12 +70,21 @@ const downloadFile = () => {
 }
 
 .download__content__arrows-top {
-  width: 40%;
+  width: 50%;
   position: absolute;
   z-index: 1;
-  margin-left: 420px;
+  margin-left: 300px;
   bottom: -54%;
-  transform: rotate(349deg);
+  transform: rotate(353deg);
+}
+
+html[lang='ru'] .download__content__arrows-top {
+  width: 50%;
+  position: absolute;
+  z-index: 1;
+  margin-left: 300px;
+  bottom: -54%;
+  transform: rotate(353deg);
 }
 
 .download__content__arrows-bottom {

@@ -148,7 +148,7 @@ h1 {
 
 .rules__container {
     padding-top: 50px;
-    height: 2000px;
+    height: 2300px;
     color: white;
     background-color: black;
     font-family: var(--font-family-outfit);
