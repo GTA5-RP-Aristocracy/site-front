@@ -346,5 +346,9 @@
 		"memberSince": "Участник с",
 		"language": "Язык",
 		"edit": "редактировать"
+	},
+	"captcha": {
+		"executeCaptcha": "reCAPTCHA не инициализирована.",
+		"recaptchaLoaded": "Ошибка при выполнении reCAPTCHA:"
 	}
 }

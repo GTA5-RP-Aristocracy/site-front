@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, watch, defineEmits } from 'vue'
+import { useCaptchaStore } from '@/stores/useCaptchaStore'
 
 const newUsername = ref<string>('') // Новый никнейм
 const password = ref<string>('') // Пароль
@@ -7,6 +8,7 @@ const errorMessage = ref<string>('') // Сообщение об ошибке
 const correctPassword = '1234' // Пример правильного пароля
 
 const emit = defineEmits(['close', 'nickname-changed'])
+const captchaStore = useCaptchaStore()
 
 // Функция для сброса формы
 function resetForm() {
@@ -22,7 +24,14 @@ function closePopUp() {
 }
 
 // Функция для сохранения изменений
-function saveChanges() {
+async function saveChanges() {
+	const token = await captchaStore.executeCaptcha('save_nickname')
+	console.log('Captcha Token:', token);
+	if (!token) {
+		errorMessage.value = 'Please verify that you are not a robot.'
+		return
+	}
+
 	if (newUsername.value.length < 4) {
 		errorMessage.value = 'Nickname must be at least 4 characters long.'
 		return

@@ -349,5 +349,9 @@
 		"memberSince": "Member Since",
 		"language": "Language",
 		"edit": "edit"
+	},
+	"captcha": {
+		"executeCaptcha": "reCAPTCHA is not initialised.",
+		"recaptchaLoaded": "Error when executing reCAPTCHA:"
 	}
 }
