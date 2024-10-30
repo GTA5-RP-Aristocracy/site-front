@@ -2,7 +2,7 @@
 import { onMounted, watch } from 'vue'
 import ProfileAvatar from './components/ProfileAvatar.vue'
 import { useI18n } from 'vue-i18n'
-
+import cookieDisclaimer from './components/cookieDisclaimer.vue';
 const { t, locale } = useI18n({ useScope: 'global' })
 
 //подстраиваем стили в зависимости от языка
@@ -64,6 +64,7 @@ watch(locale, newLang => {
 			</div>
 		</div>
 		<router-view />
+		<cookieDisclaimer/>
 	</div>
 </template>
 

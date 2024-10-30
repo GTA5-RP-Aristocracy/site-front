@@ -40,6 +40,13 @@ const router = createRouter({
 				() => import('@/views/UserProfile/RegistrationForm.vue')
 			),
 		},
+		{
+			path: '/agreement',
+			name: 'agreement',
+			component: defineAsyncComponent(
+				() => import('@/components/agreementPage.vue')
+			),
+		},
 	],
 })
 

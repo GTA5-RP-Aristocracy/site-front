@@ -353,5 +353,39 @@
 	"captcha": {
 		"executeCaptcha": "reCAPTCHA is not initialised.",
 		"recaptchaLoaded": "Error when executing reCAPTCHA:"
+	},
+	"cookieDisclaimer": {
+		"cookieText": "We use cookies to enhance your experience on the site. ",
+		"cookieLink": "Learn more"
+	},
+	"agreementPage": {
+		"title": "Website Usage Agreement of Aristocracy RP",
+		"intro": "Welcome to the Aristocracy RP website! We are glad you decided to join our online game. Before you start, please review the terms of use of our website. Your use of the site indicates that you accept these terms.",
+		"sections": [
+			{
+				"header": "1. Terms of Use",
+				"content": "By using the Aristocracy RP website, you agree to comply with all applicable laws and regulations. You are responsible for your behavior on the site and for adhering to all community rules."
+			},
+			{
+				"header": "2. Registration and Account",
+				"content": "To access certain features of the site, you may need to register an account. You agree to provide accurate and up-to-date information during registration and to maintain the security of your account."
+			},
+			{
+				"header": "3. Content and Copyright",
+				"content": "All content on the site, including text, images, and graphics, is protected by copyright. You may not copy, distribute, or modify our content without prior consent from the site owners."
+			},
+			{
+				"header": "4. Limitation of Liability",
+				"content": "The Aristocracy RP website is not liable for any losses or damages arising from the use or inability to use the site. We do not guarantee uninterrupted access to the site or its suitability for your expectations."
+			},
+			{
+				"header": "5. Changes to the Agreement",
+				"content": "We reserve the right to change the terms of this agreement at any time. All changes take effect upon their publication on the site. We recommend checking this agreement periodically for updates."
+			},
+			{
+				"header": "6. Contact Information",
+				"content": "If you have any questions or comments regarding this agreement, please contact us via the feedback form on the site."
+			}
+		]
 	}
 }
