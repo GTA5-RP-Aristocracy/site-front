@@ -212,6 +212,14 @@ h1 {
 	box-shadow: 0px 0px 5px 0px #000;
 }
 
+html[lang='en'] .rules__container {
+	padding-top: 50px;
+	height: 2200px;
+	color: white;
+	background-color: black;
+	font-family: var(--font-family-outfit);
+	box-shadow: 0px 0px 5px 0px #000;
+}
 .rules ol {
 	list-style-type: decimal;
 }

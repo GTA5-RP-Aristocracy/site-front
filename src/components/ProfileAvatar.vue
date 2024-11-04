@@ -135,7 +135,7 @@ const switchToEnglish = (): void => {
 	margin-top: 65px;
 	gap: 10px;
 	color: white;
-	display: flex;
+	display: none; 
 	flex-direction: column;
 	align-items: left;
 	z-index: 99;
@@ -147,6 +147,7 @@ const switchToEnglish = (): void => {
 
 .avatar__container-anonym.is-visible,
 .avatar__container-user.is-visible {
+	display: flex;
 	opacity: 1;
 	transform: translateY(0);
 }

@@ -1,16 +1,5 @@
 <script lang="ts" setup>
 import Footer from '@/components/FooterSection.vue'
-
-const downloadFile = () => {
-	const fileId = '1uabrm9Lg3QRicNvSn2iRgdIFZreKXFVu' // нужно будет заменить ссылку на лаунчер
-	const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}` // вставляем в дефолтный шаблон наш id лаунчера
-
-	// Создаем временную ссылку и кликаем по ней
-	const a = document.createElement('a')
-	a.href = downloadUrl
-	a.download = '' // Пустое значение позволяет браузеру определить имя файла автоматически
-	a.click()
-}
 </script>
 
 <template>
@@ -33,7 +22,11 @@ const downloadFile = () => {
 				<p class="download__content__description">
 					{{ $t('step1.description') }}
 				</p>
-				<button class="download__content__btn">{{ $t('step1.button') }}</button>
+				<router-link to="/registration" custom v-slot="{ navigate }">
+					<button class="download__content__btn" @click="navigate">
+						{{ $t('step1.button') }}
+					</button>
+				</router-link>
 			</div>
 			<div class="download__content__launcher">
 				<p class="download__content__step">{{ $t('step2.title') }}</p>
@@ -41,7 +34,7 @@ const downloadFile = () => {
 				<p class="download__content__description">
 					{{ $t('step2.description') }}
 				</p>
-				<button class="download__content__btn" @click="downloadFile">
+				<button class="download__content__btn">
 					{{ $t('step2.button') }}
 				</button>
 			</div>
@@ -56,7 +49,11 @@ const downloadFile = () => {
 				<p class="download__content__description">
 					{{ $t('step3.description') }}
 				</p>
-				<button class="download__content__btn">{{ $t('step3.button') }}</button>
+				<router-link to="/rules" custom v-slot="{ navigate }">
+					<button class="download__content__btn" @click="navigate">
+						{{ $t('step3.button') }}
+					</button>
+				</router-link>
 			</div>
 		</div>
 		<Footer id="only__download" />
@@ -88,7 +85,6 @@ const downloadFile = () => {
 .download__content__arrows-top {
 	width: 50%;
 	position: absolute;
-	z-index: 1;
 	margin-left: 300px;
 	bottom: -54%;
 	transform: rotate(353deg);
@@ -97,7 +93,6 @@ const downloadFile = () => {
 html[lang='ru'] .download__content__arrows-top {
 	width: 50%;
 	position: absolute;
-	z-index: 1;
 	margin-left: 300px;
 	bottom: -54%;
 	transform: rotate(353deg);
@@ -165,8 +160,8 @@ html[lang='ru'] .download__content__arrows-top {
 	box-shadow: inset 0 0 4px 0 #000;
 	background: #ff7a00;
 	cursor: pointer;
-	transition: opacity 0.3s;
-	transition: background-color 0.3s;
+	transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+	z-index: 77;
 }
 
 .download__content__btn:hover {
