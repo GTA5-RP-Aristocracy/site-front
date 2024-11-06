@@ -47,6 +47,27 @@ const router = createRouter({
 				() => import('@/components/agreementPage.vue')
 			),
 		},
+		{
+			path: '/terms',
+			name: 'terms',
+			component: defineAsyncComponent(
+				() => import('@/components/FooterLinks/termsConditions.vue')
+			),
+		},
+		{
+			path: '/policy',
+			name: 'policy',
+			component: defineAsyncComponent(
+				() => import('@/components/FooterLinks/privacyPolicy.vue')
+			),
+		},
+		{
+			path: '/affiliate',
+			name: 'affiliate',
+			component: defineAsyncComponent(
+				() => import('@/components/FooterLinks/affiliatePage.vue')
+			),
+		},
 	],
 })
 

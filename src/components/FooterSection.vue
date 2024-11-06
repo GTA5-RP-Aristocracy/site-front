@@ -61,10 +61,8 @@ const { t } = useI18n({ useScope: 'global' })
 					>
 				</li>
 				<li class="footer__help__item">
-					<a
-						href="https://drive.google.com/file/d/1KWYs1-gWCtE8VWLKQmY0_sWu3JdMhh2L/view?usp=sharing"
-						target="_blank"
-						>{{ t('footer.privacyPolicy') }}</a
+					<router-link>{{ t('footer.privacyPolicy') }}</router-link>
+				
 					>
 				</li>
 				<li class="footer__help__item">
