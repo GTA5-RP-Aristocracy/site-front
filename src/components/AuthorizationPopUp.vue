@@ -66,9 +66,32 @@ function clearInputs() {
 	passwordError.value = ''
 }
 
-function handleSubmit() {
+async function handleSubmit() {
 	validateInput()
 	if (isFormValid.value) {
+		  // Создание данных формы
+		const formData = new FormData();
+		formData.append('email', login.value);
+		formData.append('password', password.value);
+		
+		try {
+			const response = await fetch('http://185.218.0.121:8080/user/signin', {
+				method: 'POST',
+				body: formData,
+			});
+
+			// check 201 status
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+
+			const data = await response.json();
+			console.log('Success:', data);
+			// TODO store jwt token
+			// redirect to some page
+		} catch (error) {
+			console.error('Error:', error);
+		}
 		clearInputs()
 	}
 }

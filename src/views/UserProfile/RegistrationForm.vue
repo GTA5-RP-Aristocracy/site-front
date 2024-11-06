@@ -114,10 +114,13 @@ async function MainValidation() {
       body: formData,
     });
 
+    // check 201 status
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
 
+    // TODO: redirect to login page
+    // remove data parsing
     const data = await response.json();
     console.log('Success:', data);
   } catch (error) {
