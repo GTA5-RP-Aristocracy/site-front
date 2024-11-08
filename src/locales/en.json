@@ -505,71 +505,71 @@
 			}
 		]
 	},
-  "affiliateProgram": {
-    "title": "Affiliate Program",
-    "sections": [
-      {
-        "header": "1. About the Affiliate Program",
-        "content": [
-          "Our affiliate program is an opportunity to earn money by recommending our products and services. By joining the program, you will earn a commission for each sale made through your referral link. This is a great opportunity for bloggers, website owners, and social media influencers, as well as anyone interested in collaborating with us.",
-          "You don't need to be an expert to get started. We will provide you with all the necessary tools to successfully attract customers and earn."
-        ]
-      },
-      {
-        "header": "2. How to Become an Affiliate",
-        "content": [
-          "Joining our affiliate program is easy. All you need to do is register on our website and get your unique referral link.",
-          "After registering, you will gain access to the statistics panel where you can track your earnings, clicks, and successful registrations. You will also receive a set of promotional materials, such as banners and links, which you can place on your website or social media."
-        ]
-      },
-      {
-        "header": "3. How the Program Works",
-        "content": [
-          "1. Register for our affiliate program.",
-          "2. Get your unique referral link.",
-          "3. Place the link on your website, blog, or social media.",
-          "4. Earn a commission for every purchase made through your referral link.",
-          "5. Withdraw the funds to your account."
-        ]
-      },
-      {
-        "header": "4. Program Terms",
-        "content": [
-          "To be a successful affiliate, you need to follow a few simple conditions:",
-          "4.1. Advertise honestly and transparently.",
-          "4.2. Use only the provided promotional materials.",
-          "4.3. Do not place links on prohibited websites or in spam.",
-          "4.4. Comply with advertising laws and regulations."
-        ]
-      },
-      {
-        "header": "5. Types of Rewards",
-        "content": [
-          "Affiliates receive different types of rewards depending on their activity:",
-          "5.1. Commission on sales: You earn a percentage of each sale made through your referral link.",
-          "5.2. Achievement bonuses: Additional bonuses are available for the most active affiliates based on the number of referred customers or total sales amount.",
-          "5.3. Regular payouts: Payouts are made monthly to your bank account or e-wallet."
-        ]
-      },
-      {
-        "header": "6. Affiliate Program Benefits",
-        "content": [
-          "Our affiliates enjoy many benefits, including:",
-          "6.1. Competitive commission rates.",
-          "6.2. Support at every step — from registration to fund withdrawal.",
-          "6.3. Tools for tracking results and statistics in real time.",
-          "6.4. Regular updates and offers to increase earnings."
-        ]
-      },
-      {
-        "header": "7. Frequently Asked Questions",
-        "content": [
-          "Question: How do I get a commission on sales?",
-          "Answer: Commissions are earned for each purchase made through your referral link. You can track your sales in the affiliate dashboard.",
-          "Question: How often are payouts made?",
-          "Answer: Payouts are made monthly, and you can choose your preferred payment method."
-        ]
-      }
-    ]
-  }
+	"affiliateProgram": {
+		"title": "Affiliate Program",
+		"sections": [
+			{
+				"header": "1. About the Affiliate Program",
+				"content": [
+					"Our affiliate program is an opportunity to earn money by recommending our products and services. By joining the program, you will earn a commission for each sale made through your referral link. This is a great opportunity for bloggers, website owners, and social media influencers, as well as anyone interested in collaborating with us.",
+					"You don't need to be an expert to get started. We will provide you with all the necessary tools to successfully attract customers and earn."
+				]
+			},
+			{
+				"header": "2. How to Become an Affiliate",
+				"content": [
+					"Joining our affiliate program is easy. All you need to do is register on our website and get your unique referral link.",
+					"After registering, you will gain access to the statistics panel where you can track your earnings, clicks, and successful registrations. You will also receive a set of promotional materials, such as banners and links, which you can place on your website or social media."
+				]
+			},
+			{
+				"header": "3. How the Program Works",
+				"content": [
+					"1. Register for our affiliate program.",
+					"2. Get your unique referral link.",
+					"3. Place the link on your website, blog, or social media.",
+					"4. Earn a commission for every purchase made through your referral link.",
+					"5. Withdraw the funds to your account."
+				]
+			},
+			{
+				"header": "4. Program Terms",
+				"content": [
+					"To be a successful affiliate, you need to follow a few simple conditions:",
+					"4.1. Advertise honestly and transparently.",
+					"4.2. Use only the provided promotional materials.",
+					"4.3. Do not place links on prohibited websites or in spam.",
+					"4.4. Comply with advertising laws and regulations."
+				]
+			},
+			{
+				"header": "5. Types of Rewards",
+				"content": [
+					"Affiliates receive different types of rewards depending on their activity:",
+					"5.1. Commission on sales: You earn a percentage of each sale made through your referral link.",
+					"5.2. Achievement bonuses: Additional bonuses are available for the most active affiliates based on the number of referred customers or total sales amount.",
+					"5.3. Regular payouts: Payouts are made monthly to your bank account or e-wallet."
+				]
+			},
+			{
+				"header": "6. Affiliate Program Benefits",
+				"content": [
+					"Our affiliates enjoy many benefits, including:",
+					"6.1. Competitive commission rates.",
+					"6.2. Support at every step — from registration to fund withdrawal.",
+					"6.3. Tools for tracking results and statistics in real time.",
+					"6.4. Regular updates and offers to increase earnings."
+				]
+			},
+			{
+				"header": "7. Frequently Asked Questions",
+				"content": [
+					"Question: How do I get a commission on sales?",
+					"Answer: Commissions are earned for each purchase made through your referral link. You can track your sales in the affiliate dashboard.",
+					"Question: How often are payouts made?",
+					"Answer: Payouts are made monthly, and you can choose your preferred payment method."
+				]
+			}
+		]
+	}
 }

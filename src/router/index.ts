@@ -68,6 +68,13 @@ const router = createRouter({
 				() => import('@/components/FooterLinks/affiliatePage.vue')
 			),
 		},
+		{
+			path: '/:pathMatch(.*)*', // Обрабатывает все несуществующие пути
+			name: 'NotFound',
+			component: defineAsyncComponent(
+				() => import('@/components/NotFound.vue')
+			),
+		},
 	],
 })
 
