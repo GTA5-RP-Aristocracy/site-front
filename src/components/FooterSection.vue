@@ -54,23 +54,19 @@ const { t } = useI18n({ useScope: 'global' })
 			<hr />
 			<ul class="footer__help__list">
 				<li class="footer__help__item">
-					<a
-						href="https://drive.google.com/file/d/1dh6nJWWeExKKdhu6vaoQ0gPanfRhRW_8/view?usp=sharing"
-						target="_blank"
-						>{{ t('footer.terms') }}</a
-					>
+					<router-link to="/terms" target="_blank">{{
+						t('footer.terms')
+					}}</router-link>
 				</li>
 				<li class="footer__help__item">
-					<router-link>{{ t('footer.privacyPolicy') }}</router-link>
-				
-					>
+					<router-link to="/policy" target="_blank">{{
+						t('footer.privacyPolicy')
+					}}</router-link>
 				</li>
 				<li class="footer__help__item">
-					<a
-						href="https://drive.google.com/file/d/1MlHinEwD3iMrXxgLEZP5QDpZPCR3OF39/view?usp=sharing"
-						target="_blank"
-						>{{ t('footer.affiliate') }}</a
-					>
+					<router-link to="/affiliate" target="_blank">{{
+						t('footer.affiliate')
+					}}</router-link>
 				</li>
 			</ul>
 		</div>
