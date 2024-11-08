@@ -72,7 +72,14 @@ const router = createRouter({
 			path: '/:pathMatch(.*)*', // Обрабатывает все несуществующие пути
 			name: 'NotFound',
 			component: defineAsyncComponent(
-				() => import('@/components/NotFound.vue')
+				() => import('@/components/ErrorsPages/NotFound.vue')
+			),
+		},
+		{
+			path: '/:pathMatch(.*)*',
+			name: 'forbidden',
+			component: defineAsyncComponent(
+				() => import('@/components/ErrorsPages/ForbiddenError.vue')
 			),
 		},
 	],
