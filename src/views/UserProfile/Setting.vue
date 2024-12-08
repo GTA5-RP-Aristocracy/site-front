@@ -1,44 +1,89 @@
 <script lang="ts" setup>
-import SettingsPopUp from '@/components/SettingsPopUp/SettingsPopUpNickname.vue';
+import SettingsPopUpNickname from '@/components/SettingsPopUp/SettingsPopUpNickname.vue';
 import SettingsPopUpEmail from '@/components/SettingsPopUp/SettingsPopUpEmail.vue';
 import SettingsPopUpPassword from '@/components/SettingsPopUp/SettingsPopUpPassword.vue';
+import SettingsPopUpBio from '@/components/SettingsPopUp/SettingsPopUpBio.vue';
+import SettingsPopUpRegion from '@/components/SettingsPopUp/SettingsPopUpRegion.vue';
 import Footer from '@/components/Footer.vue';
 
-import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { ref, watchEffect } from 'vue';
+import { useLanguageStore } from '@/stores/language'
+
+const { t } = useI18n(); // Инициализация i18n
+const languageStore = useLanguageStore(); 
 
 // Переменные для инпутов
 const nickname = ref<string>('BiscuitJerry');
 const email = ref<string>('dreamrunner891@gmail.com');
 const password = ref<string>('*****');
 const birth = ref<string>('August 4, 1998');
-const region = ref<string>('Russian Federation');
 const bio = ref<string>('Top gamer in the world!');
+const region = ref<string>('Russian Federation');
 const since = ref<string>('August 21, 2024');
-const language = ref<string>('Russian');
+const language = ref<string>(languageStore.locale === 'ru' ? 'Русский' : 'English');
 
-// Переменная для управления отображением попапа
-const settingsPopUpRef = ref<InstanceType<typeof SettingsPopUp> | null>(null); // Ссылка на дочерний компонент
-const popUpNickname = ref<boolean>(false); // Попап скрыт по умолчанию
-const popUpEmail = ref<boolean>(false); // Переменная для попапа почты
+// Состояние для каждого поп-апа
+const isNicknamePopupOpen = ref<boolean>(false);
+const isEmailPopupOpen = ref<boolean>(false);
+const isPasswordPopupOpen = ref<boolean>(false);
+const isBioPopupOpen = ref<boolean>(false);
+const isRegionPopupOpen = ref<boolean>(false);
 
-// Универсальная функция для открытия попапов
-function openPopUp(popupRef: Ref<boolean>) {
-  popupRef.value = true; // Отображаем попап
+// Следим за изменениями локали и обновляем переменную language
+watchEffect(() => {
+  language.value = languageStore.locale === 'ru' ? 'Русский' : 'English';
+});
+
+// Функции для открытия поп-апов
+function openNicknamePopup() {
+  isNicknamePopupOpen.value = true;
 }
 
-function openNicknamePopup() { // для открытия/закрытия логина
-  openPopUp(popUpNickname);
+function openEmailPopup() {
+  isEmailPopupOpen.value = true
 }
 
-function openEmailPopup() { // для открытия/закрытия почты
-  openPopUp(popUpEmail);
+function openPasswordPopup() {
+  isPasswordPopupOpen.value = true
 }
 
-// Обработчик события изменения ника
-function handleNicknameChange(newNickname: string) {
-  nickname.value = newNickname; // Обновляем ник в родительском компоненте
-  popUpNickname.value = false; // Закрываем попап
+function openBioPopup() {
+  isBioPopupOpen.value = true
 }
+
+function openRegionPopup() {
+  isRegionPopupOpen.value = true
+}
+
+//  Функции для закрытия поп-апов
+function closeNicknamePopup() {
+  isNicknamePopupOpen.value = false;
+}
+
+function closeEmailPopup() {
+  isEmailPopupOpen.value = false;
+}
+
+function closePasswordPopup() {
+  isPasswordPopupOpen.value = false;
+}
+
+function closeBioPopup() {
+  isBioPopupOpen.value = false 
+}
+function closeRegionPopup() {
+  isRegionPopupOpen.value = false;
+}
+
+// Функция для переключения языка при нажатии на кнопку "edit"
+const switchLanguage = (): void => {
+  if (languageStore.locale === 'ru') {
+    languageStore.setLocale('en');
+  } else {
+    languageStore.setLocale('ru');
+  }
+};
 </script>
 
 <template>
@@ -46,55 +91,67 @@ function handleNicknameChange(newNickname: string) {
     <div class="settings__container">
       <div class="settings__avatar">
         <img src="@/assets/images/default-avatar.jpg" alt="Avatar">
-        <strong>Settings</strong>
+        <strong>{{ t('settings.title') }}</strong>
       </div>
       <div class="settings__inputs">
-        <h1>My Account</h1>
+        <h1>{{ t('settings.title') }}</h1>
         <ul class="settings__list">
-          <!-- Попап для изменения ника -->
-          <SettingsPopUp
-            v-if="popUpNickname"
-            ref="settingsPopUpRef"
-            @close="popUpNickname = false"
-            @nickname-changed="handleNicknameChange" 
+          <SettingsPopUpNickname
+            v-if="isNicknamePopupOpen" 
+            @close="closeNicknamePopup" 
+            @nickname-changed="nickname = $event"
           />
+          <li class="settings__item">
+            {{ t('settings.nickname') }} <span>{{ nickname }}</span>
+            <button @click="openNicknamePopup" class="edit-button">{{ t('settings.edit') }}</button>
+          </li>
           <SettingsPopUpEmail
-            v-if="popUpEmail"
-            @close="popUpEmail = false"
+            v-if="isEmailPopupOpen" 
+            @close="closeEmailPopup" 
+            @email-changed="email = $event"
           />
-          <SettingsPopUpPassword/>
           <li class="settings__item">
-            Nickname <span>{{ nickname }}</span>
-            <button @click="openNicknamePopup" class="edit-button">edit</button>
+            {{ t('settings.email') }} <span>{{ email }}</span> 
+            <button @click="openEmailPopup" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
-          <!-- Попап для изменения почты -->
+          <SettingsPopUpPassword
+            v-if="isPasswordPopupOpen"
+            @close="closePasswordPopup"
+            @password-changed="password = $event"
+          />
           <li class="settings__item">
-            Email <span>{{ email }}</span> 
-            <button @click="openEmailPopup" class="edit-button">edit</button>
-          </li>
-          <li class="settings__item">
-            Password <span>{{ password }}</span> 
-            <button class="edit-button">edit</button>
-          </li>
-          <li class="settings__item">
-            Date of Birth <span>{{ birth }}</span> 
-            <button class="edit-button hidden">edit</button>
+            {{ t('settings.password') }} <span>{{ password }}</span> 
+            <button @click="openPasswordPopup" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
           <li class="settings__item">
-            Bio <span>{{ bio }}</span> 
-            <button class="edit-button">edit</button>
+            {{ t('settings.dateOfBirth') }} <span>{{ birth }}</span> 
+            <button class="edit-button hidden">{{ t('settings.edit') }}</button>
+          </li>
+          <SettingsPopUpBio
+            v-if="isBioPopupOpen"
+            @close="closeBioPopup"
+            @bio-changed="bio = $event"
+          />
+          <li class="settings__item">
+            {{ t('settings.bio') }} <span>{{ bio }}</span> 
+            <button @click="openBioPopup" class="edit-button">{{ t('settings.edit') }}</button>
+          </li>
+          <SettingsPopUpRegion
+            v-if="isRegionPopupOpen"
+            @close="closeRegionPopup"
+            @region-changed="region = $event"
+          /> 
+          <li class="settings__item">
+            {{ t('settings.region') }} <span>{{ region }}</span> 
+            <button @click="openRegionPopup" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
           <li class="settings__item">
-            Region <span>{{ region }}</span> 
-            <button class="edit-button">edit</button>
+            {{ t('settings.memberSince') }} <span>{{ since }}</span> 
+            <button class="edit-button hidden">{{ t('settings.edit') }}</button>
           </li>
           <li class="settings__item">
-            Member Since <span>{{ since }}</span> 
-            <button class="edit-button hidden">edit</button>
-          </li>
-          <li class="settings__item">
-            Language <span>{{ language }}</span> 
-            <button class="edit-button">edit</button>
+            {{ t('settings.language') }} <span>{{ language }}</span> 
+            <button @click="switchLanguage" class="edit-button">{{ t('settings.edit') }}</button>
           </li>
         </ul>
       </div>

@@ -7,27 +7,29 @@
       <div class="shop__cars-frame" v-for="(car, index) in cars" :key="index">
         <div class="shop__cars-marks">
           {{ car.id }}
-         </div>
+        </div>
         <div class="shop__cars-content">
-          <h1 :style="car.style">{{ car.name }}</h1>
-          <p>{{ car.description }}</p>
+          <h1 :style="car.style">{{ t(car.name) }}</h1>
+          <p>{{ t(car.description) }}</p>
           <img :src="car.image" :alt="car.name">
           <div class="logo-overlay" :id="car.logoId" :style="{ backgroundImage: `url(${car.logoPath})` }">
           </div>
         </div>
-            <div class="shop__cars-marks-buy">
-                buy now
-            </div>
+        <div class="shop__cars-marks-buy">
+          {{ t('shop.buy_now') }}
+        </div>
       </div>
     </div>
     <Footer id="only__shop"/>
   </div>
 </template>
 
-
 <script lang="ts" setup>
 import { ref } from 'vue';
 import Footer from '@/components/Footer.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 // Определите интерфейс для объектов в массиве
 interface Car {
@@ -45,7 +47,7 @@ const cars = ref<Car[]>([
   {
     id: '01',
     name: 'Buffalo',
-    description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
+    description: 'buffalo.description',
     image: 'src/assets/images/cars/buffalo.svg',
     logoId: 'buffalo-logo-01',
     logoPath: 'src/assets/images/cars/buffalo-logo.png', 
@@ -54,7 +56,7 @@ const cars = ref<Car[]>([
   {
     id: '02',
     name: 'Jester',
-    description: 'A Japanese hybrid-electric sportscar with a front-end designed to look like an angry grin might be too whimsical for some, but with a 4-liter V6 engine, 420 hp and a top speed of 180mph, the Dinka Jester still packs a serious punchline.',
+    description: 'jester.description',
     image: 'src/assets/images/cars/jester.svg',
     logoId: 'jester-logo-02',
     logoPath: 'src/assets/images/cars/dinka.png', 
@@ -62,17 +64,17 @@ const cars = ref<Car[]>([
   },
   {
     id: '03',
-    name: 'Redwood Gauntlet',
-    description: 'An American muscle car in a class by itself. Roll down the windows and scream in testosterone-filled rage as you gun the engine while stuck in traffic. DNA wipes easily off the leather seats. Now available with exclusive Redwood Livery.',
+    name: 'Redwood gauntlet',
+    description: 'redwood_gauntlet.description',
     image: 'src/assets/images/cars/RedwoodGauntlet.svg',
     logoId: 'redwood-logo-03',
     logoPath: 'src/assets/images/cars/Bravado.webp', 
     style: 'font-family: var(--font-family-redwood);letter-spacing: 5px; font-size: 40px;',
   },
-   {
+  {
     id: '04',
     name: 'Buffalo',
-    description: 'The Bravado marketing department know just what we need - another resurrected 1960s muscle car for the over-muscled EDM generation. It\'s a vehicle with aggressive lines for aggressive drivers.',
+    description: 'buffalo.description',
     image: 'src/assets/images/cars/buffalo.svg',
     logoId: 'buffalo-logo-01',
     logoPath: 'src/assets/images/cars/buffalo-logo.png', 
@@ -81,7 +83,7 @@ const cars = ref<Car[]>([
   {
     id: '05',
     name: 'Jester',
-    description: 'A Japanese hybrid-electric sportscar with a front-end designed to look like an angry grin might be too whimsical for some, but with a 4-liter V6 engine, 420 hp and a top speed of 180mph, the Dinka Jester still packs a serious punchline.',
+    description: 'jester.description',
     image: 'src/assets/images/cars/jester.svg',
     logoId: 'jester-logo-02',
     logoPath: 'src/assets/images/cars/dinka.png',
@@ -89,8 +91,8 @@ const cars = ref<Car[]>([
   },
   {
     id: '06',
-    name: 'Redwood Gauntlet',
-    description: 'An American muscle car in a class by itself. Roll down the windows and scream in testosterone-filled rage as you gun the engine while stuck in traffic. DNA wipes easily off the leather seats. Now available with exclusive Redwood Livery.',
+    name: 'Redwood gauntlet',
+    description: 'redwood_gauntlet.description',
     image: 'src/assets/images/cars/RedwoodGauntlet.svg',
     logoId: 'redwood-logo-03',
     logoPath: 'src/assets/images/cars/Bravado.webp', 
@@ -136,6 +138,15 @@ const cars = ref<Car[]>([
 
 
 .shop__cars-content {
+  position: relative; 
+  margin: 140px 0 140px 90px;
+  width: 290px;
+  height: 390px;
+  border: 5px solid #f1c505;
+  padding: 20px;
+}
+
+html[lang="ru"] .shop__cars-content {
   position: relative; 
   margin: 140px 0 140px 90px;
   width: 290px;

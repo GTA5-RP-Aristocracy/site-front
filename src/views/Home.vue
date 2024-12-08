@@ -17,19 +17,12 @@ import WhiteLine from "../components/WhiteLine.vue";
                         Role play
                         <strong>Aristocracy</strong>
                     </h1>
-                    <h2>Откройте для себя захватывающий мир ролевой игры, где каждое ваше действие
-                        имеет значение. Создавайте уникальных персонажей, взаимодействуйте с другими
-                        игроками и окунитесь в богатую историю и возможности развития.
+                    <h2>{{ $t('description1' )}}
                     </h2>
-                    <h2>Наш сервер GTA 5 Roleplay отличается не только глубокой историей и
-                        разнообразием персонажей, но и инновационными игровыми механиками. Мы предлагаем
-                        уникальные системы экономики, гибкие возможности кастомизации персонажей и мир,
-                        который живет своей жизнью благодаря активному сообществу. Вступайте в
-                        Aristocracy Roleplay и переживите незабываемые моменты в совершенно новом свете
-                        GTA 5!</h2>
+                    <h2>{{ $t('description2' )}}</h2>
                     <div class="home__btn">
-                        <button>Играй сейчас!</button>
-                        <button class="home__btn-video">Ознакомится</button>
+                        <button>{{ $t('play_now') }}</button>
+                        <button class="home__btn-video">{{ $t('learn_more' )}}</button>
                     </div>
                     <div class="home__clock">
                         <!-- test -->
@@ -88,6 +81,12 @@ import WhiteLine from "../components/WhiteLine.vue";
     font-size: 20px;
   }
   
+html[lang="en"] .home__text h2 {
+    font-family: var(--font-family-outfit);
+    font-weight: 400;
+    font-size: 20px;
+  }
+
 .home__btn {
   display: flex;
   gap: 30px;

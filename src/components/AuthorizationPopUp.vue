@@ -1,8 +1,10 @@
 <script lang='ts' setup>
 import { ref, computed, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 // Определение событий
 const emit = defineEmits(['close']);
+const { t } = useI18n();
 
 const login = ref<string>('');
 const password = ref<string>('');
@@ -17,17 +19,17 @@ function validateInput() {
 
 function loginValidation(login: string): string {
   if (login.length < 4) {
-    return 'Логин должен иметь минимум 4 символа';
+    return t('auth.loginErrorShort');
   } else if (login.length > 32) {
-    return 'Логин должен иметь меньше 32 символов';
+    return t('auth.loginErrorLong');
   } else return '';
 }
 
 function passwordValidation(password: string): string {
   if (password.length < 4) {
-    return 'Пароль должен иметь минимум 4 символа';
+    return t('auth.passwordErrorShort');
   } else if (password.length > 40) {
-    return 'Пароль не должен превышать 40 символов';
+    return t('auth.passwordErrorLong');
   } else return '';
 }
 
@@ -95,7 +97,7 @@ function handleKeyDown(event: KeyboardEvent) {
           v-model="login"
           @input="loginError = ''"
           type="text"
-          placeholder="Имя пользователя / эл.почта"
+          :placeholder="t('auth2.loginPlaceholder')"
           minlength="4"
           maxlength="32"
         />
@@ -104,20 +106,21 @@ function handleKeyDown(event: KeyboardEvent) {
           v-model="password"
           @input="passwordError = ''"
           type="password"
-          placeholder="Пароль"
+          :placeholder="t('auth2.passwordPlaceholder')"
           minlength="4"
           maxlength="40"
         />
         <p v-if="passwordError" class="error-message-password">{{ passwordError }}</p>
-        <button :disabled="!isFormValid" @click="handleSubmit">Войти</button>
+        <button :disabled="!isFormValid" @click="handleSubmit">{{ t('auth2.loginButton') }}</button>
       </div>
       <div class="authorization-pop-up__reset-password">
-        <a href="#">Забыли пароль?</a>
-        <a @click="$router.push('/registration')">Зарегистрироваться сейчас</a>
+        <a href="#">{{ t('auth2.forgotPassword') }}</a>
+        <a @click="$router.push('/registration')">{{ t('auth2.registerNow') }}</a>
       </div>
     </div>
   </div>
 </template>
+
 <style scoped>
 body {
   font-family: var(--font-family-outfit);

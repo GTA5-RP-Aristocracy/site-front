@@ -2,8 +2,8 @@
 import Footer from '@/components/Footer.vue';
 
 const downloadFile = () => {
-  const fileId = "1uabrm9Lg3QRicNvSn2iRgdIFZreKXFVu";// нужно будет заменить ссылку на лаунчер
-  const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;// вставляем в дефолтный шаблон наш id лаунчера
+  const fileId = "1uabrm9Lg3QRicNvSn2iRgdIFZreKXFVu"; // нужно будет заменить ссылку на лаунчер
+  const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`; // вставляем в дефолтный шаблон наш id лаунчера
 
   // Создаем временную ссылку и кликаем по ней
   const a = document.createElement('a');
@@ -16,33 +16,35 @@ const downloadFile = () => {
 <template>
   <div>
     <div class="download">
-      <img src="../assets/images/download-car.svg" alt="download-car">
+      <img src="../assets/images/download-car.svg" :alt="$t('downloadCarAlt')">
     </div>
     <div class="download__content">
-      <img class="download__content__arrows-top" src="../assets/images/arrows-top.svg" alt="arrows-top">
+      <img class="download__content__arrows-top" src="../assets/images/arrows-top.svg" :alt="$t('arrowsTopAlt')">
       <div class="download__content__register">
-        <p class="download__content__step">STEP 1</p>
-            <h1 class="download__content__main"><br>register<br/> an account</h1>
-              <p class="download__content__description">you'll need an official copy of the game grand theft auto V.</p>
-                <button class="download__content__btn">REGISTRATION</button>
-              </div>
-           <div class="download__content__launcher">
-        <p class="download__content__step">STEP 2</p>
-          <h1 class="download__content__main"><br>download<br/> the launcher</h1>
-            <p class="download__content__description">you'll need our launcher to play on the server.</p>
-              <button class="download__content__btn" @click="downloadFile">DOWNLOAD</button>
-          </div>
-               <img class="download__content__arrows-bottom" src="../assets/images/arrows-bottom.svg" alt="arrows-bottom.svg">
-         <div class="download__content__read">
-        <p class="download__content__step">STEP 3</p>
-          <h1 class="download__content__main"><br>read<br/> server rules</h1>
-            <p class="download__content__description">to be able to work on our server you need to know our rules that apply on the server.</p>
-              <button class="download__content__btn">READ RULES</button>
-        </div>
+        <p class="download__content__step">{{ $t('step1.title') }}</p>
+        <h1 class="download__content__main"><br>{{ $t('step1.heading') }}</h1>
+        <p class="download__content__description">{{ $t('step1.description') }}</p>
+        <button class="download__content__btn">{{ $t('step1.button') }}</button>
       </div>
+      <div class="download__content__launcher">
+        <p class="download__content__step">{{ $t('step2.title') }}</p>
+        <h1 class="download__content__main"><br>{{ $t('step2.heading') }}</h1>
+        <p class="download__content__description">{{ $t('step2.description') }}</p>
+        <button class="download__content__btn" @click="downloadFile">{{ $t('step2.button') }}</button>
+      </div>
+      <img class="download__content__arrows-bottom" src="../assets/images/arrows-bottom.svg" :alt="$t('arrowsBottomAlt')">
+      <div class="download__content__read">
+        <p class="download__content__step">{{ $t('step3.title') }}</p>
+        <h1 class="download__content__main"><br>{{ $t('step3.heading') }}</h1>
+        <p class="download__content__description">{{ $t('step3.description') }}</p>
+        <button class="download__content__btn">{{ $t('step3.button') }}</button>
+      </div>
+    </div>
     <Footer id="only__download"/>
   </div>
 </template>
+
+
 
 <style scoped>
 
@@ -68,12 +70,21 @@ const downloadFile = () => {
 }
 
 .download__content__arrows-top {
-  width: 40%;
+  width: 50%;
   position: absolute;
   z-index: 1;
-  margin-left: 420px;
+  margin-left: 300px;
   bottom: -54%;
-  transform: rotate(349deg);
+  transform: rotate(353deg);
+}
+
+html[lang='ru'] .download__content__arrows-top {
+  width: 50%;
+  position: absolute;
+  z-index: 1;
+  margin-left: 300px;
+  bottom: -54%;
+  transform: rotate(353deg);
 }
 
 .download__content__arrows-bottom {
@@ -83,7 +94,7 @@ const downloadFile = () => {
   z-index: 1;
   margin-left: 300px;
   bottom: -110%;
-   transform: rotate(357deg);
+  transform: rotate(357deg);
 }
 
 
@@ -141,7 +152,7 @@ const downloadFile = () => {
   background: #ff7a00;
   cursor: pointer;
   transition: opacity 0.3s;
-   transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 .download__content__btn:hover {
