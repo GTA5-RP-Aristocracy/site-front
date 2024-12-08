@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { defineAsyncComponent } from 'vue'
 
-const Home = defineAsyncComponent(() => import('@/views/Home.vue'))
-
+const Home = defineAsyncComponent(() => import('@/views/HomePage.vue'))
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,23 +14,23 @@ const router = createRouter({
 		{
 			path: '/shop',
 			name: 'shop',
-			component: defineAsyncComponent(() => import('@/views/Shop.vue')),
+			component: defineAsyncComponent(() => import('@/views/ShopPage.vue')),
 		},
 		{
 			path: '/rules',
 			name: 'rules',
-			component: defineAsyncComponent(() => import('@/views/Rules.vue')),
+			component: defineAsyncComponent(() => import('@/views/RulesPage.vue')),
 		},
 		{
 			path: '/download',
 			name: 'download',
-			component: defineAsyncComponent(() => import('@/views/Download.vue')),
+			component: defineAsyncComponent(() => import('@/views/DownloadPage.vue')),
 		},
 		{
 			path: '/settings',
 			name: 'settings',
 			component: defineAsyncComponent(
-				() => import('@/views/UserProfile/Setting.vue')
+				() => import('@/views/UserProfile/SettingPage.vue')
 			),
 		},
 		{
@@ -39,6 +38,13 @@ const router = createRouter({
 			name: 'registration',
 			component: defineAsyncComponent(
 				() => import('@/views/UserProfile/RegistrationForm.vue')
+			),
+		},
+		{
+			path: '/agreement',
+			name: 'agreement',
+			component: defineAsyncComponent(
+				() => import('@/components/agreementPage.vue')
 			),
 		},
 	],

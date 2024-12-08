@@ -164,21 +164,21 @@ const checkPasswordHistory = async () => {
 
 // Очищаем инпуты
 function clearCurrentPasswordError () {
-  if(errorMessageCurrentPassword) {
+  if(errorMessageCurrentPassword.value) {
   currentPassword.value = '';
   errorMessageCurrentPassword.value = '';
   }
 }
 
 function clearNewPasswordError () {
-  if(errorMessageNewPassword) {
+  if(errorMessageNewPassword.value) {
   newPassword.value = '';
   errorMessageNewPassword.value = '';
   }
 }
 
 function clearTestPasswordError () {
-  if(errorMessageTestPassword) {
+  if(errorMessageTestPassword.value) {
   testPassword.value = '';
   errorMessageTestPassword.value = '';
   }

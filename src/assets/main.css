@@ -4,34 +4,34 @@
 @import url('https://fonts.cdnfonts.com/css/buffalo');
 
 @font-face {
-    font-family: 'Jester';
-    src: url('src/assets/fonts/Jester-Regular.woff2') format('woff2');
+	font-family: 'Jester';
+	src: url('src/assets/fonts/Jester-Regular.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'AnitypeRedwood-1';
-    src: url('src/assets/fonts/AnitypeRedwood-1.woff2') format('woff2');
+	font-family: 'AnitypeRedwood-1';
+	src: url('src/assets/fonts/AnitypeRedwood-1.woff2') format('woff2');
 }
 
 :root {
-  --font-family-outfit: "Outfit", sans-serif;
-  --font-family-inter: "Inter", sans-serif;
-  --font-family-satisfy: "Satisfy", cursive;
-  --font-family-buffalo: "buffalo", sans-serif;
-  --font-family-jester: "Jester", sans-serif;
-  --font-family-redwood: "AnitypeRedwood-1", sans-serif;
-  --font-weight: 400;
-  --font-style: normal;
-  --font-weight-regular: 400;
-  --font-weight-bold: 700;
-  --font-weight-black: 900;
-  --font-weight-light: 100;
+	--font-family-outfit: 'Outfit', sans-serif;
+	--font-family-inter: 'Inter', sans-serif;
+	--font-family-satisfy: 'Satisfy', cursive;
+	--font-family-buffalo: 'buffalo', sans-serif;
+	--font-family-jester: 'Jester', sans-serif;
+	--font-family-redwood: 'AnitypeRedwood-1', sans-serif;
+	--font-weight: 400;
+	--font-style: normal;
+	--font-weight-regular: 400;
+	--font-weight-bold: 700;
+	--font-weight-black: 900;
+	--font-weight-light: 100;
 
-  --color-transition: #FFA500;
+	--color-transition: #ffa500;
 }
 
 body {
-  font-family: var(--font-family-inter);
-  margin: 0;
-  padding: 0;
+	font-family: var(--font-family-inter);
+	margin: 0;
+	padding: 0;
 }
