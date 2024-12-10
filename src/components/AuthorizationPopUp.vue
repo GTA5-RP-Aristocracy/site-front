@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useCaptchaStore } from '@/stores/useCaptchaStore'
 
 // Определение событий
 const emit = defineEmits(['close'])
 const { t } = useI18n()
+const captchaStore = useCaptchaStore()
+
 
 const login = ref<string>('')
 const password = ref<string>('')
@@ -66,7 +69,31 @@ function clearInputs() {
 	passwordError.value = ''
 }
 
-function handleSubmit() {
+async function handleSubmit() {
+
+	const token = await captchaStore.executeCaptcha('login')
+	if (!token) {
+		loginError.value = 'Please verify that you are not a robot.'
+		return
+	}
+
+	// Validate captcha token on backend
+	const response = await fetch('http://localhost:8080/user/verify', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			token: token,
+		}),
+	})
+
+	if (!response.ok) {
+		console.log(response)
+		loginError.value = 'Captcha verification failed.'
+		return
+	}
+
 	validateInput()
 	if (isFormValid.value) {
 		clearInputs()
