@@ -38,43 +38,43 @@ watchEffect(() => {
 })
 
 // Функции для открытия поп-апов
-function openNicknamePopup() {
+function openNicknamePopup(): void {
 	isNicknamePopupOpen.value = true
 }
 
-function openEmailPopup() {
+function openEmailPopup(): void {
 	isEmailPopupOpen.value = true
 }
 
-function openPasswordPopup() {
+function openPasswordPopup(): void {
 	isPasswordPopupOpen.value = true
 }
 
-function openBioPopup() {
+function openBioPopup(): void {
 	isBioPopupOpen.value = true
 }
 
-function openRegionPopup() {
+function openRegionPopup(): void {
 	isRegionPopupOpen.value = true
 }
 
 //  Функции для закрытия поп-апов
-function closeNicknamePopup() {
+function closeNicknamePopup(): void {
 	isNicknamePopupOpen.value = false
 }
 
-function closeEmailPopup() {
+function closeEmailPopup(): void {
 	isEmailPopupOpen.value = false
 }
 
-function closePasswordPopup() {
+function closePasswordPopup(): void {
 	isPasswordPopupOpen.value = false
 }
 
-function closeBioPopup() {
+function closeBioPopup(): void {
 	isBioPopupOpen.value = false
 }
-function closeRegionPopup() {
+function closeRegionPopup(): void {
 	isRegionPopupOpen.value = false
 }
 

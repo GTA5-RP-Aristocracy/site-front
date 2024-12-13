@@ -4,9 +4,9 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n(); 
 
-const showCookieBanner = ref(true);
+const showCookieBanner = ref<boolean>(true);
 
-function closeBanner() {
+function closeBanner(): void {
   showCookieBanner.value = false;
 }
 

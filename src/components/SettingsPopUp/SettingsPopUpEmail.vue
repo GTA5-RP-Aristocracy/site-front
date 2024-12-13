@@ -20,7 +20,7 @@ function emailValidation(email: string): string {
 	//TODO ждем настройку серверной части для внедрение логики проверки почты
 }
 
-function handleEmailValidation() {
+function handleEmailValidation() : void {
 	// Проверка валидности email
 	const validationResult = emailValidation(email.value)
 	if (validationResult) {
@@ -38,13 +38,13 @@ function handleEmailValidation() {
 }
 
 // Функция для сброса данных формы
-function resetForm() {
+function resetForm() : void {
 	email.value = '' // Сброс поля с email
 	password.value = '' // Сброс поля с паролем
 }
 
 // Функция для сохранения изменений
-function saveChanges() {
+function saveChanges() : void {
 	// Проверка длины нового email
 	if (email.value.length < 4) {
 		errorMessage.value = 'Email must be at least 4 characters long.'
@@ -69,7 +69,7 @@ watch(password, () => {
 })
 
 // Функция закрытия попапа при клике на серую зону
-function closePopUp() {
+function closePopUp() : void {
 	resetForm()
 	emit('close')
 }

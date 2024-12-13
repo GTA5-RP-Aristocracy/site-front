@@ -12,7 +12,7 @@ const loginError = ref<string>('')
 const passwordError = ref<string>('')
 const isPopupVisible = ref<boolean>(true)
 
-function validateInput() {
+function validateInput() : void {
 	loginError.value = loginValidation(login.value)
 	passwordError.value = passwordValidation(password.value)
 }
@@ -47,7 +47,7 @@ watch(password, newValue => {
 })
 
 // Вычисляемое свойство для отслеживания валидности данных
-const isFormValid = computed(() => {
+const isFormValid = computed<boolean>(() => {
 	return (
 		login.value.length >= 4 &&
 		login.value.length <= 32 &&
@@ -59,34 +59,34 @@ const isFormValid = computed(() => {
 })
 
 // Очистка полей ввода
-function clearInputs() {
+function clearInputs(): void {
 	login.value = ''
 	password.value = ''
 	loginError.value = ''
 	passwordError.value = ''
 }
 
-function handleSubmit() {
+function handleSubmit(): void {
 	validateInput()
 	if (isFormValid.value) {
 		clearInputs()
 	}
 }
 
-function closePopup() {
+function closePopup(): void {
 	isPopupVisible.value = false
 	// Эмитим событие close в родительский компонент
 	emit('close')
 }
 
-function handleOverlayClick(event: MouseEvent) {
+function handleOverlayClick(event: MouseEvent): void {
 	const target = event.target as HTMLElement
 	if (target.classList.contains('authorization-pop-up__overlay')) {
 		closePopup()
 	}
 }
 
-function handleKeyDown(event: KeyboardEvent) {
+function handleKeyDown(event: KeyboardEvent): void {
 	if (event.key === 'Enter') {
 		validateInput()
 	}

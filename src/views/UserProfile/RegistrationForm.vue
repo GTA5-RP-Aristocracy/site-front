@@ -54,44 +54,44 @@ function passwordTestValidation(passwordTest: string): string {
 }
 
 // Функции для валидации и очистки ошибок
-function handleNicknameValidation() {
+function handleNicknameValidation(): void {
   errorNickname.value = nicknameValidation(nickname.value);
 }
 
-function handleEmailValidation() {
+function handleEmailValidation(): void {
   errorEmail.value = emailValidation(email.value);
 }
 
-function handlePasswordValidation() {
+function handlePasswordValidation(): void {
   errorPassword.value = passwordValidation(password.value);
 }
 
-function handlePasswordTestValidation() {
+function handlePasswordTestValidation(): void {
   errorPasswordTest.value = passwordTestValidation(passwordTest.value);
 }
 
-function clearNicknameError() {
+function clearNicknameError(): void {
   if (errorNickname.value) nickname.value = '';
   errorNickname.value = '';
 }
 
-function clearEmailError() {
+function clearEmailError(): void {
   if (errorEmail.value) email.value = '';
   errorEmail.value = '';
 }
 
-function clearPasswordError() {
+function clearPasswordError(): void {
   if (errorPassword.value) password.value = '';
   errorPassword.value = '';
 }
 
-function clearPasswordTestError() {
+function clearPasswordTestError(): void {
   if (errorPasswordTest.value) passwordTest.value = '';
   errorPasswordTest.value = '';
 }
 
 // Логика отправки формы
-async function MainValidation() {
+async function MainValidation(): Promise<void> {
   handleNicknameValidation();
   handleEmailValidation();
   handlePasswordValidation();

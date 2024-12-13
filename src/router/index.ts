@@ -82,6 +82,13 @@ const router = createRouter({
 				() => import('@/components/ErrorsPages/ForbiddenError.vue')
 			),
 		},
+		{
+			path: '/admin',
+			name: 'Admin',
+			component: defineAsyncComponent(
+				() => import('@/views//AdministratorPanel/AdminPanel.vue')
+			),
+		},
 	],
 })
 

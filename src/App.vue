@@ -4,6 +4,12 @@ import ProfileAvatar from './components/ProfileAvatar.vue'
 import { useI18n } from 'vue-i18n'
 import cookieDisclaimer from './components/cookieDisclaimer.vue';
 const { t, locale } = useI18n({ useScope: 'global' })
+const route = useRoute(); // Подключаем текущий маршрут
+
+
+// Проверка: показывать ли панель навигации
+const showNav = !route.path.startsWith('/admin');
+
 
 //подстраиваем стили в зависимости от языка
 onMounted(() => {
@@ -17,7 +23,7 @@ watch(locale, newLang => {
 
 <template>
 	<div>
-		<div class="nav">
+		<div v-if="showNav" class="nav">
 			<div class="nav__content">
 				<div class="nav__server-status">
 					<img

@@ -141,7 +141,7 @@ const cars = ref<Car[]>([
 	position: relative;
 	margin: 140px 0 140px 90px;
 	width: 290px;
-	height: 390px;
+	height: 430px;
 	border: 5px solid #f1c505;
 	padding: 20px;
 }
@@ -150,7 +150,7 @@ html[lang='ru'] .shop__cars-content {
 	position: relative;
 	margin: 140px 0 140px 90px;
 	width: 290px;
-	height: 390px;
+	height: 430px;
 	border: 5px solid #f1c505;
 	padding: 20px;
 }

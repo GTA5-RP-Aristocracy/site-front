@@ -18,13 +18,13 @@ function resetForm() {
 }
 
 // Функция для закрытия попапа
-function closePopUp() {
+function closePopUp() : void {
 	resetForm()
 	emit('close')
 }
 
 // Функция для сохранения изменений
-async function saveChanges() {
+async function saveChanges() : Promise<void> {
 	const token = await captchaStore.executeCaptcha('save_nickname')
 	console.log('Captcha Token:', token);
 	if (!token) {

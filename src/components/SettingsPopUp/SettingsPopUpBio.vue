@@ -6,12 +6,12 @@ const bioError = ref<string>('')
 
 const emit = defineEmits(['close', 'bio-changed'])
 
-function resetForm() {
+function resetForm() : void {
 	watchCountChar.value = ''
 	bioError.value = ''
 }
 
-function closePopUp() {
+function closePopUp() : void {
 	resetForm()
 	emit('close')
 }
@@ -20,7 +20,7 @@ watch(watchCountChar, (newValue: string) => {
 	countChar.value = newValue.length
 })
 
-function bioErrorClear() {
+function bioErrorClear() : void {
 	if (bioError.value) {
 		bioError.value = ''
 	}

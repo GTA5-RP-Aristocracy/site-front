@@ -7,11 +7,11 @@ const selectedCountry = ref<string | null>(null) // Сохранение выб�
 
 const emit = defineEmits(['close', 'region-changed'])
 
-function resetForm() {
+function resetForm() : void {
 	countries.value = []
 }
 
-function closePopUp() {
+function closePopUp() : void {
 	resetForm()
 	emit('close')
 }
@@ -35,7 +35,7 @@ onMounted(async () => {
 })
 
 // Функция для выбора страны и закрытия списка
-function selectCountry(country: string) {
+function selectCountry(country: string) : void {
 	selectedCountry.value = country
 	isOpen.value = false
 }

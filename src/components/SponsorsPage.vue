@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
 	<div class="sponsors">
 		<a href="https://rog.asus.com/ru/" target="_blank"

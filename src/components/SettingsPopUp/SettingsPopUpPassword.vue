@@ -12,7 +12,7 @@ const errorMessageTestPassword = ref<string>('')
 
 const emit = defineEmits(['close', 'password-changed'])
 
-function resetForm() {
+function resetForm() : void {
 	currentPassword.value = ''
 	newPassword.value = ''
 	testPassword.value = ''
@@ -24,7 +24,7 @@ function resetForm() {
 }
 
 // Функция для закрытия попапа
-function closePopUp() {
+function closePopUp() : void {
 	resetForm()
 	emit('close')
 }
@@ -87,7 +87,7 @@ const changePassword = async () => {
 }
 
 // Функция для проверки сложности пароля
-function validationPasswordStrength() {
+function validationPasswordStrength() : void {
 	const password = newPassword.value
 	const invalidChar = /[^a-zA-Z0-9!@#$%^&*(),.?":{}|<>]/.test(password)
 
@@ -140,7 +140,7 @@ watch(newPassword, newValue => {
 })
 
 // Проверка на совпадение паролей
-function CheckTestPassword() {
+function CheckTestPassword() : void {
 	if (newPassword.value !== testPassword.value) {
 		errorMessageTestPassword.value = 'Passwords do not match'
 	} else {
@@ -182,28 +182,28 @@ const checkPasswordHistory = async () => {
 }
 
 // Очищаем инпуты
-function clearCurrentPasswordError() {
+function clearCurrentPasswordError() : void {
 	if (errorMessageCurrentPassword.value) {
 		currentPassword.value = ''
 		errorMessageCurrentPassword.value = ''
 	}
 }
 
-function clearNewPasswordError() {
+function clearNewPasswordError() : void {
 	if (errorMessageNewPassword.value) {
 		newPassword.value = ''
 		errorMessageNewPassword.value = ''
 	}
 }
 
-function clearTestPasswordError() {
+function clearTestPasswordError() : void {
 	if (errorMessageTestPassword.value) {
 		testPassword.value = ''
 		errorMessageTestPassword.value = ''
 	}
 }
 
-async function MainValidation() {
+async function MainValidation() : Promise<void> {
 	validationPasswordStrength()
 	const isPasswordUsed = await checkPasswordHistory()
 	if (!isPasswordUsed) return // Если пароль использовался, прекращаем валидацию
