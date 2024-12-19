@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import AdminUsers from '@/views/AdministratorPanel/AdminUsers.vue';
+import AdminHeader from './AdminHeader.vue';
+import AdminUsers from './AdminUsers.vue';
+import AdminSidebar from './AdminSidebar.vue';
 </script>
 
 <template>
+  <AdminHeader/>
+  <AdminSidebar/>
   <div class="admin-panel">
-    <h1>Admin Panel</h1>
     <AdminUsers />
   </div>
 </template>
@@ -16,6 +19,7 @@ import AdminUsers from '@/views/AdministratorPanel/AdminUsers.vue';
 }
 
 h1 {
+  margin-left: 50px;
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;

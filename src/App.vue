@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, ref } from 'vue'
+import { useRoute } from 'vue-router';
 import ProfileAvatar from './components/ProfileAvatar.vue'
 import { useI18n } from 'vue-i18n'
 import cookieDisclaimer from './components/cookieDisclaimer.vue';
@@ -7,9 +8,17 @@ const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute(); // Подключаем текущий маршрут
 
 
-// Проверка: показывать ли панель навигации
-const showNav = !route.path.startsWith('/admin');
 
+// Проверка: показывать ли панель навигации
+const showNav = ref(!route.path.startsWith('/admin'));
+
+// Отслеживаем изменения маршрута и обновляем showNav
+watch(
+  () => route.path,
+  (newPath) => {
+    showNav.value = !newPath.startsWith('/admin');
+  }
+);
 
 //подстраиваем стили в зависимости от языка
 onMounted(() => {
@@ -70,7 +79,7 @@ watch(locale, newLang => {
 			</div>
 		</div>
 		<router-view />
-		<cookieDisclaimer/>
+		<cookieDisclaimer v-show="showNav"/>
 	</div>
 </template>
 
