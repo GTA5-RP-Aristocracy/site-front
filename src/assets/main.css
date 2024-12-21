@@ -14,6 +14,11 @@
 	src: url('src/assets/fonts/AnitypeRedwood-1.woff2') format('woff2');
 }
 
+@font-face {
+	font-family: 'HarryPotterKudos';
+	src: url('src/assets/fonts/HarryPotter/HarryPotterKudosRegular.ttf') format('ttf');
+}
+
 :root {
 	--font-family-outfit: 'Outfit', sans-serif;
 	--font-family-inter: 'Inter', sans-serif;

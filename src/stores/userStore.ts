@@ -9,6 +9,7 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'Joe.Peach@example.com',
 			role: 'Admin',
 			status: 'Active',
+			createdAt: '2024-11-20',
 		},
 		{
 			id: 2,
@@ -16,6 +17,7 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'Pierre.Dunn@example.com',
 			role: 'User',
 			status: 'Inactive',
+			createdAt: '2024-11-18',
 		},
 		{
 			id: 3,
@@ -23,13 +25,15 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'Jack.Swallows@example.com',
 			role: 'Moderator',
 			status: 'Active',
+			createdAt: '2024-11-22',
 		},
 		{
 			id: 4,
 			name: 'Max Payne',
 			email: 'max.payne@bulletmail.com',
 			role: 'User',
-			status: 'Active',
+			status: 'Inactive',
+			createdAt: '2024-11-19',
 		},
 		{
 			id: 5,
@@ -37,6 +41,7 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'marcus.phoenix@gearsofmail.com',
 			role: 'User',
 			status: 'Active',
+			createdAt: '2024-11-23',
 		},
 		{
 			id: 6,
@@ -44,6 +49,7 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'naruto@ramenlove.com',
 			role: 'User',
 			status: 'Active',
+			createdAt: '2024-11-21',
 		},
 		{
 			id: 7,
@@ -51,13 +57,15 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'sol.goodman@bettercallmail.com',
 			role: 'User',
 			status: 'Active',
+			createdAt: '2024-11-17',
 		},
 		{
 			id: 8,
 			name: 'Donald Trump',
 			email: 'donald.trump@buildthatmail.com',
 			role: 'User',
-			status: 'Active',
+			status: 'Inactive',
+			createdAt: '2024-11-16',
 		},
 		{
 			id: 9,
@@ -65,6 +73,7 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'lucifer@hellmail.com',
 			role: 'User',
 			status: 'Active',
+			createdAt: '2024-11-15',
 		},
 		{
 			id: 10,
@@ -72,6 +81,7 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'joker@whysoemail.com',
 			role: 'User',
 			status: 'Active',
+			createdAt: '2024-11-14',
 		},
 		{
 			id: 11,
@@ -79,13 +89,15 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'hideo.kojima@strandmail.com',
 			role: 'User',
 			status: 'Active',
+			createdAt: '2024-11-13',
 		},
 		{
 			id: 12,
 			name: 'Jotaro Kujo',
 			email: 'jotaro.kujo@starplatinum.com',
 			role: 'User',
-			status: 'Active',
+			status: 'Inactive',
+			createdAt: '2024-11-12',
 		},
 		{
 			id: 13,
@@ -93,8 +105,10 @@ export const useUserStore = defineStore('userStore', () => {
 			email: 'uncle.bogdan@slapower.net',
 			role: 'Moderator',
 			status: 'Active',
+			createdAt: '2024-11-11',
 		},
 	])
+
 
 	// Удаление пользователя
 	const deleteUser = (id: number) => {
