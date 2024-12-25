@@ -151,38 +151,41 @@ strong {
 	position: absolute;
 	color: rgb(173, 16, 16);
 	font-family: var(--font-family-satisfy);
-	right: 40%;
+	right: 32%;
 	top: 5%;
 	font-size: 46px;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .authorization-pop-up__overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .authorization-pop-up__interface {
-	background-image: url(../assets/images/girl.png);
-	position: relative;
-	border-radius: 5%;
-	margin-left: 400px;
-	margin-top: 150px;
-	width: 700px;
-	height: 500px;
-	background-color: white;
-	z-index: 11;
-	background-size: contain;
-	background-repeat: no-repeat;
+  position: relative;
+  background-image: url(../assets/images/girl.png);
+  border-radius: 5%;
+  width: 700px;
+  height: 500px;
+  background-color: white;
+  z-index: 11;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
+
 
 .authorization-pop-up__interface__container {
 	padding-top: 100px;
+	padding-left: 50px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;

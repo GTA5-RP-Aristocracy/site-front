@@ -2,6 +2,7 @@
 import AdminHeader from './AdminHeader.vue';
 import AdminUsers from './AdminUsers.vue';
 import AdminSidebar from './AdminSidebar.vue';
+import AdminDashboard from './AdminDashboard.vue';
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import AdminSidebar from './AdminSidebar.vue';
   <AdminSidebar/>
   <div class="admin-panel">
     <AdminUsers />
+    <AdminDashboard />
   </div>
 </template>
 

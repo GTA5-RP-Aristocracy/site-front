@@ -181,7 +181,6 @@ async function MainValidation(): Promise<void> {
 </template>
 
 
-
 <style scoped>
 body {
 	font-family: var(--font-family-outfit);
@@ -192,7 +191,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	width: 500px;
-	margin-bottom: 100px;
+	margin-top: 25px;
 	margin-left: 500px;
 	background-color: #272c36;
 	padding: 50px;

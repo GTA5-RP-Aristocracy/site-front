@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const route = useRoute() // Получаем текущий маршрут
 
-const isCollapsed = ref<boolean>(false) // Панель развернута по умолчанию
+const isCollapsed = ref<boolean>(true) // Панель развернута по умолчанию
 
 const toggleSidebar = () => {
 	isCollapsed.value = !isCollapsed.value // Переключение состояния панели при нажатии на "бургер"
@@ -94,6 +94,7 @@ const isActive = (path: string) => route.path === path
 
 .sidebar.collapsed {
 	width: 50px;
+	overflow: hidden;
 }
 
 /* Кнопка бургер */

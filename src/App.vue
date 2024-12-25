@@ -10,13 +10,16 @@ const route = useRoute(); // Подключаем текущий маршрут
 
 
 // Проверка: показывать ли панель навигации
-const showNav = ref(!route.path.startsWith('/admin'));
+const showNav = ref(!route.path.startsWith('/admin') &&
+  !['NotFound', 'forbidden', 'registration'].includes(route.name as string));
 
 // Отслеживаем изменения маршрута и обновляем showNav
 watch(
-  () => route.path,
-  (newPath) => {
-    showNav.value = !newPath.startsWith('/admin');
+  () => route.name,
+  (newName) => {
+    showNav.value =
+      !route.path.startsWith('/admin') &&
+      !['NotFound', 'forbidden', 'registration'].includes(newName as string);
   }
 );
 

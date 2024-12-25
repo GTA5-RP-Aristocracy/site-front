@@ -15,6 +15,6 @@ const imageSrc: Ref<string> = ref(new URL('@/assets/images/Forbidden.png', impor
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height:130vh;
 }
 </style>

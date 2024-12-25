@@ -15,7 +15,7 @@ const imageSrc: Ref<string> = ref(new URL('@/assets/images/404.png', import.meta
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 110vh;
 }
 </style>
 

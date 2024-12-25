@@ -76,7 +76,7 @@ const router = createRouter({
 			),
 		},
 		{
-			path: '/:pathMatch(.*)*',
+			path: '/403',
 			name: 'forbidden',
 			component: defineAsyncComponent(
 				() => import('@/components/ErrorsPages/ForbiddenError.vue')

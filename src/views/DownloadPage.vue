@@ -103,8 +103,8 @@ html[lang='ru'] .download__content__arrows-top {
 	height: auto;
 	position: absolute;
 	z-index: 1;
-	margin-left: 300px;
-	bottom: -110%;
+	margin-left: 270px;
+	bottom: -115%;
 	transform: rotate(357deg);
 }
 
