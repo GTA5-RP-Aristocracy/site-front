@@ -78,7 +78,7 @@ async function handleSubmit() {
 	}
 
 	// Validate captcha token on backend
-	const response = await fetch('http://localhost:8080/user/verify', {
+	const response = await fetch('https://aristocracy-rp.ru/api/user/verify', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
