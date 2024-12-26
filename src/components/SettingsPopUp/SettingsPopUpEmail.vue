@@ -1,31 +1,33 @@
 <script lang="ts" setup>
 import { ref, watch, defineEmits } from 'vue'
+import { useUserSettings } from '@/stores/userSettings'
 
 const email = ref<string>('') // введённый email
 const password = ref<string>('') // Введённый пароль
 const errorMessage = ref<string>('') // Сообщение об ошибке
 
-const correctPassword = '1234' // Пример правильного пароля для проверки //TODO ждем связь с сервером что бы реализовать логику пароля
+const correctPassword = '1234' // Пример правильного пароля для проверки
 
+// Получаем доступ к хранилищу
+const userSettings = useUserSettings()
 const emit = defineEmits(['close', 'email-changed'])
 
 // Функция для проверки валидации email
 function emailValidation(email: string): string {
 	const emailPattern: RegExp =
-		/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ // регулярное выражение
+		/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 	if (!emailPattern.test(email)) {
 		return 'Invalid email format. Only Latin characters and certain symbols are allowed.'
 	}
-  return '' //заглушка после связи с сервером нужно удалить и заменить на правильную логику
-	//TODO ждем настройку серверной части для внедрение логики проверки почты
+	return ''
 }
 
-function handleEmailValidation() : void {
-	// Проверка валидности email
+// Обработчик валидации и обновления email
+function handleEmailValidation(): void {
 	const validationResult = emailValidation(email.value)
 	if (validationResult) {
-		errorMessage.value = validationResult // Присваиваем сообщение об ошибке
-		return // Прерываем выполнение функции, если есть ошибка
+		errorMessage.value = validationResult
+		return
 	}
 
 	// Проверка правильности пароля
@@ -34,24 +36,51 @@ function handleEmailValidation() : void {
 		return
 	}
 
-	saveChanges()
+	// Обновление email
+	const updateEmail = async () => {
+		const uuid = userSettings.uuid
+		if (!uuid) {
+			errorMessage.value = 'User not logged in'
+			return
+		}
+
+		try {
+			const response = await fetch(
+				`https://aristocracy-rp.ru/api/user/update?uuid=${uuid}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzUyMTIzMTksImlkIjoiYzUxN2UxNjUtNzg2Yi00NGI2LTg5YTktNzljNTkyZDc1ZmY1In0.9HygVX5acNMS-fTvEQDtPWXSLMeTdr_V4Qv15bdlEVg'
+					},
+					body: JSON.stringify({ email: email.value }),
+				}
+			)
+
+			const data = await response.json()
+
+			if (data.passwordUsed) {
+				errorMessage.value =
+					'This password was used before. Please choose a different one.'
+				return false
+			} else {
+				errorMessage.value = ''
+				return true
+			}
+		} catch (error) {
+			errorMessage.value = 'Server connection error'
+			return false
+		}
+	}
+
+	// Вызов функции обновления email
+	updateEmail()
 }
 
 // Функция для сброса данных формы
-function resetForm() : void {
-	email.value = '' // Сброс поля с email
-	password.value = '' // Сброс поля с паролем
-}
-
-// Функция для сохранения изменений
-function saveChanges() : void {
-	// Проверка длины нового email
-	if (email.value.length < 4) {
-		errorMessage.value = 'Email must be at least 4 characters long.'
-		return
-	}
-
-	resetForm() // Сброс формы после успешного сохранения
+function resetForm(): void {
+	email.value = '' // Сброс email
+	password.value = '' // Сброс пароля
 }
 
 // Следим за изменением email, чтобы скрывать ошибку при вводе
@@ -69,7 +98,7 @@ watch(password, () => {
 })
 
 // Функция закрытия попапа при клике на серую зону
-function closePopUp() : void {
+function closePopUp(): void {
 	resetForm()
 	emit('close')
 }
@@ -77,9 +106,7 @@ function closePopUp() : void {
 
 <template>
 	<div class="SettingsPopUpEmail" @click.self="closePopUp">
-		<!-- Закрываем попап и сбрасываем форму -->
 		<div class="SettingsPopUpEmail__container" @click.stop>
-			<!-- Предотвращаем закрытие при клике на форму -->
 			<input v-model="email" type="text" placeholder="Email" />
 			<input v-model="password" type="password" placeholder="Password" />
 			<p class="error">{{ errorMessage }}</p>

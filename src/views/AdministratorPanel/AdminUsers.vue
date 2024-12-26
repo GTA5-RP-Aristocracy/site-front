@@ -1,40 +1,49 @@
 <script lang="ts" setup>
-import { useUserStore } from '@/stores/userStore'
-import { ref, computed, reactive } from 'vue'
+import { useUserStore } from '@/stores/userStore';
+import { ref, computed, reactive } from 'vue';
 
-const userStore = useUserStore()
+// Подключение хранилища пользователей
+const userStore = useUserStore();
 
-const confirmDelete = (id: number) => {
-	const confirmation = confirm('Are you sure you want to delete this user?')
-	if (confirmation) {
-		userStore.deleteUser(id)
-	}
+// Получаем пользователей из хранилища
+const users = computed(() => userStore.users);
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  createdAt: string;
 }
 
-const users = userStore.users
+interface Filters {
+  status?: string;
+  role?: string;
+  search?: string;
+}
 
+// Фильтры
 const filters = reactive({
-	status: '', // Фильтрация по статусу
-	role: '', // Фильтрация по роли
-	search: '', // Поиск по имени или email
-	alphabetical: null as 'asc' | 'desc' | null, // по алфавиту
-	dateAdded: null as 'newest' | 'oldest' | null // по дате добавления
-})
+  status: '', // Фильтрация по статусу
+  role: '', // Фильтрация по роли
+  search: '', // Поиск по имени или email
+  alphabetical: null as 'asc' | 'desc' | null, // Сортировка по алфавиту
+  dateAdded: null as 'newest' | 'oldest' | null // Сортировка по дате добавления
+});
 
+// Фильтрация пользователей
 const filteredUsers = computed(() => {
-  let result = [...users];
+  let result: User[] = [...users.value];
 
-  // Фильтр по статусу
   if (filters.status) {
     result = result.filter((user) => user.status === filters.status);
   }
 
-  // Фильтр по роли
   if (filters.role) {
     result = result.filter((user) => user.role === filters.role);
   }
 
-  // Поиск по имени или email
   if (filters.search) {
     const searchTerm = filters.search.toLowerCase();
     result = result.filter(
@@ -44,22 +53,16 @@ const filteredUsers = computed(() => {
     );
   }
 
-  // Сортировка по алфавиту
-if (filters.alphabetical) {
+  if (filters.alphabetical) {
     result.sort((a, b) => {
-        const nameA = a.name.toLowerCase();
-        const nameB = b.name.toLowerCase();
-        if (filters.alphabetical === 'asc') {
-            return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
-        } else if (filters.alphabetical === 'desc') {
-            return nameA > nameB ? -1 : nameA < nameB ? 1 : 0;
-        }
-        return 0;
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      return filters.alphabetical === 'asc'
+        ? nameA.localeCompare(nameB)
+        : nameB.localeCompare(nameA);
     });
-}
+  }
 
-
-  // Сортировка по дате добавления (допустим, дата в поле `createdAt`)
   if (filters.dateAdded) {
     result.sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
@@ -71,153 +74,196 @@ if (filters.alphabetical) {
   return result;
 });
 
-const visibleUsersCount = ref<number>(5)
-
-const toggleUserCount = () => {
-	visibleUsersCount.value = visibleUsersCount.value === 5 ? users.length : 5
-}
+// Пагинация
+const currentPage = ref(1);
+const pageSize = ref(20); // Размер страницы по умолчанию
 
 const displayedUsers = computed(() => {
-  return filteredUsers.value.slice(0, visibleUsersCount.value);
-})
+  const start = (currentPage.value - 1) * pageSize.value;
+  const end = start + pageSize.value;
+  return filteredUsers.value.slice(start, end);
+});
+
+const totalPages = computed(() => {
+  return Math.ceil(filteredUsers.value.length / pageSize.value);
+});
+
+// Удаление пользователя
+const confirmDelete = (id: number) => {
+  const confirmation = confirm('Are you sure you want to delete this user?');
+  if (confirmation) {
+    userStore.deleteUser(id);
+  }
+};
 </script>
 
 <template>
-	<div>
-		<h2>User Management</h2>
-		<div class="admin-filters">
-			<!-- Фильтры -->
-			<select v-model="filters.status">
-				<option value="">All Statuses</option>
-				<option value="Active">Active</option>
-				<option value="Inactive">Inactive</option>
-			</select>
-			<select v-model="filters.alphabetical">
-				<option value="">No Sort</option>
-				<option value="asc">Alphabetical (A-Z)</option>
-				<option value="desc">Alphabetical (Z-A)</option>
-			</select>
-			<select v-model="filters.dateAdded">
-				<option value="">No Sort</option>
-				<option value="newest">Newest First</option>
-				<option value="oldest">Oldest First</option>
-			</select>
-			<select v-model="filters.role">
-				<option value="">All Roles</option>
-				<option value="Admin">Admin</option>
-				<option value="User">User</option>
-				<option value="Moderator">Moderator</option>
-			</select>
-			<input
-				type="text"
-				v-model="filters.search"
-				placeholder="Search by name or email"
-			/>
-		</div>
-		<table class="admin-table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Role</th>
-					<th>Status</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="user in displayedUsers" :key="user.id">
-					<td>{{ user.id }}</td>
-					<td>{{ user.name }}</td>
-					<td>{{ user.email }}</td>
-					<td>{{ user.role }}</td>
-					<td>{{ user.status }}</td>
-					<td class="admin-button">
-						<button @click="confirmDelete(user.id)">Block</button>
-						<button
-							class="admin-button-unblock"
-							@click="confirmDelete(user.id)"
-						>
-							Unblock
-						</button>
-					</td>
-				</tr>
-			</tbody>
-			<button class="filter" @click="toggleUserCount">
-				{{ visibleUsersCount === 5 ? 'Show All' : 'Only 5' }}
-			</button>
-		</table>
-	</div>
+  <div>
+    <h2>User Management</h2>
+
+    <!-- Фильтры -->
+    <div class="admin-filters">
+      <select v-model="filters.status">
+        <option value="">All Statuses</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+
+      <select v-model="filters.alphabetical">
+        <option value="">No Sort</option>
+        <option value="asc">Alphabetical (A-Z)</option>
+        <option value="desc">Alphabetical (Z-A)</option>
+      </select>
+
+      <select v-model="filters.dateAdded">
+        <option value="">No Sort</option>
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+
+      <select v-model="filters.role">
+        <option value="">All Roles</option>
+        <option value="Admin">Admin</option>
+        <option value="User">User</option>
+        <option value="Moderator">Moderator</option>
+      </select>
+
+      <input
+        type="text"
+        v-model="filters.search"
+        placeholder="Search by name or email"
+      />
+    </div>
+
+    <!-- Таблица пользователей -->
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in displayedUsers" :key="user.id">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.status }}</td>
+          <td class="admin-button">
+            <button @click="confirmDelete(user.id)">Block</button>
+            <button class="admin-button-unblock" @click="confirmDelete(user.id)">
+              Unblock
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Управление пагинацией -->
+    <div class="pagination-controls">
+      <button @click="currentPage > 1 && currentPage--" :disabled="currentPage === 1">
+        Previous
+      </button>
+
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+      <button
+        @click="currentPage < totalPages && currentPage++"
+        :disabled="currentPage === totalPages"
+      >
+        Next
+      </button>
+
+      <select v-model="pageSize" @change="currentPage = 1">
+        <option value="5">5</option>
+        <option value="20">20</option>
+        <option value="40">40</option>
+      </select>
+    </div>
+  </div>
 </template>
 
 <style scoped>
 .admin-table {
-	width: 95%;
-	border-collapse: collapse;
-	margin-top: 20px;
-	margin-left: 50px;
+  width: 95%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: 50px;
 }
 
 .admin-filters {
-	display: flex;
-	gap: 10px;
-	margin-left: 50px;
-	margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  margin-left: 50px;
+  margin-bottom: 20px;
 }
 
 .admin-filters select,
 .admin-filters input {
-	padding: 8px;
-	font-size: 14px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .admin-table th,
 .admin-table td {
-	padding: 12px;
-	text-align: left;
-	border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
 }
 
 .admin-table th {
-	background-color: #f4f4f4;
-	color: #333;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 .admin-table tbody tr:hover {
-	background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 .admin-button {
-	display: flex;
-	justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .admin-button-unblock {
-	background-color: #13be27;
+  background-color: #13be27;
 }
 
-.filter {
-	background-color: rgb(48, 176, 255);
-	margin-top: 10px;
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
 }
 
 button {
-	padding: 8px 16px;
-	font-size: 14px;
-	border-radius: 5px;
-	cursor: pointer;
-	border: none;
-	background-color: #ff6347;
-	color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #ff6347;
+  color: white;
 }
 
 button:hover {
-	background-color: #e55347;
+  background-color: #e55347;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 
 h2 {
-	margin-left: 50px;
+  margin-left: 50px;
 }
 </style>
