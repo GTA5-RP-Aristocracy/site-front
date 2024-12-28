@@ -109,7 +109,7 @@ async function MainValidation(): Promise<void> {
 
   // Отправка данных на сервер
   try {
-    const response = await fetch('http://185.218.0.121:8080/user/signup', {
+    const response = await fetch('https://aristocracy-rp.ru/api/user/signup', {
       method: 'POST',
       body: formData,
     });
@@ -117,6 +117,10 @@ async function MainValidation(): Promise<void> {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
+
+    if (!response.ok) {
+  throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+}
 
     const data = await response.json();
     console.log('Success:', data);

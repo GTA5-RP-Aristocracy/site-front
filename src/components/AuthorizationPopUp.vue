@@ -66,13 +66,6 @@ function clearInputs(): void {
 	passwordError.value = ''
 }
 
-function handleSubmit(): void {
-	validateInput()
-	if (isFormValid.value) {
-		clearInputs()
-	}
-}
-
 function closePopup(): void {
 	isPopupVisible.value = false
 	// Эмитим событие close в родительский компонент
@@ -91,6 +84,42 @@ function handleKeyDown(event: KeyboardEvent): void {
 		validateInput()
 	}
 }
+
+function handleSubmit(): void {
+  validateInput();
+  if (isFormValid.value) {
+    clearInputs();
+    handleLogin({
+      email: login.value,
+      password: password.value,
+    });
+  }
+}
+
+async function handleLogin(requestData: { email: string; password: string }) {
+  const url = "https://aristocracy-rp.ru/api/user/signin";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ошибка: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Успешная авторизация:", data);
+
+  } catch (error) {
+    console.error("Ошибка авторизации:", error);
+  }
+}
+
 </script>
 
 <template>
