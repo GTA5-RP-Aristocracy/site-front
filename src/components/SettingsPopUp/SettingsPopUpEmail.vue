@@ -68,7 +68,7 @@ function handleEmailValidation(): void {
 				return true
 			}
 		} catch (error) {
-			errorMessage.value = 'Server connection error'
+			errorMessage.value =  `Server connection error: ${error}`
 			return false
 		}
 	}
